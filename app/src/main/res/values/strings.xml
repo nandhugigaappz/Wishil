@@ -1,0 +1,78 @@
+<resources>
+    <string name="facebook_app_id">2245871472349654</string>
+    <string name="app_name">Wishill</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_flash">FlashActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_regitration">RegitrationActivity</string>
+    <string name="title_activity_sub_category">SubCategoryActivity</string>
+    <string name="title_activity_social_media">SocialMediaActivity</string>
+    <string name="title_activity_college_list">CollegeListActivity</string>
+    <string name="title_activity_college_details">CollegeDetailsActivity</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_school_list">SchoolListActivity</string>
+    <string name="title_activity_exam_category">ExamCategoryActivity</string>
+    <string name="title_activity_exam_list">ExamListActivity</string>
+    <string name="title_activity_exam_details_page">ExamDetailsPage</string>
+    <string name="title_activity_scholarship_list">ScholarshipListActivity</string>
+    <string name="title_activity_study_tour_list">StudyTourList</string>
+    <string name="title_activity_school_details">SchoolDetails</string>
+    <string name="title_activity_scholarship_details">ScholarshipDetailsActivity</string>
+    <string name="title_activity_recommentation_college">RecommentationCollegeActivity</string>
+    <string name="title_activity_top_ranking">TopRankingActivity</string>
+    <string name="title_activity_partnership_usertype_selection">
+        PartnershipUsertypeSelectionActivity
+    </string>
+    <string name="title_activity_partner_ship_register">PartnerShipRegisterActivity</string>
+    <string name="title_activity_parnership_otpverification">ParnershipOTPVerificationActivity
+    </string>
+    <string name="title_activity_partner_login">PartnerLoginActivity</string>
+    <string name="title_activity_partner_enq_list">PartnerEnqListActivity</string>
+    <string name="title_activity_partner_change_password">PartnerChangePasswordActivity</string>
+    <string name="title_activity_partner_forgot_password">PartnerForgotPasswordActivity</string>
+    <string name="title_activity_change_password">ChangePasswordActivity</string>
+    <string name="title_activity_tc">TCActivity</string>
+    <string name="college_enq">Hi \nI am a Wishill user in search of good educational institution for my higher education. From the listing, I came to know about your reputed organization and found the courses I am interested in. I would like to get more details about the courses, fee structure, admission procedure etc. I will be very obliged, if you kindly help me by sending the core information regarding the same. Looking forward to hearing from you.</string>
+    <string name="school_enq">Hi \nI am a student looking for pursuing my higher education in any reputed institution.As a wishill user ,came to know about your reputed institution and course from the site. I am interested to know more details about the institution and will be very obliged if you kindly send the comprehensive course information.Any help that you might be able to offer would be very thankfully received.</string>
+    <string name="study_tour_enq">Hi \nI am Loking For Study Tour</string>
+    <string name="title_activity_intern_ship_list">InternShipListActivity</string>
+    <string name="title_activity_intern_ship_details">InternShipDetailsActivity</string>
+    <string name="title_activity_add_partner_college">AddPartnerCollegeActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_add_partner_scool">AddPartnerScoolActivity</string>
+    <string name="title_activity_add_partner_study_tour">AddPartnerStudyTourActivity</string>
+    <string name="title_activity_search_filter">SearchFilterActivity</string>
+    <string name="title_activity_mobile_number">MobileNumberActivity</string>
+    <string name="title_activity_login_otpverification">LoginOTPVerification</string>
+    <string name="title_activity_edit_profile">EditProfileActivity</string>
+    <string name="title_activity_normal_user_profile_image_browse">NormalUserProfileImageBrowse
+    </string>
+    <string name="title_activity_profile_image_crop">ProfileImageCropActivity</string>
+    <string name="title_activity_video_view">VideoViewActivity</string>
+    <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
+    <string name="title_activity_user_following_list">UserFollowingList</string>
+    <string name="title_activity_send_enq_list">SendEnqListActivity</string>
+    <string name="title_activity_my_followers_list">MyFollowersList</string>
+    <string name="title_activity_smaple">SmapleActivity</string>
+    <string name="title_activity_stories_list">StoriesListActivity</string>
+    <string name="title_activity_recived_enq_list">RecivedEnqList</string>
+    <string name="title_activity_partner_edit_profile">PartnerEditProfile</string>
+    <string name="title_activity_enq_details">EnqDetailsActivity</string>
+    <string name="title_activity_enquery_details">EnqueryDetailsActivity</string>
+    <string name="title_activity_blog_details">BlogDetails</string>
+    <string name="title_activity_search_partner_colleges">SearchPartnerColleges</string>
+    <string name="title_activity_study_abrod_countries">StudyAbrodCountries</string>
+    <string name="title_activity_study_abrod_cat">StudyAbrodCat</string>
+    <string name="title_activity_study_abroad_categories">StudyAbroadCategories</string>
+    <string name="title_activity_study_abroad_list">StudyAbroadList</string>
+    <string name="title_activity_study_abroad_details">StudyAbroadDetailsActivity</string>
+</resources>

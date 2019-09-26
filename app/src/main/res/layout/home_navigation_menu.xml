@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="end"
+    tools:ignore="ContentDescription">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/background_image_two"
+                    android:scaleType="centerCrop"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/whiteGradient"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/wishill_logo"
+                        android:layout_gravity="center"/>
+                   <!-- <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wishill App"
+                        android:textColor="@color/textPrimary"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="25dp"/>-->
+                </LinearLayout>
+
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/underline_menu_gray"
+                android:id="@+id/ll_partner_login"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="15dp"
+                    android:drawableStart="@drawable/ic_partner"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:text="Partner Login"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/underline_menu_gray"
+                android:id="@+id/ll_menu_one"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="15dp"
+                    android:drawableStart="@drawable/ic_partner"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:text="Partner With Wishill"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/underline_menu_gray"
+                android:id="@+id/ll_share_app"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="15dp"
+                    android:drawableStart="@drawable/ic_share"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:text="Invite Friends"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/underline_menu_gray"
+                android:id="@+id/ll_about_us"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="15dp"
+                    android:drawableStart="@drawable/ic_about"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:text="About Us"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/underline_menu_gray"
+                android:orientation="horizontal"
+                android:id="@+id/ll_settings"
+                >
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="15dp"
+                    android:drawableStart="@drawable/ic_settings"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:text="Settings"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/underline_menu_gray"
+                android:id="@+id/ll_change_password"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="15dp"
+                    android:drawableStart="@drawable/ic_key"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:text="Change Password"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/underline_menu_gray"
+                android:id="@+id/ll_privacy_policy"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="15dp"
+                    android:drawableStart="@drawable/ic_exclamation"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:text="Privacy Policy"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/underline_menu_gray"
+                android:id="@+id/ll_terms_conditions"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="15dp"
+                    android:drawableStart="@drawable/ic_exclamation"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:text="Terms and Conditions"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/underline_menu_gray"
+                android:orientation="horizontal"
+                android:id="@+id/ll_send_feedback">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="15dp"
+                    android:drawableStart="@drawable/ic_chat"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:text="Send Feedback"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/underline_menu_gray"
+                android:id="@+id/ll_logout"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="15dp"
+                    android:drawableStart="@drawable/ic_power"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:text="Logout"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <!--         <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="vertical"
+                         android:padding="20dp">
+
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginBottom="17dp"
+                             android:layout_marginTop="10dp"
+                             android:text="@string/follow_us"
+                             android:textColor="@color/textPrimary"
+                             android:textSize="18sp"
+                             android:textStyle="bold" />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="horizontal">
+
+                             <ImageView
+                                 android:layout_width="28dp"
+                                 android:layout_height="28dp"
+                                 android:layout_margin="3dp"
+                                 android:scaleType="fitCenter"
+                                 android:src="@drawable/facebook" />
+
+                             <ImageView
+                                 android:layout_width="28dp"
+                                 android:layout_height="28dp"
+                                 android:layout_margin="3dp"
+                                 android:scaleType="fitCenter"
+                                 android:src="@drawable/twitter" />
+
+
+                             <ImageView
+                                 android:layout_width="28dp"
+                                 android:layout_height="28dp"
+                                 android:layout_margin="3dp"
+                                 android:scaleType="fitCenter"
+                                 android:src="@drawable/linkedin" />
+
+                             <ImageView
+                                 android:layout_width="28dp"
+                                 android:layout_height="28dp"
+                                 android:layout_margin="3dp"
+                                 android:scaleType="fitCenter"
+                                 android:src="@drawable/google_plus" />
+
+                         </LinearLayout>
+
+                     </LinearLayout>-->
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

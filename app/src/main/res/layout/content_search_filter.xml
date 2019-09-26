@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.SearchFilterActivity"
+    tools:showIn="@layout/activity_search_filter">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:padding="10dp">
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/padding_large"
+           android:text="State"
+           android:textColor="@color/textPrimary"
+           android:textSize="@dimen/text_extra_small" />
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/padding_small"
+           android:background="@drawable/bg_edit_text"
+           android:hint="Select State"
+           android:id="@+id/tv_state"
+           android:inputType="textCapSentences"
+           android:padding="@dimen/padding_large"
+           android:drawableEnd="@drawable/ic_down_arrow"
+           android:textColor="@color/textPrimary"
+           android:textSize="@dimen/text_small" />
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/padding_large"
+           android:text="District"
+           android:textColor="@color/textPrimary"
+           android:textSize="@dimen/text_extra_small" />
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/padding_small"
+           android:background="@drawable/bg_edit_text"
+           android:hint="Select City"
+           android:id="@+id/tv_district"
+           android:inputType="textCapSentences"
+           android:padding="@dimen/padding_large"
+           android:drawableEnd="@drawable/ic_down_arrow"
+           android:textColor="@color/textPrimary"
+           android:textSize="@dimen/text_small" />
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:id="@+id/ll_course">
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_large"
+               android:text="Course"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_extra_small" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_small"
+               android:background="@drawable/bg_edit_text"
+               android:hint="Select Course"
+               android:id="@+id/tv_course"
+               android:inputType="textCapSentences"
+               android:padding="@dimen/padding_large"
+               android:drawableEnd="@drawable/ic_down_arrow"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_small" />
+       </LinearLayout>
+
+
+       <TextView
+           android:id="@+id/btn_search"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_alignParentBottom="true"
+           android:layout_marginTop="@dimen/padding_large"
+           android:background="@drawable/buttonstyle"
+           android:gravity="center"
+           android:padding="@dimen/padding_extra_large"
+           android:text="Search"
+           android:textColor="@color/white"
+           android:textSize="@dimen/text_medium"
+           android:textStyle="bold" />
+   </LinearLayout>
+</RelativeLayout>

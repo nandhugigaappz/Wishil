@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:id="@+id/rl_main">
+
+        <LinearLayout
+            android:id="@+id/ll_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_large">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="100">
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:layout_weight="70"
+                    android:text="College Name College Name College Name"
+                    android:textColor="@color/textPrimary"
+                    android:layout_marginRight="10dp"
+                    android:textSize="@dimen/text_medium"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_send_enq"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:text="Apply Now"
+                    android:textColor="@color/white"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:background="@drawable/following_button"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:weightSum="100"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Award: "
+                    android:layout_weight="20"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="@dimen/text_extra_small" />
+
+                <TextView
+                    android:id="@+id/tv_award"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="USD"
+                    android:layout_weight="80"
+                    android:textColor="@color/orange"
+                    android:textSize="@dimen/text_small"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+           <!-- <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Category: "
+                    android:layout_weight="20"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="@dimen/text_extra_small" />
+
+                <TextView
+                    android:id="@+id/tv_cat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="class "
+                    android:layout_weight="80"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_small" />
+            </LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Date: "
+                    android:layout_weight="20"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="@dimen/text_extra_small" />
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Trivandrum"
+                    android:layout_weight="80"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_small" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/lightGray" />
+</LinearLayout>

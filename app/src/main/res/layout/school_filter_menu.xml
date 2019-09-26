@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:autolabel="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="end"
+    tools:ignore="ContentDescription">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="State"
+                    android:textColor="@color/textPrimary"
+                    android:background="@color/lightGray"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_small" />
+
+                <LinearLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:background="@drawable/bg_edit_text">
+                    <Spinner
+                        android:id="@+id/state_spinner"
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="City"
+                    android:textColor="@color/textPrimary"
+                    android:background="@color/lightGray"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_small" />
+
+                <LinearLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:background="@drawable/bg_edit_text">
+                    <Spinner
+                        android:id="@+id/city_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp" />
+                </LinearLayout>
+                <!--     <com.dpizarro.autolabel.library.AutoLabelUI
+                         android:id="@+id/auto_label_location"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         autolabel:icon_cross="@drawable/close_icon_circle"
+                         autolabel:label_background_res="@drawable/bg_edit_text"
+                         autolabel:label_clickable="true"
+                         autolabel:label_padding="4dp"
+                         autolabel:show_cross="true"
+                         autolabel:text_color="@android:color/black"
+                         autolabel:text_size="12sp"/>-->
+                <com.dpizarro.autolabel.library.AutoLabelUI
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/auto_label_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    autolabel:icon_cross="@drawable/close_icon_circle"
+                    autolabel:label_background_res="@drawable/bg_edit_text"
+                    autolabel:label_clickable="true"
+                    autolabel:label_padding="4dp"
+                    autolabel:show_cross="false"
+                    autolabel:text_color="@android:color/black"
+                    autolabel:text_size="12sp"/>
+
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:id="@+id/btn_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:background="@drawable/following_button"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_large"
+                    android:text="Search"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_medium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:id="@+id/btn_reset"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:background="@drawable/follow_button"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_large"
+                    android:text="Reset Filter"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/text_medium"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

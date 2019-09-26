@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".mainfragments.HomeFragment">
+
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            style="@style/CardViewStyleOne"
+            >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="100"
+            android:elevation="2dp"
+            android:background="@color/white"
+            android:paddingTop="@dimen/text_extra_small"
+            android:paddingBottom="@dimen/text_extra_small"
+            android:baselineAligned="false">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="20"
+                android:id="@+id/ll_stories"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="7dp"
+                    android:src="@drawable/ic_stories_new"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/text_thin"
+                    android:textColor="@color/textPrimary"
+                    android:text="Stories"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="20"
+                android:id="@+id/ll_recommendation"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="7dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_reco_new"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/text_thin"
+                    android:textColor="@color/textPrimary"
+                    android:singleLine="true"
+                    android:text="Recommendation"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="20"
+                android:id="@+id/ll_top_ranking"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="7dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_top_rank"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/text_thin"
+                    android:textColor="@color/textPrimary"
+                    android:text="Top Ranking"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="20"
+                android:id="@+id/ll_exams"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="7dp"
+                    android:src="@drawable/ic_exam_new"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/text_thin"
+                    android:textColor="@color/textPrimary"
+                    android:text="Exams"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="20"
+                android:id="@+id/ll_internship"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="7dp"
+                    android:src="@drawable/ic_intern"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/text_thin"
+                    android:textColor="@color/textPrimary"
+                    android:text="Internship"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_cat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trending Colleges"
+            android:textStyle="bold"
+            android:paddingLeft="@dimen/padding_medium"
+            android:paddingRight="@dimen/padding_medium"
+            android:layout_marginTop="@dimen/padding_large"
+            android:textColor="@color/textPrimary"
+            android:textSize="20dp"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_recommended_college"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            />
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Top Ranking Universities"
+            android:textStyle="bold"
+            android:paddingLeft="@dimen/padding_medium"
+            android:paddingRight="@dimen/padding_medium"
+            android:layout_marginTop="@dimen/padding_large"
+            android:textColor="@color/textPrimary"
+            android:textSize="20dp"/>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_top_ranking_college"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trending Scholarships"
+            android:textStyle="bold"
+            android:paddingLeft="@dimen/padding_medium"
+            android:paddingRight="@dimen/padding_medium"
+            android:layout_marginTop="@dimen/padding_large"
+            android:textColor="@color/textPrimary"
+            android:visibility="gone"
+            android:textSize="20dp"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_trending_scholarships"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Attractive Study Tour"
+            android:textStyle="bold"
+            android:paddingLeft="@dimen/padding_medium"
+            android:paddingRight="@dimen/padding_medium"
+            android:layout_marginTop="@dimen/padding_large"
+            android:textColor="@color/textPrimary"
+            android:visibility="gone"
+            android:textSize="20dp"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_attractive_study_tour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Blogs"
+            android:textStyle="bold"
+            android:paddingLeft="@dimen/padding_medium"
+            android:paddingRight="@dimen/padding_medium"
+            android:layout_marginTop="@dimen/padding_large"
+            android:textColor="@color/textPrimary"
+            android:textSize="20dp"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_blogs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>

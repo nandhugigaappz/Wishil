@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/padding_double_extra_large"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.partnershipwithwishill.ParnershipOTPVerificationActivity"
+    tools:showIn="@layout/activity_parnership_otpverification">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:gravity="center"
+        android:textColor="@color/textPrimary"
+        android:textSize="25dp"
+        android:text="Verification Code" />
+
+    <TextView
+        android:id="@+id/text_subTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textSecondary"
+        android:gravity="center"
+        android:textSize="13dp"
+        android:text="Verification code sent to your mobile number"
+        />
+
+    <EditText
+        android:id="@+id/edt_otp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="18dp"
+        android:inputType="number"
+        android:layout_marginTop="@dimen/padding_extra_large"
+        android:textColor="@color/textPrimary"
+        android:background="@drawable/bg_edit_text"
+        />
+    <TextView
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="@drawable/buttonstyle"
+        android:gravity="center"
+        android:padding="@dimen/padding_extra_large"
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_medium"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tv_resend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blue"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:gravity="center"
+        android:textSize="13dp"
+        android:text="Resend OTP"
+        />
+</LinearLayout>

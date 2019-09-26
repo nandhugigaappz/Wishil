@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.partnershipwithwishill.AddPartnerStudyTourActivity"
+    tools:showIn="@layout/activity_add_partner_study_tour">
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           android:padding="10dp">
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_large"
+               android:text="Study Tour Details"
+               android:textStyle="bold"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_medium" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_large"
+               android:text="Package Name"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_extra_small" />
+
+
+           <EditText
+               android:id="@+id/edt_package_name"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_small"
+               android:background="@drawable/bg_edit_text"
+               android:inputType="textCapSentences"
+               android:padding="@dimen/padding_large"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_small" />
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_large"
+               android:text="Category"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_extra_small" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_small"
+               android:background="@drawable/bg_edit_text"
+               android:hint="Select Category"
+               android:inputType="textCapSentences"
+               android:padding="@dimen/padding_large"
+               android:id="@+id/tv_category"
+               android:textColor="@color/textPrimary"
+               android:drawableEnd="@drawable/ic_down_arrow"
+               android:textSize="@dimen/text_small" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_large"
+               android:text="Country"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_extra_small" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_small"
+               android:background="@drawable/bg_edit_text"
+               android:hint="Select Country"
+               android:inputType="textCapSentences"
+               android:padding="@dimen/padding_large"
+               android:id="@+id/tv_country"
+               android:textColor="@color/textPrimary"
+               android:drawableEnd="@drawable/ic_down_arrow"
+               android:textSize="@dimen/text_small" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_large"
+               android:text="Destination"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_extra_small" />
+
+
+           <EditText
+               android:id="@+id/edt_destination"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_small"
+               android:background="@drawable/bg_edit_text"
+               android:inputType="textCapSentences"
+               android:padding="@dimen/padding_large"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_small" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_large"
+               android:text="Package Rate"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_extra_small" />
+
+
+           <EditText
+               android:id="@+id/edt_package_rate"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_small"
+               android:background="@drawable/bg_edit_text"
+               android:inputType="number"
+               android:padding="@dimen/padding_large"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_small" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_large"
+               android:text="Number Of Days"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_extra_small" />
+
+
+           <EditText
+               android:id="@+id/edt_no_day"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_small"
+               android:background="@drawable/bg_edit_text"
+               android:inputType="number"
+               android:padding="@dimen/padding_large"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_small" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_large"
+               android:text="Number Of Nights"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_extra_small" />
+
+
+           <EditText
+               android:id="@+id/edt_no_nights"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_small"
+               android:background="@drawable/bg_edit_text"
+               android:inputType="number"
+               android:padding="@dimen/padding_large"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_small" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_large"
+               android:text="Start Date"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_extra_small" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_small"
+               android:background="@drawable/bg_edit_text"
+               android:hint="Select Start Date"
+               android:inputType="textCapSentences"
+               android:padding="@dimen/padding_large"
+               android:id="@+id/tv_start_date"
+               android:textColor="@color/textPrimary"
+               android:drawableEnd="@drawable/ic_down_arrow"
+               android:textSize="@dimen/text_small" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_large"
+               android:text="End Date"
+               android:textColor="@color/textPrimary"
+               android:textSize="@dimen/text_extra_small" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/padding_small"
+               android:background="@drawable/bg_edit_text"
+               android:hint="Select End Date"
+               android:inputType="textCapSentences"
+               android:padding="@dimen/padding_large"
+               android:id="@+id/tv_end_date"
+               android:textColor="@color/textPrimary"
+               android:drawableEnd="@drawable/ic_down_arrow"
+               android:textSize="@dimen/text_small" />
+
+           <TextView
+               android:id="@+id/btn_submit"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_alignParentBottom="true"
+               android:layout_marginTop="@dimen/padding_large"
+               android:background="@drawable/buttonstyle"
+               android:gravity="center"
+               android:padding="@dimen/padding_extra_large"
+               android:text="Submit"
+               android:textColor="@color/white"
+               android:textSize="@dimen/text_medium"
+               android:textStyle="bold" />
+       </LinearLayout>
+   </ScrollView>
+</RelativeLayout>

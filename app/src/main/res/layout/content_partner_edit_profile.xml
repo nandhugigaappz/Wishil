@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.partnershipwithwishill.PartnerEditProfile"
+    tools:showIn="@layout/activity_partner_edit_profile"
+    android:focusableInTouchMode="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_large">
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:adjustViewBounds="true"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:layout_marginTop="@dimen/padding_large"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_extra_small" />
+
+
+            <EditText
+                android:id="@+id/edt_use_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:background="@drawable/bg_edit_text"
+                android:inputType="textCapSentences"
+                android:padding="@dimen/padding_large"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_small" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_large"
+                android:text="Email Address"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_extra_small" />
+
+
+            <EditText
+                android:id="@+id/edt_email_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:background="@drawable/bg_edit_text"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/padding_large"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_small" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_large"
+                android:text="Mobile Number"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_extra_small" />
+
+            <EditText
+                android:id="@+id/edt_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:background="@drawable/bg_edit_text"
+                android:inputType="phone"
+                android:padding="@dimen/padding_large"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_small" />
+
+<!--
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_large"
+                android:text="Password"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_extra_small" />
+
+
+            <EditText
+                android:id="@+id/edt_pass_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:background="@drawable/bg_edit_text"
+                android:inputType="textPassword"
+                android:padding="@dimen/padding_large"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_small" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_large"
+                android:text="Confirm Password"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_extra_small" />
+
+
+            <EditText
+                android:id="@+id/edt_pass_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:background="@drawable/bg_edit_text"
+                android:inputType="textPassword"
+                android:padding="@dimen/padding_large"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_small" />-->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+    <TextView
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/padding_extra_large"
+        android:text="Update"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_medium"
+        android:textStyle="bold" />
+</RelativeLayout>

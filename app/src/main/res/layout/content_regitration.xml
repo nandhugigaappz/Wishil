@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.RegitrationActivity"
+    android:background="@color/white"
+    android:focusableInTouchMode="true"
+    tools:showIn="@layout/activity_regitration">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_large">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="First Name"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_extra_small" />
+
+
+                <EditText
+                    android:id="@+id/edt_first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:background="@drawable/bg_edit_text"
+                    android:inputType="textCapSentences"
+                    android:padding="@dimen/padding_large"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_small" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:text="Last Name"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_extra_small" />
+
+
+                <EditText
+                    android:id="@+id/edt_last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:background="@drawable/bg_edit_text"
+                    android:inputType="textCapSentences"
+                    android:padding="@dimen/padding_large"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_small" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:text="Gender"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_extra_small" />
+
+
+                <RadioGroup
+                    android:id="@+id/radio_group_selection_type"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:drawablePadding="0dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/green"
+                        android:checked="true"
+                        android:text="Male"
+                        android:textSize="@dimen/text_small" />
+
+                    <RadioButton
+                        android:id="@+id/rb_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:buttonTint="@color/green"
+                        android:text="Female"
+                        android:textSize="@dimen/text_small" />
+
+
+                </RadioGroup>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:text="Email Address"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_extra_small" />
+
+
+                <EditText
+                    android:id="@+id/edt_email_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:background="@drawable/bg_edit_text"
+                    android:inputType="textEmailAddress"
+                    android:padding="@dimen/padding_large"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_small" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:text="Mobile Number"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_extra_small" />
+
+                <EditText
+                    android:id="@+id/edt_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:background="@drawable/bg_edit_text"
+                    android:inputType="phone"
+                    android:padding="@dimen/padding_large"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_small" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:text="Password"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_extra_small" />
+
+
+                <EditText
+                    android:id="@+id/edt_pass_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:background="@drawable/bg_edit_text"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/padding_large"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_small" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:text="Confirm Password"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_extra_small" />
+
+
+                <EditText
+                    android:id="@+id/edt_pass_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:background="@drawable/bg_edit_text"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/padding_large"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_small" />
+
+                <LinearLayout
+                    android:id="@+id/button_sign_up_login_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/padding_extra_large"
+                    android:layout_marginTop="@dimen/padding_medium"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Already have a account?"
+                        android:textColor="@color/textPrimary"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:id="@+id/tv_login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:text="Login"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_small" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/padding_extra_large"
+        android:text="Sign Up"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_medium"
+        android:textStyle="bold" />
+</RelativeLayout>
