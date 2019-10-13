@@ -149,7 +149,7 @@
             android:paddingRight="@dimen/padding_medium"
             android:layout_marginTop="@dimen/padding_large"
             android:textColor="@color/textPrimary"
-            android:textSize="20dp"/>
+            android:textSize="17sp"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_recommended_college"
             android:layout_width="match_parent"
@@ -169,7 +169,7 @@
             android:paddingRight="@dimen/padding_medium"
             android:layout_marginTop="@dimen/padding_large"
             android:textColor="@color/textPrimary"
-            android:textSize="20dp"/>
+            android:textSize="17sp"/>
 
 
         <android.support.v7.widget.RecyclerView
@@ -226,7 +226,7 @@
             android:paddingRight="@dimen/padding_medium"
             android:layout_marginTop="@dimen/padding_large"
             android:textColor="@color/textPrimary"
-            android:textSize="20dp"/>
+            android:textSize="17sp"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_blogs"
             android:layout_width="match_parent"

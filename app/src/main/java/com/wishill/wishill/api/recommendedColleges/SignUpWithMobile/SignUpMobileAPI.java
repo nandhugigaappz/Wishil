@@ -6,14 +6,17 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
- * Created by nandhu on 9/26/2016.
+ * Created by altoopa on 9/26/2016.
  */
 public interface SignUpMobileAPI {
 
   @FormUrlEncoded
   @POST("individualSignup.php")
   Call<SignUpMobileResponse> post(
-          @Field("userPhone") String mobile
+          @Field("userPhone") String mobile,
+          @Field("referrer") String referrer,
+          @Field("referredInstitute") String referredCollege,
+          @Field("referredInstituteType") String referredInstituteType
   );
 
 }

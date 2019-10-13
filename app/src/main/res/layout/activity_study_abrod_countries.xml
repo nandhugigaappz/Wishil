@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="start"
-                android:textColor="@color/textPrimary"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:text="Country"
                 android:textStyle="bold" />

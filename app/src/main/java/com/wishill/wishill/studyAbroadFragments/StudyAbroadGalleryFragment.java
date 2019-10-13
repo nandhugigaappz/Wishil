@@ -67,6 +67,7 @@ public class StudyAbroadGalleryFragment extends Fragment {
     }
 
 
+    // TODO: Rename and change types and number of parameters
     public static StudyAbroadGalleryFragment newInstance(String param1, String param2) {
         StudyAbroadGalleryFragment fragment = new StudyAbroadGalleryFragment();
         return fragment;

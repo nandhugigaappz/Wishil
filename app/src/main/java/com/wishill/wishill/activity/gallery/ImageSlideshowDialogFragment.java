@@ -1,23 +1,11 @@
 package com.wishill.wishill.activity.gallery;
 
-import android.Manifest;
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,8 +59,8 @@ public class ImageSlideshowDialogFragment extends DialogFragment {
         from=getArguments().getString("from");
         imagepath=getArguments().getString("imagepath");
         if(from.equals("college")){
-            collegeGalleryList= CollegeGalleryFragment.galleryList;
-        }else{
+//            collegeGalleryList= CollegeGalleryFragment.galleryList;
+        } else {
             schoolGalleryList= SchoolGalleryFragment.galleryList;
         }
         sharePosition = selectedPosition;
@@ -126,13 +114,15 @@ public class ImageSlideshowDialogFragment extends DialogFragment {
 
 
     private void displayMetaInfo(int position) {
+        int totalSize = 0;
         if(from.equals("college")){
-            lblCount.setText((position + 1) + " of " + collegeGalleryList.size());
+            totalSize = collegeGalleryList.size();
            /* lblTitle.setText(collegeGalleryList.get(position).getTitle());
             lblDate.setText(collegeGalleryList.get(position).getDescription());*/
-        }else{
-            lblCount.setText((position + 1) + " of " + schoolGalleryList.size());
+        }else {
+            totalSize = schoolGalleryList.size();
         }
+        lblCount.setText((position + 1) + " of " + totalSize);
 
     }
 

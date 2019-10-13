@@ -119,6 +119,8 @@ public class CollegeListActivity extends AppCompatActivity {
 
     String phoneNumber;
     String subCatName;
+    String countryID = "";
+    String country = "";
     TextView toolBarTitle;
 
     @Override
@@ -143,6 +145,8 @@ public class CollegeListActivity extends AppCompatActivity {
         subCatId = getIntent().getStringExtra("subCatId");
         catID = getIntent().getStringExtra("catID");
         subCatName=getIntent().getStringExtra("subCatName");
+        country=getIntent().getStringExtra("country");
+        countryID=getIntent().getStringExtra("countryID");
         dialogProgress = new DialogProgress(CollegeListActivity.this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -285,7 +289,7 @@ public class CollegeListActivity extends AppCompatActivity {
     private void getList() {
         retrofit.create(SubCatCollegeListAPI.class).post(
                 subCatId,
-                "1",
+                countryID,
                 Variables.COLLEGE_FILTER_STATE_ID,
                 Variables.COLLEGE_FILTER_CITY_ID,
                 count + "",
@@ -326,7 +330,7 @@ public class CollegeListActivity extends AppCompatActivity {
     private void getListRemain() {
         retrofit.create(SubCatCollegeListAPI.class).post(
                 subCatId,
-                "1",
+                countryID,
                 Variables.COLLEGE_FILTER_STATE_ID,
                 Variables.COLLEGE_FILTER_CITY_ID,
                 count + "",

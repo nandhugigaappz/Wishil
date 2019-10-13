@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by nandhu on 9/10/2016.
+ * Created by altoopa on 9/10/2016.
  */
 public class StudyTourProfileResponse {
     @SerializedName("recomm") @Expose private List<StudyTourProfileDetailsData> detailsList = new ArrayList<StudyTourProfileDetailsData>();

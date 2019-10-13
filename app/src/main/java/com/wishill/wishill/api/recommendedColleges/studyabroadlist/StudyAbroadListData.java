@@ -4,14 +4,14 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class StudyAbroadListData {
+    @SerializedName("college_image") @Expose private String college_image;
     @SerializedName("studyabroadID") @Expose private String studyabroadID;
     @SerializedName("collegeName") @Expose private String collegeName;
-    @SerializedName("coverimage") @Expose private String coverimage;
     @SerializedName("country") @Expose private String country;
     @SerializedName("cp_contact") @Expose private String cp_contact;
     @SerializedName("phone") @Expose private String phone;
     @SerializedName("e_year") @Expose private String e_year;
-    @SerializedName("college_img") @Expose private String college_img;
+    @SerializedName("coverimage") @Expose private String coverimage;
 
     public String getStudyabroadID() {
         return studyabroadID;
@@ -70,10 +70,10 @@ public class StudyAbroadListData {
     }
 
     public String getCollege_img() {
-        return college_img;
+        return college_image;
     }
 
     public void setCollege_img(String college_img) {
-        this.college_img = college_img;
+        this.college_image = college_img;
     }
 }

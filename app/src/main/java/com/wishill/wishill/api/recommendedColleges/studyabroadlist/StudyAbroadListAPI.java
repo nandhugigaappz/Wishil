@@ -10,9 +10,9 @@ public interface StudyAbroadListAPI {
   @POST("studyabroadList.php")
   Call<StudyAbroadResponse> post(
           @Field("wishsubcat_id") String subCatId,
-          @Field("countryID") String countryID,
-          @Field("page") String page,
-          @Field("courseID") String courseID
+          @Field("countryID") String countryID
+//          @Field("page") String page,
+//          @Field("courseID") String courseID
   );
 }
 

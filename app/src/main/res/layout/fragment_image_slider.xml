@@ -2,62 +2,62 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/textPrimary" />
+  <android.support.v4.view.ViewPager
+      android:id="@+id/viewpager"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/textPrimary" />
+
+  <TextView
+      android:id="@+id/lbl_count"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="20dp"
+      android:textColor="@android:color/white"
+      android:textSize="16dp"
+      android:text="jojo"
+      android:textStyle="bold" />
+
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentLeft="true"
+      android:orientation="vertical"
+      android:layout_marginBottom="40dp"
+      android:padding="20dp">
 
     <TextView
-        android:id="@+id/lbl_count"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
         android:textColor="@android:color/white"
-        android:textSize="16dp"
         android:text="jojo"
+        android:textSize="16dp"
+        android:visibility="gone"
         android:textStyle="bold" />
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:orientation="vertical"
-        android:layout_marginBottom="40dp"
-        android:padding="20dp">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:text="jojo"
-            android:textSize="16dp"
-            android:visibility="gone"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:text="jojo"
-            android:visibility="gone"
-            android:textColor="@android:color/white" />
-
-    </LinearLayout>
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_share"
+        android:text="jojo"
         android:visibility="gone"
-        android:layout_alignParentRight="true"
-        android:layout_margin="20dp"
-        android:id="@+id/btn_share"/>
+        android:textColor="@android:color/white" />
+
+  </LinearLayout>
+  <ImageView
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:src="@drawable/ic_share"
+      android:visibility="gone"
+      android:layout_alignParentRight="true"
+      android:layout_margin="20dp"
+      android:id="@+id/btn_share"/>
 
 </RelativeLayout>

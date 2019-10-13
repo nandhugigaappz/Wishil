@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by nandhu on 9/10/2016.
+ * Created by altoopa on 9/10/2016.
  */
 public class CountryListResponse {
-    @SerializedName("recomm") @Expose private List<CountryListData> catList = new ArrayList<CountryListData>();
+    @SerializedName("recom") @Expose private List<CountryListData> catList = new ArrayList<CountryListData>();
 
     public List<CountryListData> getCatList() {
         return catList;

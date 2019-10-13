@@ -3,16 +3,22 @@ package com.wishill.wishill.mainfragments;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.android.installreferrer.api.InstallReferrerClient;
+import com.android.installreferrer.api.InstallReferrerStateListener;
+import com.android.installreferrer.api.ReferrerDetails;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
@@ -21,6 +27,7 @@ import com.wishill.wishill.activity.CollegeDetailsActivity;
 import com.wishill.wishill.activity.InternShipListActivity;
 import com.wishill.wishill.activity.RecommentationCollegeActivity;
 import com.wishill.wishill.activity.ScholarshipDetailsActivity;
+import com.wishill.wishill.activity.SelectCountryActivity;
 import com.wishill.wishill.activity.StoriesListActivity;
 import com.wishill.wishill.activity.SubCategoryActivity;
 import com.wishill.wishill.activity.TopRankingActivity;
@@ -112,6 +119,7 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
+    // TODO: Rename and change types and number of parameters
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
         return fragment;
@@ -189,41 +197,69 @@ public class HomeFragment extends Fragment {
         homeCatListAdapter=new HomeCatListAdapter(categories, getActivity(), new HomeCatListAdapter.ItemClickAdapterListener() {
             @Override
             public void itemClick(View v, int position) {
-                if (position == 0) {
+                /*if (position == 0) {
                     //college
                     Intent in=new Intent(getActivity(), SubCategoryActivity.class);
                     in.putExtra("catID","1");
                     startActivity(in);
                 } else if (position == 1) {
                     //school
-                   /* Intent in=new Intent(getActivity(), SubCategoryActivity.class);
+                   *//* Intent in=new Intent(getActivity(), SubCategoryActivity.class);
                     in.putExtra("catID","4");
-                    startActivity(in);*/
+                    startActivity(in);*//*
                 } else if (position == 2) {
                     //scholarship
-                  /*  Intent in=new Intent(getActivity(), SubCategoryActivity.class);
+                  *//*  Intent in=new Intent(getActivity(), SubCategoryActivity.class);
                     in.putExtra("catID","6");
-                    startActivity(in);*/
+                    startActivity(in);*//*
                 } else if (position == 3) {
                     //study abroad
-                 /*   Intent in=new Intent(getActivity(), SubCategoryActivity.class);
+                    *//*Intent in=new Intent(getActivity(), SubCategoryActivity.class);
                     in.putExtra("catID","5");
-                    startActivity(in);*/
+                    startActivity(in);*//*
+                 *//* Intent in=new Intent(getActivity(), SelectCountryActivity.class);
+                    in.putExtra("catID","5");
+                    startActivity(in);*//*
 
-                 /*   Intent in=new Intent(getActivity(), StudyAbrodCountries.class);
-                    startActivity(in);*/
+                    Intent in=new Intent(getActivity(), StudyAbrodCountries.class);
+                    startActivity(in);
                 }else  if(position==4) {
                     //study tour
 
-                /*    Intent in=new Intent(getActivity(), SubCategoryActivity.class);
+                *//*    Intent in=new Intent(getActivity(), SubCategoryActivity.class);
                     in.putExtra("catID","8");
-                    startActivity(in);*/
+                    startActivity(in);*//*
                 }else  if(position==5) {
                     //jobs
 
-                /*    Intent in=new Intent(getActivity(), SubCategoryActivity.class);
+                    Intent in=new Intent(getActivity(), SubCategoryActivity.class);
                     in.putExtra("catID","7");
-                    startActivity(in);*/
+                    startActivity(in);
+                }*/
+                Intent intent;
+                switch (position) {
+                    case 0:
+                        //college
+                        intent=new Intent(getActivity(), SubCategoryActivity.class);
+                        intent.putExtra("catID","1");
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        //study abroad
+                        intent=new Intent(getActivity(), StudyAbrodCountries.class);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        //jobs
+                        intent = new Intent(getActivity(), SubCategoryActivity.class);
+                        intent.putExtra("catID","7");
+                        startActivity(intent);
+                        break;
+                    case 3:
+                        //recommended
+                        intent =new Intent(getActivity(), RecommentationCollegeActivity.class);
+                        startActivity(intent);
+                        break;
                 }
             }
         });
@@ -237,7 +273,7 @@ public class HomeFragment extends Fragment {
                 in.putExtra("catID","3");
                 startActivity(in);*/
 
-              Toast.makeText(getActivity(),"Coming Soon",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),"Coming Soon",Toast.LENGTH_LONG).show();
             }
         });
         llRecommendation.setOnClickListener(new View.OnClickListener() {
@@ -270,6 +306,7 @@ public class HomeFragment extends Fragment {
                 startActivity(in);
             }
         });
+
         return v;
     }
 
@@ -290,6 +327,9 @@ public class HomeFragment extends Fragment {
                                 }
                             });
                             rvRecommendedCollege.setAdapter(recommendedCollegeListAdapter);
+
+                            initAutoScroll();
+
                         } else {
 
                         }
@@ -301,6 +341,35 @@ public class HomeFragment extends Fragment {
                     }
                 });
     }
+
+    //auto scrolling in recyclerView
+    private void initAutoScroll() {
+        final int speedScroll = 3000;
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            int count = 0;
+            boolean flag = true;
+            @Override
+            public void run() {
+                count = linearLayoutManagerRecommendedCollege.findLastCompletelyVisibleItemPosition();
+                if(count < recommendedCollegeListAdapter.getItemCount()){
+                    if(count == recommendedCollegeListAdapter.getItemCount()-1){
+                        flag = false;
+                    }else {
+                        flag = true;
+                    }
+                    if(flag) count++;
+                    else count = 0;
+
+                    rvRecommendedCollege.smoothScrollToPosition(count);
+                    handler.postDelayed(this,speedScroll);
+                }
+            }
+        };
+
+        handler.postDelayed(runnable,speedScroll);
+    }
+
     //top ranking universities
     private void getTopRankingColleges() {
         retrofit.create(TopRankingCollegesListAPI.class).getList(userId)
@@ -340,9 +409,9 @@ public class HomeFragment extends Fragment {
                             trendingScholarshipsListAdapter=new TrendingScholarshipsListAdapter(trendingScholarshipsList, getActivity(), new TrendingScholarshipsListAdapter.ItemClickAdapterListener() {
                                 @Override
                                 public void itemClick(View v, int position) {
-                                       Intent in=new Intent(getActivity(), ScholarshipDetailsActivity.class);
-                                       in.putExtra("scholarshipId",trendingScholarshipsList.get(position).getScholarshipid());
-                                       startActivity(in);
+                                    Intent in=new Intent(getActivity(), ScholarshipDetailsActivity.class);
+                                    in.putExtra("scholarshipId",trendingScholarshipsList.get(position).getScholarshipid());
+                                    startActivity(in);
                                 }
                             });
                             rvTrendingScholarships.setAdapter(trendingScholarshipsListAdapter);
@@ -359,7 +428,7 @@ public class HomeFragment extends Fragment {
                 });
     }
 
-   //study tours
+    //study tours
     private void getAttractiveStudyTour() {
         retrofit.create(AttractiveStudyTourListAPI.class).getList("")
                 .enqueue(new Callback<AttractiveStudyTourResponse>() {
@@ -395,20 +464,20 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(Call<StoriesListResponse> call, Response<StoriesListResponse> response) {
                         if (response.isSuccessful()) {
-                             if(response.body().getStatus()==1){
-                                 blogsList=response.body().getDataList();
-                                 blogsListAdapter=new BlogsListAdapter(blogsList, getActivity(), new BlogsListAdapter.ItemClickAdapterListener() {
-                                     @Override
-                                     public void itemClick(View v, int position) {
+                            if(response.body().getStatus()==1){
+                                blogsList=response.body().getDataList();
+                                blogsListAdapter=new BlogsListAdapter(blogsList, getActivity(), new BlogsListAdapter.ItemClickAdapterListener() {
+                                    @Override
+                                    public void itemClick(View v, int position) {
                                         Intent in=new Intent(getActivity(), BlogDetails.class);
                                         in.putExtra("blogId",blogsList.get(position).getBlogId());
                                         startActivity(in);
-                                     }
-                                 });
-                                 rvBlogs.setAdapter(blogsListAdapter);
-                             }else{
+                                    }
+                                });
+                                rvBlogs.setAdapter(blogsListAdapter);
+                            }else{
 
-                             }
+                            }
                         } else {
 
                         }
@@ -419,14 +488,17 @@ public class HomeFragment extends Fragment {
                     }
                 });
     }
+
     private void setCategories() {
         categories = new ArrayList<>();
         categories.add(new HomeItemsModel("Colleges",R.drawable.college,"1"));
-        categories.add(new HomeItemsModel("Schools",R.drawable.schools,"0"));
-        categories.add(new HomeItemsModel("Scholarship",R.drawable.scholership,"0"));
-        categories.add(new HomeItemsModel("Study Abroad",R.drawable.study_abroad,"0"));
-        categories.add(new HomeItemsModel("Study Tour",R.drawable.study_tour,"0"));
-        categories.add(new HomeItemsModel("Jobs",R.drawable.jobs,"0"));
+//        categories.add(new HomeItemsModel("Schools",R.drawable.schools,"0"));
+//        categories.add(new HomeItemsModel("Scholarship",R.drawable.scholership,"0"));
+        categories.add(new HomeItemsModel("Study Abroad",R.drawable.study_abroad,"1"));
+//        categories.add(new HomeItemsModel("Study Tour",R.drawable.study_tour,"0"));
+        categories.add(new HomeItemsModel("Jobs",R.drawable.jobs,"1"));
+        categories.add(new HomeItemsModel("Recommended",R.drawable.scholership,"1"));
 
     }
+
 }

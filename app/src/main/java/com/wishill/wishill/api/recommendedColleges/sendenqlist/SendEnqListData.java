@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Created by nandhu on 9/10/2016.
+ * Created by altoopa on 9/10/2016.
  */
 public class SendEnqListData implements Serializable{
     @SerializedName("enqID") @Expose private String enqID;

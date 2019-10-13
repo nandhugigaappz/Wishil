@@ -6,14 +6,14 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
- * Created by nandhu on 9/26/2016.
+ * Created by altoopa on 9/26/2016.
  */
 public interface StudyAbroadDetailsAPI {
 
   @FormUrlEncoded
   @POST("studyabroad_detail.php")
   Call<StudyAbroadDetailsResponse> post(
-          @Field("userID") String userID,
+//          @Field("userID") String userID,
           @Field("studyabroadID") String studyabroadID
 
   );

@@ -4,14 +4,14 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by nandhu on 9/10/2016.
+ * Created by altoopa on 9/10/2016.
  */
 public class StudyAbroadBasicDetailsData {
     @SerializedName("name") @Expose private String name;
     @SerializedName("city") @Expose private String city;
     @SerializedName("campus_details") @Expose private String campus_details;
     @SerializedName("established_year") @Expose private String established_year;
-    @SerializedName("affiliate_detail_university") @Expose private String affiliate_detail_university;
+    @SerializedName("affiliation") @Expose private String affiliate_detail_university;
     @SerializedName("phone") @Expose private String phone;
     @SerializedName("email") @Expose private String email;
     @SerializedName("website") @Expose private String website;

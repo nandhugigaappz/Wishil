@@ -11,6 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.installreferrer.api.InstallReferrerClient;
+import com.android.installreferrer.api.InstallReferrerStateListener;
+import com.android.installreferrer.api.ReferrerDetails;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -29,8 +32,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
-import com.wishill.wishill.api.recommendedColleges.SignUpWithMobileOTP.SignUpOTPVerificationAPI;
-import com.wishill.wishill.api.recommendedColleges.SignUpWithMobileOTP.SignUpOTPVerificationResponse;
 import com.wishill.wishill.api.recommendedColleges.SocialMediaLogin.SocialMediaLoginAPI;
 import com.wishill.wishill.api.recommendedColleges.SocialMediaLogin.SocialMediaLoginResponse;
 import com.wishill.wishill.utilities.APILinks;
@@ -113,6 +114,7 @@ public class SocialMediaActivity extends AppCompatActivity {
                 "public_profile");
         loginButton.setReadPermissions(permissionNeeds);
 
+        getReference();
 
         tvSkip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,7 +249,10 @@ public class SocialMediaActivity extends AppCompatActivity {
                 type,
                 sEmail,
                 sName,
-                profileImage)
+                profileImage,
+                referrer,
+                referredInstitute,
+                referredInstituteType)
                 .enqueue(new Callback<SocialMediaLoginResponse>() {
                     @Override
                     public void onResponse(Call<SocialMediaLoginResponse> call, Response<SocialMediaLoginResponse> response) {
@@ -288,10 +293,81 @@ public class SocialMediaActivity extends AppCompatActivity {
         LoginManager.getInstance().logOut();
         sName = "";
         sEmail = "";
+
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
+
+    InstallReferrerClient mReferrerClient;
+    public static String referrer = "";
+    public static String referredInstitute = "";
+    public static String referredInstituteType = "";
+    private void getReference(){
+        mReferrerClient = InstallReferrerClient.newBuilder(SocialMediaActivity.this).build();
+        mReferrerClient.startConnection(new InstallReferrerStateListener() {
+            @Override
+            public void onInstallReferrerSetupFinished(int responseCode) {
+                switch (responseCode) {
+                    case InstallReferrerClient.InstallReferrerResponse.OK:
+                        // Connection established
+                        try {
+                            ReferrerDetails response = mReferrerClient.getInstallReferrer();
+
+//                            response = mReferrerClient.getInstallReferrer();
+                            String referrerString = response.getInstallReferrer();
+                            Log.d("Reference",referrerString);
+
+                            String[] referrerParts = referrerString.split("&");
+                            switch (referrerParts.length){
+                                case 1:
+                                    referrer = referrerParts[0];
+                                    break;
+                                case 2:
+                                    referrer = referrerParts[0];
+                                    referredInstitute = referrerParts[1];
+                                    break;
+                                case 3:
+                                    referrer = referrerParts[0];
+                                    referredInstitute = referrerParts[1];
+                                    referredInstituteType = referrerParts[2];
+                                    break;
+                                    default:
+                                        break;
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        mReferrerClient.endConnection();
+                        break;
+                    case
+                            InstallReferrerClient.InstallReferrerResponse.FEATURE_NOT_SUPPORTED:
+                        // API not available on the current Play Store app
+                        break;
+                    case
+                            InstallReferrerClient.InstallReferrerResponse.SERVICE_UNAVAILABLE:
+                        // Connection could not be established
+                        break;
+                }
+            }
+
+            @Override
+            public void onInstallReferrerServiceDisconnected() {
+                // Try to restart the connection on the next request to
+                // Google Play by calling the startConnection() method.
+            }
+        });
+    }
+
+    private String getData(String key, String[] allData) {
+        for (String selected : allData)
+            if (selected.contains(key)) {
+                return selected.split("=")[1];
+            }
+        return "";
+    }
+
 }

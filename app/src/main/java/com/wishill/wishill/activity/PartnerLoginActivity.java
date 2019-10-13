@@ -29,6 +29,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.wishill.wishill.activity.SocialMediaActivity.referredInstitute;
+import static com.wishill.wishill.activity.SocialMediaActivity.referredInstituteType;
+import static com.wishill.wishill.activity.SocialMediaActivity.referrer;
+
 public class PartnerLoginActivity extends AppCompatActivity {
     HttpLoggingInterceptor interceptor;
     Gson gson;
@@ -106,7 +110,10 @@ public class PartnerLoginActivity extends AppCompatActivity {
     private void postLoginValues() {
         dialogProgress.show();
         retrofit.create(PartnerLoginAPI.class).post(userName,
-                password)
+                password,
+                referrer,
+                referredInstitute,
+                referredInstituteType)
                 .enqueue(new Callback<PartnerResponse>() {
                     @Override
                     public void onResponse(Call<PartnerResponse> call, Response<PartnerResponse> response) {

@@ -42,7 +42,8 @@ public class TopRankingCollegeListAdapter extends RecyclerView.Adapter<TopRankin
                 .thumbnail(0.5f)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.thumbnail);
-        holder.tvName.setText(list.get(position).getCollegeName());
+        String instituteName = list.get(position).getCollegeName();
+        holder.tvName.setText(instituteName.substring(0,1).toUpperCase() + instituteName.substring(1));
         holder.tvLocation.setText(list.get(position).getCity());
         holder.tvName.setOnClickListener(new View.OnClickListener() {
             @Override

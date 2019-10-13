@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -19,15 +20,36 @@
         android:roundIcon="@drawable/ic_launcher_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <receiver android:name=".MySMSBroadcastReceiver" android:exported="true">
+        <activity android:name=".activity.NoticeDetailsActivity"
+            android:label="@string/title_activity_get_country_list"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".activity.SelectCountryActivity"
+            android:label="@string/title_activity_get_country_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <receiver
+            android:name=".MySMSBroadcastReceiver"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED"/>
+                <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
             </intent-filter>
         </receiver>
+
         <activity
             android:name=".activity.studyabroad.StudyAbroadDetailsActivity"
             android:label="@string/title_activity_study_abroad_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" >
+            <!--<intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="www.wishill.com"
+                    android:pathPrefix="/mwishill/studyabroad"
+                    android:scheme="https"/>
+            </intent-filter>-->
+        </activity>
         <activity
             android:name=".activity.studyabroad.StudyAbroadList"
             android:label="@string/title_activity_study_abroad_list"
@@ -124,8 +146,17 @@
             android:name=".activity.CollegeDetailsActivity"
             android:label="@string/title_activity_college_details"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:theme="@style/AppTheme.NoActionBar" >
+            <!--<intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="www.wishill.com"
+                    android:pathPrefix="/mwishill/college"
+                    android:scheme="https"/>
+            </intent-filter>-->
+        </activity>
         <activity
             android:name=".activity.MapsActivity"
             android:label="@string/title_activity_maps" />

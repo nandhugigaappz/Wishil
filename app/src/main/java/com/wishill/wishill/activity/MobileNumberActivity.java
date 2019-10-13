@@ -31,6 +31,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.wishill.wishill.activity.SocialMediaActivity.referredInstitute;
+import static com.wishill.wishill.activity.SocialMediaActivity.referredInstituteType;
+import static com.wishill.wishill.activity.SocialMediaActivity.referrer;
+
 public class MobileNumberActivity extends AppCompatActivity {
      EditText edtMobileNumber;
      TextView btnSubmit;
@@ -79,12 +83,14 @@ public class MobileNumberActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
 
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
+                // TODO Auto-generated method stub
 
             }
 
@@ -121,7 +127,10 @@ public class MobileNumberActivity extends AppCompatActivity {
 
     private void signUpMobile(){
         dialogProgress.show();
-        retrofit.create(SignUpMobileAPI.class).post(mobileNumber)
+        retrofit.create(SignUpMobileAPI.class).post(mobileNumber,
+                referrer,
+                referredInstitute,
+                referredInstituteType)
                 .enqueue(new Callback<SignUpMobileResponse>() {
                     @Override
                     public void onResponse(Call<SignUpMobileResponse> call, Response<SignUpMobileResponse> response) {

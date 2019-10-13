@@ -4,14 +4,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -45,7 +41,6 @@ import com.wishill.wishill.mainfragments.NotificationFragment;
 import com.wishill.wishill.mainfragments.ProfileFragment;
 import com.wishill.wishill.utilities.APILinks;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -86,7 +81,6 @@ public class HomeActivity extends AppCompatActivity {
     public  static  Activity home;
     SharedPreferences sharedPreferences;
     String userID;
-    String shareCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +88,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         sharedPreferences = getApplicationContext().getSharedPreferences("wishill", MODE_PRIVATE);
         userID=sharedPreferences.getString("userId","");
-        shareCode=sharedPreferences.getString("shareCode","");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -189,52 +182,12 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 drawer.closeDrawer(GravityCompat.START);
-                String refer = "";
-                if (!shareCode.equals("")){
-                    refer = "&referrer="+shareCode;
-                }
-
-                if(sharedPreferences.getString("login", "false").equals("true")){
-                    String shareBody = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill"+refer;
-                    Uri imageUri = Uri.parse("android.resource://" + getPackageName()
-                            + "/drawable/" + "ic_launcher_logo");
-                    //setup intent:
-                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-
-                    //setup image extra, if exists:
-                    Bitmap picBitmap = null;
-                    try {
-                        picBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    if (picBitmap != null) {
-                        String url = MediaStore.Images.Media.insertImage(getContentResolver(), picBitmap, "", "");
-                        sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(url));
-                        sharingIntent.setType("*/*");
-                    } else {
-                        //if no picture, just text set - this MIME
-                        sharingIntent.setType("text/plain");
-                    }
-
-                    //setup sharing message
-                    String message = "Wishil App \nShare and Earn - Get a guaranteed scholarships through wishill for course booking.\n"+shareBody;
-
-                    sharingIntent.putExtra(Intent.EXTRA_TEXT, message.toString());
-
-
-
-                    if (sharingIntent.resolveActivity(getPackageManager()) != null) {
-                        startActivity(Intent.createChooser(sharingIntent, "Share invite code"));
-                    } else {
-                        Log.w("", "sendShareIntent: cant resolve intent");
-                        Toast.makeText(HomeActivity.this, "whatsapp not installed", Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    Intent in=new Intent(HomeActivity.this,SocialMediaActivity.class);
-                    startActivity(in);
-                }
-
+                String shareBody = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill&referrer=667760";
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here");
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "share"));
             }
         });
         llSettings.setOnClickListener(new View.OnClickListener() {
@@ -316,8 +269,6 @@ public class HomeActivity extends AppCompatActivity {
         llPartnerLogin=navigationView.findViewById(R.id.ll_partner_login);
 
         llPartnerLogin.setVisibility(View.GONE);
-        llSettings.setVisibility(View.GONE);
-        llSendFeed.setVisibility(View.GONE);
 
         bottomNavigation =findViewById(R.id.bottom_navigation);
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("Home", R.drawable.ic_home, R.color.colorPrimary);
@@ -459,7 +410,6 @@ public class HomeActivity extends AppCompatActivity {
                 editor.putString("userType", "");
                 editor.putString("userId", "");
                 editor.putString("userTypeId", "");
-                editor.putString("shareCode", "");
                 editor.commit();
                 finish();
                 Intent toSlider = new Intent(HomeActivity.this, SocialMediaActivity.class);

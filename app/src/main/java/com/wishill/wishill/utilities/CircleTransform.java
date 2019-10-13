@@ -1,7 +1,7 @@
 package com.wishill.wishill.utilities;
 
 /**
- * Created by playnandhu on 09-12-2016.
+ * Created by playaltoopa on 09-12-2016.
  */
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -32,7 +32,7 @@ public class CircleTransform extends BitmapTransformation {
         int x = (source.getWidth() - size) / 2;
         int y = (source.getHeight() - size) / 2;
 
-        // this could be acquired from the pool too
+        // TODO this could be acquired from the pool too
         Bitmap squared = Bitmap.createBitmap(source, x, y, size, size);
 
         Bitmap result = pool.get(size, size, Bitmap.Config.ARGB_8888);

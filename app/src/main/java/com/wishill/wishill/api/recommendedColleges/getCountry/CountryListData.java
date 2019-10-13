@@ -4,11 +4,12 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by nandhu on 9/10/2016.
+ * Created by altoopa on 9/10/2016.
  */
 public class CountryListData {
     @SerializedName("id") @Expose private String id;
     @SerializedName("country") @Expose private String country;
+    @SerializedName("image") @Expose private String image;
 
     public String getId() {
         return id;
@@ -24,5 +25,13 @@ public class CountryListData {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

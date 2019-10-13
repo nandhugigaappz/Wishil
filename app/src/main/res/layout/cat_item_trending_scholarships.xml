@@ -28,7 +28,7 @@
                 android:background="@color/lightGray"
                 android:textColor="@color/textPrimary"
                 android:padding="@dimen/padding_medium"
-                android:textSize="@dimen/text_medium" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                     android:id="@+id/tv_award"
                     android:textColor="@color/orange"
                     android:textStyle="bold"
-                    android:textSize="@dimen/text_medium"/>
+                    android:textSize="14sp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,7 +76,7 @@
                     android:layout_weight="80"
                     android:id="@+id/tv_cat"
                     android:textColor="@color/textPrimary"
-                    android:textSize="@dimen/text_medium"/>
+                    android:textSize="14sp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -97,7 +97,7 @@
                     android:layout_weight="80"
                     android:id="@+id/tv_location"
                     android:textColor="@color/textPrimary"
-                    android:textSize="@dimen/text_medium"/>
+                    android:textSize="14sp"/>
             </LinearLayout>
         </LinearLayout>
 

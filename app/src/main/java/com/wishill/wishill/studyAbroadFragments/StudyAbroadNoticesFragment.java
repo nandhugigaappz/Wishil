@@ -65,6 +65,7 @@ public class StudyAbroadNoticesFragment extends Fragment {
     }
 
 
+    // TODO: Rename and change types and number of parameters
     public static StudyAbroadNoticesFragment newInstance(String param1, String param2) {
         StudyAbroadNoticesFragment fragment = new StudyAbroadNoticesFragment();
         return fragment;
@@ -106,25 +107,6 @@ public class StudyAbroadNoticesFragment extends Fragment {
         linearLayoutManager= new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rvList.setLayoutManager(linearLayoutManager);
         getList();
-
-        // TODO: 20/10/2019
-        /*rvList.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 0) {
-                    int visibleItemCount = linearLayoutManager.getChildCount();
-                    int totalItemCount = linearLayoutManager.getItemCount();
-                    int pastVisiblesItems = linearLayoutManager.findFirstVisibleItemPosition();
-                    if (loadingMain) {
-                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
-                            loadingMain = false;
-                            getListRemain();
-                        }
-                    }
-                }
-            }
-        });*/
-
         return v;
     }
     private void getList() {

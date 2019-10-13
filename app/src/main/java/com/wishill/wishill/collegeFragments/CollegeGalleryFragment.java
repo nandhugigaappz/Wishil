@@ -1,6 +1,7 @@
 package com.wishill.wishill.collegeFragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -16,12 +17,19 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
+import com.wishill.wishill.activity.VideoViewActivity;
+import com.wishill.wishill.activity.gallery.GalleryPreviewFragment;
 import com.wishill.wishill.activity.gallery.ImageSlideshowDialogFragment;
 import com.wishill.wishill.adapter.CollegeGalleryListAdapter;
+import com.wishill.wishill.adapter.GalleryListAdapter;
 import com.wishill.wishill.api.recommendedColleges.getCollegeGallery.CollegeGalleryListAPI;
 import com.wishill.wishill.api.recommendedColleges.getCollegeGallery.CollegeGalleryListData;
 import com.wishill.wishill.api.recommendedColleges.getCollegeGallery.CollegeGalleryResponse;
+import com.wishill.wishill.api.recommendedColleges.getGallery.GalleryListAPI;
+import com.wishill.wishill.api.recommendedColleges.getGallery.GalleryListData;
+import com.wishill.wishill.api.recommendedColleges.getGallery.GalleryResponse;
 import com.wishill.wishill.utilities.APILinks;
+import com.wishill.wishill.utilities.BottomOffsetDecoration;
 import com.wishill.wishill.utilities.DialogProgress;
 
 import java.util.List;
@@ -49,8 +57,10 @@ public class CollegeGalleryFragment extends Fragment {
 
     RecyclerView rvList;
     LinearLayoutManager linearLayoutManager;
-    public  static  List<CollegeGalleryListData> galleryList;
-    CollegeGalleryListAdapter adapter;
+    public  static  List<GalleryListData> galleryList;
+    GalleryListAdapter adapter;
+
+    String video = "1";
 
     public CollegeGalleryFragment() {
         // Required empty public constructor
@@ -62,6 +72,7 @@ public class CollegeGalleryFragment extends Fragment {
     }
 
 
+    // TODO: Rename and change types and number of parameters
     public static CollegeGalleryFragment newInstance(String param1, String param2) {
         CollegeGalleryFragment fragment = new CollegeGalleryFragment();
         return fragment;
@@ -106,30 +117,49 @@ public class CollegeGalleryFragment extends Fragment {
         return v;
     }
     private void getList() {
-        retrofit.create(CollegeGalleryListAPI.class).post(collegeID)
-                .enqueue(new Callback<CollegeGalleryResponse>() {
+        retrofit.create(GalleryListAPI.class).post(collegeID, "0")
+                .enqueue(new Callback<GalleryResponse>() {
                     @Override
-                    public void onResponse(Call<CollegeGalleryResponse> call, Response<CollegeGalleryResponse> response) {
+                    public void onResponse(Call<GalleryResponse> call, Response<GalleryResponse> response) {
                         if (response.isSuccessful()) {
                             if(response.body().getStatus().equals("1")){
                                 progress.setVisibility(View.GONE);
                                 galleryList=response.body().getCatList();
                                 if(galleryList!=null&&galleryList.size()!=0){
                                     final  String imagePath=response.body().getImagePath();
-                                    adapter=new CollegeGalleryListAdapter(imagePath,galleryList, getActivity(), new CollegeGalleryListAdapter.ItemClickAdapterListener() {
+                                    adapter=new GalleryListAdapter(imagePath,galleryList, new GalleryListAdapter.ItemClickAdapterListener() {
                                         @Override
                                         public void itemClick(View v, int position) {
-                                            Bundle bundle = new Bundle();
+                                            /*Bundle bundle = new Bundle();
                                             bundle.putInt("position", position);
                                             bundle.putString("from", "college");
                                             bundle.putString("imagepath", imagePath);
                                             FragmentTransaction ft =getActivity().getSupportFragmentManager().beginTransaction();
                                             ImageSlideshowDialogFragment newFragment = ImageSlideshowDialogFragment.newInstance();
                                             newFragment.setArguments(bundle);
-                                            newFragment.show(ft, "slideshow");
+                                            newFragment.show(ft, "slideshow");*/
+                                            if (galleryList.get(position).getCategoryID().equals(video)){
+                                                Intent in=new Intent(getActivity(), VideoViewActivity.class);
+                                                in.putExtra("videoUrl",galleryList.get(position).getVideo());
+                                                startActivity(in);
+                                            } else {
+                                                Bundle bundle = new Bundle();
+                                                bundle.putInt("position", position);
+                                                bundle.putString("from", "college");
+                                                bundle.putString("imagepath", imagePath);
+                                                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                                                GalleryPreviewFragment newFragment = GalleryPreviewFragment.newInstance();
+                                                newFragment.setArguments(bundle);
+                                                newFragment.show(ft, "slideshow");
+                                            }
                                         }
                                     });
                                     rvList.setAdapter(adapter);
+
+                                    //to add space below recycler
+                                    float offsetPx = 150;
+                                    BottomOffsetDecoration bottomOffsetDecoration = new BottomOffsetDecoration((int) offsetPx);
+                                    rvList.addItemDecoration(bottomOffsetDecoration);
                                 }else{
                                     progress.setVisibility(View.GONE);
                                     tvNoItem.setVisibility(View.VISIBLE);
@@ -146,7 +176,7 @@ public class CollegeGalleryFragment extends Fragment {
                     }
 
                     @Override
-                    public void onFailure(Call<CollegeGalleryResponse> call, Throwable t) {
+                    public void onFailure(Call<GalleryResponse> call, Throwable t) {
 
                     }
                 });

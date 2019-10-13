@@ -4,13 +4,14 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by nandhu on 9/10/2016.
+ * Created by altoopa on 9/10/2016.
  */
 public class RecommendedCollegesListData {
     @SerializedName("collegeid") @Expose private String collegeId;
     @SerializedName("collegename") @Expose private String collegeName;
     @SerializedName("college_img") @Expose private String collegeImage;
     @SerializedName("city") @Expose private String city;
+    @SerializedName("phone") @Expose private String phone;
 
     public String getCity() {
         return city;
@@ -42,5 +43,13 @@ public class RecommendedCollegesListData {
 
     public void setCollegeImage(String collegeImage) {
         this.collegeImage = collegeImage;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
