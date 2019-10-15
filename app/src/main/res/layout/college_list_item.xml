@@ -4,119 +4,118 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/college_list_sr_main_layout">
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:baselineAligned="false"
-    android:orientation="horizontal"
-    android:padding="@dimen/padding_medium"
-    android:weightSum="100">
-
-    <RelativeLayout
-        android:id="@+id/rl_image"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="35">
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_medium"
+        android:weightSum="100">
 
-
-
-        <android.support.v7.widget.CardView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            style="@style/CardViewStyleThree">
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/thumbnail"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    android:background="@color/lightGray"
-                    tools:ignore="ContentDescription" />
-            </RelativeLayout>
-
-        </android.support.v7.widget.CardView>
-        <!--<ImageView
-            android:id="@+id/thumbnail"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:adjustViewBounds="true"
-            android:background="@color/lightGray"
-            android:scaleType="centerCrop"
-            tools:ignore="ContentDescription" />-->
-
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/padding_medium"
-        android:layout_weight="65"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/rl_image"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="SAR 8,275"
-            android:textColor="@color/textPrimary"
-            android:textSize="@dimen/text_small"
-            android:textStyle="bold" />
+            android:layout_weight="35">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding_small"
-            android:text="Location"
-            android:id="@+id/tv_location"
-            android:drawableStart="@drawable/ic_location"
-            android:textColor="@color/textSecondary"
-            android:textSize="@dimen/text_small" />
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/CardViewStyleThree">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/thumbnail"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:background="@color/lightGray"
+                        tools:ignore="ContentDescription" />
+                </RelativeLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1995"
-            android:id="@+id/tv_year"
-            android:textColor="@color/textSecondary"
-            android:textSize="@dimen/text_small" />
+            </android.support.v7.widget.CardView>
+            <!--<ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:adjustViewBounds="true"
+                android:background="@color/lightGray"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription" />-->
+
+
+        </RelativeLayout>
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="end">
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:id="@+id/iv_call"
-                android:padding="@dimen/padding_medium"
-                android:background="@drawable/bg_round_call"
-                android:src="@drawable/ic_call_new"
-                android:layout_marginEnd="10dp"/>
+            android:layout_marginStart="@dimen/padding_medium"
+            android:layout_weight="65"
+            android:orientation="vertical">
+
             <TextView
-                android:id="@+id/tv_send_enq"
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Send Enquiry"
-                android:textColor="@color/white"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textStyle="bold"
-                android:background="@drawable/following_button"/>
+                android:text="SAR 8,275"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:text="Location"
+                android:id="@+id/tv_location"
+                android:drawableStart="@drawable/ic_location"
+                android:textColor="@color/textSecondary"
+                android:textSize="@dimen/text_small" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1995"
+                android:id="@+id/tv_year"
+                android:textColor="@color/textSecondary"
+                android:textSize="@dimen/text_small" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="end">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/iv_call"
+                    android:padding="@dimen/padding_medium"
+                    android:background="@drawable/bg_round_call"
+                    android:src="@drawable/ic_call_new"
+                    android:layout_marginEnd="10dp"/>
+                <TextView
+                    android:id="@+id/tv_send_enq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Send Enquiry"
+                    android:textColor="@color/white"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/following_button"/>
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 
-
-
     </LinearLayout>
-
-</LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

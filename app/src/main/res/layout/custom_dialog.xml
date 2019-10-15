@@ -7,45 +7,53 @@
     android:orientation="vertical"
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
+    android:layout_marginTop="40dp"
+    android:layout_marginBottom="40dp"
     android:background="@drawable/curved_corner_card_bg"
-    android:padding="20dp">
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/title_dialog"
+        android:id="@+id/dialog_title"
         android:gravity="center"
-        android:text="Error!"
+        android:text="Title"
         android:textColor="@color/textPrimary"
         android:textSize="18sp"
         android:background="@android:color/transparent"
         android:layout_alignParentTop="true"/>
-
-    <TextView
-        android:id="@+id/error_content"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:textSize="13sp"
-        android:layout_below="@+id/title_dialog"/>
-
+        android:id="@+id/scroll_view_dialog"
+        android:padding="5dp"
+        android:layout_below="@+id/dialog_title">
+        <TextView
+            android:id="@+id/dialog_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="13sp" />
+    </ScrollView>
     <TextView
-        android:id="@+id/tv_retry"
+        android:id="@+id/submit_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@drawable/curved_corner_card_bg"
+        android:background="@drawable/buttonstyle"
         android:drawablePadding="5dp"
         android:gravity="center"
         android:paddingTop="13dp"
         android:paddingBottom="13dp"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
-        android:text="Retry"
-        android:textAllCaps="false"
-        android:textColor="@color/textPrimary"
-        android:textSize="16sp"
-        android:layout_below="@+id/error_content"
+        android:text="Submit"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_below="@+id/scroll_view_dialog"
         android:layout_centerHorizontal="true"/>
 </RelativeLayout>

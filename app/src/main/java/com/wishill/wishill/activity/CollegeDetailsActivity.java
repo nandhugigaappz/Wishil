@@ -247,19 +247,58 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                 startActivity(in);
             }
         });
+
+        createAlert();
+
         ivShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String shareBody = "Wishill App!!\n"+basicDetailsData.getName()+"\n"+APILinks.MAIN_URL+shareUrl;
-                String shareBody = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill&referrer="+userID+"&"+collegeID+"&"+"0";
-                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here");
-                sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-                startActivity(Intent.createChooser(sharingIntent, "share"));
+                dialog.show();
             }
         });
     }
+
+    private Dialog dialog;
+    TextView dialogContent;
+    private void createAlert() {
+        dialog = new Dialog(CollegeDetailsActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        LayoutInflater factory = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        assert factory != null;
+        @SuppressLint("InflateParams")
+        View alert_layout = factory.inflate(R.layout.custom_dialog, null);
+        dialogContent    = alert_layout.findViewById(R.id.dialog_content);
+        TextView title  = alert_layout.findViewById(R.id.dialog_title);
+        TextView button = alert_layout.findViewById(R.id.submit_dialog);
+        button.setText("Share and earn!");
+        title.setText("Share and Earn!!");
+        dialogContent.setText(CollegeDetailsActivity.this.getResources().getString(R.string.college_enq));
+        // TODO: 15/10/2019 change share and earn text content
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                shareCollege();
+            }
+        });
+
+        dialog.setContentView(alert_layout);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCanceledOnTouchOutside(true);
+//        dialog.setCancelable(false);
+//        dialog.getWindow().setLayout(500, 400);
+    }
+
+    private void shareCollege() {
+        //                String shareBody = "Wishill App!!\n"+basicDetailsData.getName()+"\n"+APILinks.MAIN_URL+shareUrl;
+        String shareBody = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill&referrer="+userID+"&"+collegeID+"&"+"0";
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here");
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "share"));
+    }
+
     private void getDetails() {
         retrofit.create(CollegeDetailsAPI.class).post(collegeID,userID)
                 .enqueue(new Callback<CollegeDetailsResponse>() {

@@ -36,6 +36,7 @@ import com.wishill.wishill.activity.NormalUserEditProfileActivity;
 import com.wishill.wishill.activity.SchoolDetails;
 import com.wishill.wishill.activity.SchoolListActivity;
 import com.wishill.wishill.activity.SocialMediaActivity;
+import com.wishill.wishill.activity.SubCategoryActivity;
 import com.wishill.wishill.activity.partnershipwithwishill.AddPartnerCollegeActivity;
 import com.wishill.wishill.activity.partnershipwithwishill.ParnershipOTPVerificationActivity;
 import com.wishill.wishill.activity.partnershipwithwishill.PartnerEditProfile;
@@ -119,6 +120,8 @@ public class ProfileFragment extends Fragment {
     LinearLayout llUserFollowing;
     LinearLayout llUserEnq;
     LinearLayout llDiscoverColleges;
+    LinearLayout llNotifications;
+    LinearLayout llWishlist;
     ImageView ivUserProfileImage;
     TextView tvUserFollowingCount;
     TextView tvUserEnqCount;
@@ -180,7 +183,8 @@ public class ProfileFragment extends Fragment {
         llJobPost=v.findViewById(R.id.ll_job_post);
         llWishillAdd=v.findViewById(R.id.ll_wishill_ads);
         llDiscoverColleges=v.findViewById(R.id.ll_discover_colleges);
-
+        llNotifications=v.findViewById(R.id.ll_notifications);
+        llWishlist=v.findViewById(R.id.ll_wishlist);
 
         llUserHead = v.findViewById(R.id.ll_user_head);
         llUserFollowing = v.findViewById(R.id.ll_user_following);
@@ -337,13 +341,13 @@ public class ProfileFragment extends Fragment {
         llSavedJobs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Comming soon !!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Coming soon !!", Toast.LENGTH_SHORT).show();
             }
         });
         llCreateResume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Comming soon !!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Coming soon !!", Toast.LENGTH_SHORT).show();
             }
         });
         llPinBoard.setOnClickListener(new View.OnClickListener() {
@@ -355,21 +359,45 @@ public class ProfileFragment extends Fragment {
         llInvitePeople.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Comming soon !!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Coming soon !!", Toast.LENGTH_SHORT).show();
             }
         });
         llJobPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Comming soon !!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Coming soon !!", Toast.LENGTH_SHORT).show();
             }
         });
         llWishillAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Comming soon !!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Coming soon !!", Toast.LENGTH_SHORT).show();
             }
         });
+        llNotifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Coming soon !!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        llWishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Coming soon !!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        llDiscoverColleges.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), SubCategoryActivity.class);
+                intent.putExtra("catID","1");
+                startActivity(intent);
+            }
+        });
+
+        llWishlist.setVisibility(View.GONE);
+        llNotifications.setVisibility(View.GONE);
+        llInvitePeople.setVisibility(View.GONE);
         return v;
     }
 
@@ -425,8 +453,9 @@ public class ProfileFragment extends Fragment {
         llLogOut.setVisibility(View.GONE);
         if (userType.equals("normal")) {
             llPinBoard.setVisibility(View.GONE);
-            llSavedJobs.setVisibility(View.VISIBLE);
-            llCreateResume.setVisibility(View.VISIBLE);
+            // TODO: 15/10/2019 unhide saved jobs and create resume
+//            llSavedJobs.setVisibility(View.VISIBLE);
+//            llCreateResume.setVisibility(View.VISIBLE);
             llProfile.setVisibility(View.VISIBLE);
             llPartnerHead.setVisibility(View.GONE);
             llUserHead.setVisibility(View.VISIBLE);

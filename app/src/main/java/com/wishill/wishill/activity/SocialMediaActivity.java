@@ -150,6 +150,8 @@ public class SocialMediaActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        llPartner.setVisibility(View.GONE);
         llGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

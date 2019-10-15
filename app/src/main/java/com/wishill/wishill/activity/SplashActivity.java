@@ -39,6 +39,7 @@ import com.wishill.wishill.AppSignatureHelper;
 import com.wishill.wishill.R;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -98,7 +99,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void checkInternet() {
-        try {
+//        try {
             if (isConnected()){
                 printKeyHash();
                 getSignature();
@@ -122,12 +123,12 @@ public class SplashActivity extends AppCompatActivity {
                 haveInternetPermission();
 //                Toast.makeText(this, "Data fetch failed.\nCheck your connectivity", Toast.LENGTH_SHORT).show();
             }
-        } catch (InterruptedException | IOException e) {
+       /* } catch (InterruptedException | IOException e) {
             errorContent.setText("Unknown error occurred.\nTry again");
             dialog.show();
 //            Toast.makeText(this, "Unknown error occurred.\nTry again", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
-        }
+        }*/
     }
 
     private void getSignature() {
@@ -159,10 +160,32 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    public boolean isConnected() throws InterruptedException, IOException {
+    /*public boolean isConnected() throws InterruptedException, IOException {
         final String command = "ping -c 1 google.com";
         return Runtime.getRuntime().exec(command).waitFor() == 0;
+    }*/
+
+    /*public boolean isConnected(){
+        try {
+            InetAddress ipAddr = InetAddress.getByName("www.google.com");
+            //You can replace it with your name
+            return !ipAddr.toString().equals("");
+
+        } catch (Exception e) {
+            return false;
+        }
+    }*/
+
+    // ICMP
+    public boolean isConnected() {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int     exitValue = ipProcess.waitFor();
+            return (exitValue == 0);
+        }
+        catch (IOException | InterruptedException e)          { e.printStackTrace(); }
+
+        return false;
     }
-
-
 }
