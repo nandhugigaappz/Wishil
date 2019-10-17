@@ -79,4 +79,5 @@
     <string name="title_activity_notice_details">NoticeDetailsActivity</string>
     <string name="no_records_found_text">No records found</string>
     <string name="content_fetch_failed_text">Content fetch failed!</string>
+    <string name="title_activity_share_and_earn">Share and Earn</string>
 </resources>

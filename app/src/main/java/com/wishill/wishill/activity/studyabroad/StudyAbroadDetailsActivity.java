@@ -38,6 +38,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
+import com.wishill.wishill.activity.ShareAndEarnActivity;
 import com.wishill.wishill.activity.SocialMediaActivity;
 import com.wishill.wishill.api.recommendedColleges.SendCollegeEnquery.SendCollegeEnqueryAPI;
 import com.wishill.wishill.api.recommendedColleges.SendCollegeEnquery.SendCollegeEnqueryResponse;
@@ -115,7 +116,9 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
     ImageView ivWishList;
     AppBarLayout main;
     ProgressBar progress;
-    ImageView ivShare;
+//    ImageView ivShare;
+    TextView tvShare;
+    TextView tvScholarship;
     View buttonLayout;
     TextView noRecordsTxt;
 
@@ -174,7 +177,9 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
         tvFollow=findViewById(R.id.tv_follow);
         ivWishList=findViewById(R.id.iv_wish_list);
         tvMyFollowersCount=findViewById(R.id.tv_my_followers_count);
-        ivShare=findViewById(R.id.iv_share);
+//        ivShare=findViewById(R.id.iv_share);
+        tvShare=findViewById(R.id.tv_share);
+        tvScholarship=findViewById(R.id.tv_apply_scholarship);
         buttonLayout = findViewById(R.id.bottom_button_layout);
         noRecordsTxt    = findViewById(R.id.no_records_found_text);
 
@@ -236,16 +241,28 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
             }
         });
 
-        ivShare.setOnClickListener(new View.OnClickListener() {
+        tvShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                String shareBody = "Wishill App!!\n"+basicDetailsData.getName()+"\n"+APILinks.MAIN_URL+shareUrl;
-                String shareBody = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill&referrer="+userId+"&"+studyabroadID+"&"+"1";
+                /*String shareBody = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill&referrer="+userId+"&"+studyabroadID+"&"+"1";
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here");
                 sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-                startActivity(Intent.createChooser(sharingIntent, "share"));
+                startActivity(Intent.createChooser(sharingIntent, "share"));*/
+                // TODO: 17/10/2019
+                Intent toShareNEarn = new Intent(StudyAbroadDetailsActivity.this, ShareAndEarnActivity.class);
+                toShareNEarn.putExtra("instituteId", studyabroadID);
+                toShareNEarn.putExtra("instituteType", "1");
+                startActivity(toShareNEarn);
+            }
+        });
+
+        tvScholarship.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: 17/10/2019
             }
         });
 

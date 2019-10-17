@@ -20,12 +20,19 @@
         android:roundIcon="@drawable/ic_launcher_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.NoticeDetailsActivity"
-            android:label="@string/title_activity_get_country_list"
+        <activity android:name=".activity.ShareAndEarnActivity"
+            android:label="@string/title_activity_share_and_earn"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".activity.NoticeDetailsActivity"
+            android:label="@string/title_activity_get_country_list"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.SelectCountryActivity"
             android:label="@string/title_activity_get_country_list"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <receiver
@@ -39,8 +46,11 @@
         <activity
             android:name=".activity.studyabroad.StudyAbroadDetailsActivity"
             android:label="@string/title_activity_study_abroad_details"
-            android:theme="@style/AppTheme.NoActionBar" >
-            <!--<intent-filter>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
@@ -48,31 +58,38 @@
                     android:host="www.wishill.com"
                     android:pathPrefix="/mwishill/studyabroad"
                     android:scheme="https"/>
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".activity.studyabroad.StudyAbroadList"
             android:label="@string/title_activity_study_abroad_list"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.studyabroad.StudyAbroadCategories"
             android:label="@string/title_activity_study_abroad_categories"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.studyabroad.StudyAbrodCountries"
             android:label="@string/title_activity_study_abrod_countries"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.partnershipwithwishill.SearchPartnerColleges"
             android:label="@string/title_activity_search_partner_colleges"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.BlogDetails"
             android:label="@string/title_activity_blog_details"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.profile.EnqueryDetailsActivity"
             android:label="@string/title_activity_enquery_details"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.partnershipwithwishill.PartnerEditProfile"
@@ -146,8 +163,10 @@
             android:name=".activity.CollegeDetailsActivity"
             android:label="@string/title_activity_college_details"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
-            <!--<intent-filter>
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
@@ -155,7 +174,8 @@
                     android:host="www.wishill.com"
                     android:pathPrefix="/mwishill/college"
                     android:scheme="https"/>
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".activity.MapsActivity"

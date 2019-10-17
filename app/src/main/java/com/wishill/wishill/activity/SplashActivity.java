@@ -55,7 +55,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flash);
 
-        createAlert();
+//        createAlert();
         checkInternet();
 
     }
@@ -100,7 +100,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void checkInternet() {
 //        try {
-            if (isConnected()){
+//            if (isConnected()){
                 printKeyHash();
                 getSignature();
                 sharedPreferences = getApplicationContext().getSharedPreferences("wishill", MODE_PRIVATE);
@@ -119,10 +119,10 @@ public class SplashActivity extends AppCompatActivity {
                         }
                     }
                 }, TIME_OUT);
-            } else {
-                haveInternetPermission();
+//            } else {
+//                haveInternetPermission();
 //                Toast.makeText(this, "Data fetch failed.\nCheck your connectivity", Toast.LENGTH_SHORT).show();
-            }
+//            }
        /* } catch (InterruptedException | IOException e) {
             errorContent.setText("Unknown error occurred.\nTry again");
             dialog.show();
@@ -177,7 +177,7 @@ public class SplashActivity extends AppCompatActivity {
     }*/
 
     // ICMP
-    public boolean isConnected() {
+   /* public boolean isConnected() {
         Runtime runtime = Runtime.getRuntime();
         try {
             Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
@@ -187,5 +187,5 @@ public class SplashActivity extends AppCompatActivity {
         catch (IOException | InterruptedException e)          { e.printStackTrace(); }
 
         return false;
-    }
+    }*/
 }

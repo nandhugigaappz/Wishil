@@ -6,39 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".activity.ShareAndEarnActivity"
     android:background="@color/background">
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/toolbar1"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" >
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="start"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:text="Share and Earn"
-                android:textStyle="bold" />
-
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar1"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <android.support.constraint.ConstraintLayout
@@ -69,9 +40,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:id="@+id/share_code_text"
-                        android:text="WISHILLXXX"
+                        android:layout_weight="1"
+                        android:text="WISHILLX"
                         android:textStyle="bold"
                         android:gravity="end"
                         android:textSize="17sp"
@@ -84,7 +54,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/copy_button"
                             android:text="Copy"
                             android:textStyle="bold"
                             android:gravity="center"
@@ -113,7 +82,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Refer Wishill to your friends"
+                    android:text="Refer a college to your friends"
                     android:textSize="17sp"
                     android:textStyle="bold"
                     />
@@ -126,14 +95,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     android:layout_marginTop="15dp">
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginBottom="10dp">
+                        android:orientation="vertical">
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -144,25 +112,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:background="@drawable/curved_corner_light_orange"
+                            android:background="@drawable/curved_corner_orange_stroke"
                             android:padding="10dp"
                             android:layout_margin="8dp">
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Up to Rs. 15000"
+                                android:text="50"
                                 android:textStyle="bold"
                                 android:textSize="15sp"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Cash will credit after booking their seat"
+                                android:text="In your account"
                                 android:layout_marginTop="5dp"
                                 android:textSize="13sp"/>
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
@@ -176,23 +144,23 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:background="@drawable/curved_corner_light_green"
+                            android:background="@drawable/curved_corner_orange_stroke"
                             android:padding="10dp"
                             android:layout_margin="8dp">
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Up to Rs. 25000"
+                                android:text="50"
                                 android:textStyle="bold"
                                 android:textSize="15sp"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Cash will credit after booking their seat"
+                                android:text="In your account"
                                 android:layout_marginTop="5dp"
                                 android:textSize="13sp"/>
                         </LinearLayout>
-                        <!--<LinearLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -211,7 +179,7 @@
                                 android:text="In your account"
                                 android:layout_marginTop="5dp"
                                 android:textSize="13sp"/>
-                        </LinearLayout>-->
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -222,27 +190,21 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="40dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/curved_corner_card_green_bg_share">
+        android:layout_margin="40dp"
+        android:background="@drawable/curved_corner_card_green_bg">
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/whatsapp"
-            android:id="@+id/whatsapp_btn"
-            android:layout_gravity="center" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_dialog_map"
+            android:padding="8dp"/>
         <RelativeLayout
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"/>
+            android:background="@color/white"/>
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@android:drawable/ic_menu_share"
-            android:layout_gravity="center"
-            android:padding="15dp"
-            android:id="@+id/share_btn"/>
+            android:padding="8dp"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -128,7 +128,9 @@ public class CollegeDetailsActivity extends AppCompatActivity {
 
     String phoneNumber;
     String shareUrl;
-    ImageView ivShare;
+//    ImageView ivShare;
+    TextView tvShare;
+    TextView tvScholarship;
     String amenityPath;
 
 
@@ -160,7 +162,9 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         tvFollow=findViewById(R.id.tv_follow);
         ivWishList=findViewById(R.id.iv_wish_list);
         tvMyFollowersCount=findViewById(R.id.tv_my_followers_count);
-        ivShare=findViewById(R.id.iv_share);
+//        ivShare=findViewById(R.id.iv_share);
+        tvShare=findViewById(R.id.tv_share);
+        tvScholarship=findViewById(R.id.tv_apply_scholarship);
 
         interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -250,10 +254,18 @@ public class CollegeDetailsActivity extends AppCompatActivity {
 
         createAlert();
 
-        ivShare.setOnClickListener(new View.OnClickListener() {
+        tvShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.show();
+//                dialog.show();
+                shareCollege();
+            }
+        });
+
+        tvScholarship.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: 17/10/2019
             }
         });
     }
@@ -291,12 +303,17 @@ public class CollegeDetailsActivity extends AppCompatActivity {
 
     private void shareCollege() {
         //                String shareBody = "Wishill App!!\n"+basicDetailsData.getName()+"\n"+APILinks.MAIN_URL+shareUrl;
-        String shareBody = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill&referrer="+userID+"&"+collegeID+"&"+"0";
+        /*String shareBody = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill&referrer="+userID+"&"+collegeID+"&"+"0";
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here");
         sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-        startActivity(Intent.createChooser(sharingIntent, "share"));
+        startActivity(Intent.createChooser(sharingIntent, "share"));*/
+        // TODO: 17/10/2019
+        Intent toShareNEarn = new Intent(CollegeDetailsActivity.this, ShareAndEarnActivity.class);
+        toShareNEarn.putExtra("instituteId", collegeID);
+        toShareNEarn.putExtra("instituteType", "0");
+        startActivity(toShareNEarn);
     }
 
     private void getDetails() {
