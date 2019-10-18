@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dpizarro.autolabel.library.AutoLabelUI;
+import com.dpizarro.autolabel.library.Label;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
@@ -228,6 +229,19 @@ public class CollegeListActivity extends AppCompatActivity {
                 dialogProgress.show();
             }
         });
+
+        autoLabelLocation.setOnRemoveLabelListener(new AutoLabelUI.OnRemoveLabelListener() {
+            @Override
+            public void onRemoveLabel(View view, int position) {
+                for (int i=0; i<Variables.COLLEGE_FILTER_CITY_LIST.size(); i++){
+                    CityDataModel model = Variables.COLLEGE_FILTER_CITY_LIST.get(i);
+                    if (model.getCityName().equals(((Label) view).getText())){
+                        Variables.COLLEGE_FILTER_CITY_LIST.remove(model);
+                    }
+                }
+            }
+        });
+
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

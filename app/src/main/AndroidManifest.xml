@@ -48,7 +48,14 @@
             android:label="@string/title_activity_study_abroad_details"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-
+            <intent-filter android:label="@string/title_activity_study_abroad_details">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "example://gizmos” -->
+                <data android:scheme="wishill"
+                    android:host="colleges" />
+            </intent-filter>
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>

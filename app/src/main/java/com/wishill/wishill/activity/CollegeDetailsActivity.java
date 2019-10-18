@@ -2,6 +2,7 @@ package com.wishill.wishill.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -314,6 +315,32 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         toShareNEarn.putExtra("instituteId", collegeID);
         toShareNEarn.putExtra("instituteType", "0");
         startActivity(toShareNEarn);
+
+//        String message = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill&referrer="+userID+"&"+collegeID+"&"+"0";
+
+//        Uri imgUri = Uri.parse("android.resource://com.wishill.wishill/drawable/wishill_logo.png");
+        /*Uri imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                "://" + getResources().getResourcePackageName(R.drawable.wishill_logo)
+                + '/' + getResources().getResourceTypeName(R.drawable.wishill_logo) + '/' + getResources().getResourceEntryName(R.drawable.wishill_logo) );*/
+       /* Uri imageUri = (new Uri.Builder())
+                .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+                .authority(getResources().getResourcePackageName(R.drawable.wishill_logo))
+                .appendPath(getResources().getResourceTypeName(R.drawable.wishill_logo))
+                .appendPath(getResources().getResourceEntryName(R.drawable.wishill_logo))
+                .build();
+        Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
+        whatsappIntent.setType("text/plain");
+        whatsappIntent.setPackage("com.whatsapp");
+        whatsappIntent.putExtra(Intent.EXTRA_TEXT, message);*/
+//        whatsappIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+//        whatsappIntent.setType("image/jpeg");
+        /*whatsappIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        try {
+            CollegeDetailsActivity.this.startActivity(whatsappIntent);
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(this, "Whatsapp have not been installed.", Toast.LENGTH_SHORT).show();
+        }*/
     }
 
     private void getDetails() {
