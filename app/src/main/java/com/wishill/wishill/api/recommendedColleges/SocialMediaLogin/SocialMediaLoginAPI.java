@@ -15,9 +15,9 @@ public interface SocialMediaLoginAPI {
           @Field("userEmail") String userEmail,
           @Field("userName") String userName,
           @Field("picture") String picture,
-          @Field("referrer") String referrer,
-          @Field("referredInstitute") String referredCollege,
-          @Field("referredInstituteType") String referredInstituteType
+          @Field("referrer") String referrer
+          /*@Field("referredInstitute") String referredCollege,
+          @Field("referredInstituteType") String referredInstituteType*/
   );
 }
 

@@ -58,7 +58,8 @@
                         android:orientation="horizontal"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
-                        android:layout_margin="@dimen/padding_large">
+                        android:layout_marginBottom="@dimen/padding_large"
+                        android:layout_marginEnd="8dp">
                         <ImageView
                             android:layout_width="35dp"
                             android:layout_height="35dp"
@@ -77,7 +78,7 @@
                             android:layout_gravity="center"
                             android:src="@drawable/ic_menu_share_white"
                             android:visibility="gone"/>
-                        <TextView
+                        <!--<TextView
                             android:id="@+id/tv_share"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -90,6 +91,20 @@
                             android:paddingLeft="@dimen/padding_medium"
                             android:paddingRight="@dimen/padding_medium"
                             android:background="@drawable/following_button_gradinet"
+                            android:layout_gravity="bottom"/>-->
+                        <TextView
+                            android:id="@+id/tv_apply_scholarship"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Apply scholarship"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_small"
+                            android:textColor="@color/green"
+                            android:paddingTop="@dimen/padding_small"
+                            android:paddingBottom="@dimen/padding_small"
+                            android:paddingLeft="@dimen/padding_medium"
+                            android:paddingRight="@dimen/padding_medium"
+                            android:background="@drawable/follow_button"
                             android:layout_gravity="bottom"/>
                     </LinearLayout>
                     <TextView
@@ -107,8 +122,27 @@
                         android:background="@drawable/following_button_gradinet"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentStart="true"
-                        android:layout_margin="@dimen/padding_large"/>
-
+                        android:layout_marginBottom="@dimen/padding_large"
+                        android:layout_marginStart="8dp"/>
+                    <TextView
+                        android:id="@+id/tv_share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Share and earn"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_small"
+                        android:textColor="@color/orange"
+                        android:paddingTop="@dimen/padding_small"
+                        android:paddingBottom="@dimen/padding_small"
+                        android:paddingLeft="@dimen/padding_medium"
+                        android:paddingRight="@dimen/padding_medium"
+                        android:background="@color/white"
+                        android:layout_gravity="bottom"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="@dimen/padding_medium"
+                        android:drawablePadding="5dp"
+                        android:drawableEnd="@drawable/ic_giftcard"/>
                 </RelativeLayout>
 
                 <LinearLayout
@@ -168,7 +202,7 @@
                                     android:textAllCaps="false"
                                     android:background="@drawable/follow_button"
                                     android:layout_marginBottom="2dp"/>
-                                <TextView
+                                <!--<TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="30dp"
                                     android:text="Scholarship"
@@ -180,7 +214,7 @@
                                     android:textColor="@color/green"
                                     android:textAllCaps="false"
                                     android:background="@drawable/follow_button"
-                                    android:layout_marginTop="2dp"/>
+                                    android:layout_marginTop="2dp"/>-->
                             </LinearLayout>
                         </LinearLayout>
 

@@ -23,7 +23,16 @@ public class StudyAbroadDetailsData {
     @SerializedName("wishCount") @Expose private String wishCount;
     @SerializedName("followCount") @Expose private String followCount;
     @SerializedName("myFollowers") @Expose private String myFollowers;
+    @SerializedName("refer") @Expose private String refer;
 
+
+    public String getRefer() {
+        return refer;
+    }
+
+    public void setRefer(String refer) {
+        this.refer = refer;
+    }
 
     public List<StudyAbroadImageDetails> getImageDetails() {
         return imageDetails;

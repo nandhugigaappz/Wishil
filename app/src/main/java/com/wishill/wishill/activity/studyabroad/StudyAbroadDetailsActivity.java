@@ -79,6 +79,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.wishill.wishill.utilities.Variables.DEFAULT_IMAGE_PATH;
+
 public class StudyAbroadDetailsActivity extends AppCompatActivity {
     String studyabroadID;
 
@@ -91,6 +93,7 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     String userId;
     String userType;
+    String refer = "0";
 
     LinearLayout tabView1, tabView2,tabView3,tabView4,tabView5;
     StudyAbroadAboutFragment tab1;
@@ -285,6 +288,7 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
                             followStatus=response.body().getDataList().getFollowCount();
                             myFollowersCount=response.body().getDataList().getMyFollowers();
                             shareUrl=response.body().getDataList().getDetailUrl();
+                            refer=response.body().getDataList().getRefer();
                             if (basicDetailsData != null) {
                                 phoneNumber = basicDetailsData.getPhone();
                                 main.setVisibility(View.VISIBLE);
@@ -318,7 +322,8 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
                 .thumbnail(0.5f)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(ivCover);
-        Glide.with(StudyAbroadDetailsActivity.this).load(APILinks.IMAGE_LINK + collegeLogoPath+basicDetailsData.getLogo())
+        DEFAULT_IMAGE_PATH = APILinks.IMAGE_LINK + collegeLogoPath + basicDetailsData.getLogo();
+        Glide.with(StudyAbroadDetailsActivity.this).load(DEFAULT_IMAGE_PATH)
                 .crossFade()
                 .thumbnail(0.5f)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -353,7 +358,14 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
             tvMyFollowersCount.setText(myFollowersCount+" Followers");
         }
 
-
+        // TODO: 19/10/2019
+        /*if (refer != null && refer.equals("1")){
+            tvScholarship.setVisibility(View.VISIBLE);
+            tvShare.setVisibility(View.VISIBLE);
+        } else {
+            tvScholarship.setVisibility(View.GONE);
+            tvShare.setVisibility(View.GONE);
+        }*/
     }
 
     public void setTabs() {

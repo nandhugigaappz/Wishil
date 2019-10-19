@@ -81,6 +81,7 @@ public class HomeActivity extends AppCompatActivity {
     public  static  Activity home;
     SharedPreferences sharedPreferences;
     String userID;
+    String shareCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         sharedPreferences = getApplicationContext().getSharedPreferences("wishill", MODE_PRIVATE);
         userID=sharedPreferences.getString("userId","");
+        shareCode=sharedPreferences.getString("shareCode","");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -182,7 +184,11 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 drawer.closeDrawer(GravityCompat.START);
-                String shareBody = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill&referrer=667760";
+                String refer = "";
+                if (!shareCode.equals("")){
+                    refer = "&referrer="+shareCode;
+                }
+                String shareBody = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill"+refer;
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here");
@@ -410,6 +416,7 @@ public class HomeActivity extends AppCompatActivity {
                 editor.putString("userType", "");
                 editor.putString("userId", "");
                 editor.putString("userTypeId", "");
+                editor.putString("shareCode", "");
                 editor.commit();
                 finish();
                 Intent toSlider = new Intent(HomeActivity.this, SocialMediaActivity.class);

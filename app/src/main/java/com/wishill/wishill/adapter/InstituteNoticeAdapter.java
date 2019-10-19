@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.wishill.wishill.R;
@@ -16,6 +18,8 @@ import com.wishill.wishill.api.recommendedColleges.getNoticeboardData.NoticeData
 import com.wishill.wishill.utilities.APILinks;
 
 import java.util.List;
+
+import static com.wishill.wishill.utilities.Variables.DEFAULT_IMAGE_PATH;
 
 public class InstituteNoticeAdapter extends RecyclerView.Adapter<InstituteNoticeAdapter.ViewHolder> {
 
@@ -40,17 +44,43 @@ public class InstituteNoticeAdapter extends RecyclerView.Adapter<InstituteNotice
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         NoticeData data = noticeDataList.get(position);
-        holder.noticeTitle.setText(data.getNoticeTitle());
+        String title = data.getNoticeTitle().substring(0,1).toUpperCase().concat(data.getNoticeTitle().substring(1));
+        holder.noticeTitle.setText(title);
         holder.date.setText(data.getDateOfIssue());
-        if (data.getNoticeImage() == null){
-            holder.noticeImage.setVisibility(View.GONE);
+
+        ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+// generate random color
+        int color1 = generator.getRandomColor();
+// generate color based on a key (same key returns the same color), useful for list/grid views
+//        int color2 = generator.getColor("user@gmail.com");
+
+// declare the builder object once.
+        TextDrawable.IBuilder builder = TextDrawable.builder()
+                .beginConfig()
+                .withBorder(4)
+                .endConfig()
+                .rect();
+
+// reuse the builder specs to create multiple drawables
+        TextDrawable ic1 = builder.build(data.getNoticeTitle().substring(0,1).toUpperCase(), color1);
+//        TextDrawable ic2 = builder.build("B", color2);
+
+        holder.noticeImage.setImageDrawable(ic1);
+
+       /* if (data.getNoticeImage() == null){
+//            holder.noticeImage.setVisibility(View.GONE);
+            Glide.with(holder.noticeImage.getContext()).load(DEFAULT_IMAGE_PATH)
+                    .crossFade()
+                    .thumbnail(0.5f)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.noticeImage);
         } else {
             Glide.with(holder.noticeImage.getContext()).load(APILinks.IMAGE_LINK + imagePath + data.getNoticeImage())
                     .crossFade()
                     .thumbnail(0.5f)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(holder.noticeImage);
-        }
+        }*/
     }
 
     @Override

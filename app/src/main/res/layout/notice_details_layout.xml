@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activity.NoticeDetailsActivity"
-    tools:showIn="@layout/activity_notice_details">
+    tools:showIn="@layout/activity_notice_details"
+    >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +15,7 @@
         android:paddingEnd="5dp"
         android:paddingStart="5dp"
         android:paddingTop="3dp"
-        android:paddingBottom="8dp">
+        android:paddingBottom="40dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,15 +34,18 @@
                 android:id="@+id/notice_detail_title"
                 android:textSize="18sp"
                 android:textColor="@color/textPrimary"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                android:textStyle="bold"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/date_text_notice_details"
                 android:textColor="@color/gray"
                 android:textSize="12sp"
-                android:layout_gravity="end"
-                android:layout_marginBottom="10dp"/>
+                android:layout_gravity="start"
+                android:layout_marginBottom="10dp"
+                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

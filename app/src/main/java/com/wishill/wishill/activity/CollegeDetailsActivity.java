@@ -77,6 +77,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.wishill.wishill.utilities.Variables.DEFAULT_IMAGE_PATH;
+
 public class CollegeDetailsActivity extends AppCompatActivity {
     DialogProgress dialogProgress;
     TabLayout tabLayout;
@@ -114,7 +116,6 @@ public class CollegeDetailsActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
-
     String userID;
 
     BasicDetailsData  basicDetailsData;
@@ -122,6 +123,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
     List<CollegeCoursesDetailsData> collegeCourseList;
     String collegeImagePath;
     String collegeLogoPath;
+    String refer = "0";
 
     String wishListStatus;
     String followStatus;
@@ -194,6 +196,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         rlEnq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isEnquiry = true;
                 if(sharedPreferences.getString("login", "false").equals("true")){
                     if(userType.equals("normal")){
                         getCourseList(collegeID);
@@ -266,7 +269,17 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         tvScholarship.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: 17/10/2019
+                isEnquiry = false;
+                if(sharedPreferences.getString("login", "false").equals("true")){
+                    if(userType.equals("normal")){
+                        getCourseList(collegeID);
+                    }else{
+                        Toast.makeText(CollegeDetailsActivity.this,"Partner can't apply scholarship",Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Intent in=new Intent(CollegeDetailsActivity.this,SocialMediaActivity.class);
+                    startActivity(in);
+                }
             }
         });
     }
@@ -354,6 +367,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                             collegeCourseList=response.body().getDataList().getCollegeCourseList();
                             collegeImagePath=response.body().getDataList().getCollegeImgPath();
                             collegeLogoPath=response.body().getDataList().getLogoImgPath();
+                            refer=response.body().getDataList().getRefer();
                             amenityPath=response.body().getDataList().getAmenityPath();
                             wishListStatus=response.body().getDataList().getWishCount();
                             followStatus=response.body().getDataList().getFollowCount();
@@ -385,7 +399,8 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                 .thumbnail(0.5f)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(ivCover);
-        Glide.with(getApplicationContext()).load(APILinks.IMAGE_LINK + collegeLogoPath+basicDetailsData.getLogo())
+        DEFAULT_IMAGE_PATH = APILinks.IMAGE_LINK + collegeLogoPath+basicDetailsData.getLogo();
+        Glide.with(getApplicationContext()).load(DEFAULT_IMAGE_PATH)
                 .crossFade()
                 .thumbnail(0.5f)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -418,6 +433,14 @@ public class CollegeDetailsActivity extends AppCompatActivity {
             tvMyFollowersCount.setText(myFollowersCount+" Followers");
         }
 
+        // TODO: 19/10/2019
+        /*if (refer != null && refer.equals("1")){
+            tvScholarship.setVisibility(View.VISIBLE);
+            tvShare.setVisibility(View.VISIBLE);
+        } else {
+            tvScholarship.setVisibility(View.GONE);
+            tvShare.setVisibility(View.GONE);
+        }*/
 
     }
 
@@ -737,6 +760,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
 
 
     //contact
+    private boolean isEnquiry = true;
     private void sendEnq(final String collegeID, final List<CollegeCoursesListData> courseList) {
         alertDialog = new Dialog(CollegeDetailsActivity.this);
         alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -749,13 +773,21 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         final EditText phone = alert_layout.findViewById(R.id.edt_phone);
         final EditText comment = alert_layout.findViewById(R.id.edt_comment);
         TextView submit = alert_layout.findViewById(R.id.tv_submit);
+        TextView commentTV = alert_layout.findViewById(R.id.tv_comment);
         Spinner courseSpinner = alert_layout.findViewById(R.id.course_spinner);
         LinearLayout llCourse = alert_layout.findViewById(R.id.ll_course);
 
         fullName.setText(sharedPreferences.getString("userName", ""));
         email.setText(sharedPreferences.getString("userEmail", ""));
         phone.setText(sharedPreferences.getString("userMobile", ""));
-        comment.setText(R.string.college_enq);
+        if (isEnquiry) {
+            comment.setText(R.string.college_enq);
+            comment.setMinLines(4);
+        } else {
+            commentTV.setText("Referral Code");
+            comment.setText(sharedPreferences.getString("referral", ""));
+            comment.setMinLines(1);
+        }
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override

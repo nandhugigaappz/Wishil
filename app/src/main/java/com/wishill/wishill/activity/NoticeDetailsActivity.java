@@ -116,8 +116,10 @@ public class NoticeDetailsActivity extends AppCompatActivity {
                                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                                             .into(noticeImage);
                                 }
-                                noticeTitle.setText(details.getNoticeTitle());
-                                noticeContent.setText(details.getNoticeContent());
+                                String title = details.getNoticeTitle().substring(0,1).toUpperCase().concat(details.getNoticeTitle().substring(1));
+                                noticeTitle.setText(title);
+                                String content = details.getNoticeContent().substring(0,1).toUpperCase().concat(details.getNoticeContent().substring(1));
+                                noticeContent.setText(content);
                                 dateOfNotice.setText(details.getDateOfIssue());
                             } else {
                                 errorText.setVisibility(View.VISIBLE);

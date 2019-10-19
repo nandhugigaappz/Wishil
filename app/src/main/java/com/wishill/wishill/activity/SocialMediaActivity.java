@@ -252,9 +252,7 @@ public class SocialMediaActivity extends AppCompatActivity {
                 sEmail,
                 sName,
                 profileImage,
-                referrer,
-                referredInstitute,
-                referredInstituteType)
+                referrer)
                 .enqueue(new Callback<SocialMediaLoginResponse>() {
                     @Override
                     public void onResponse(Call<SocialMediaLoginResponse> call, Response<SocialMediaLoginResponse> response) {
@@ -267,8 +265,10 @@ public class SocialMediaActivity extends AppCompatActivity {
                                 editor.putString("userType", "normal");
                                 editor.putString("userId", response.body().getData().getUserID());
                                 editor.putString("userTypeId", "0");
+                                editor.putString("shareCode", response.body().getData().getShareCode());
+                                editor.putString("referral", response.body().getData().getReferral());
                                 editor.commit();
-                                Intent in=new Intent(SocialMediaActivity.this,HomeActivity.class);
+                                Intent in=new Intent(SocialMediaActivity.this, HomeActivity.class);
                                 in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(in);
                                 finish();
