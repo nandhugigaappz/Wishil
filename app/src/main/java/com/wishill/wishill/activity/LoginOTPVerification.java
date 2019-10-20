@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.installreferrer.api.InstallReferrerClient;
+import com.android.installreferrer.api.InstallReferrerStateListener;
+import com.android.installreferrer.api.ReferrerDetails;
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -70,6 +73,7 @@ public class LoginOTPVerification extends AppCompatActivity {
         userTypeId=getIntent().getStringExtra("userTypeId");
         dialogProgress=new DialogProgress(LoginOTPVerification.this);
         startSmsRetrever();
+        getReference();
         interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         client = new OkHttpClient
@@ -110,9 +114,70 @@ public class LoginOTPVerification extends AppCompatActivity {
         });
 
     }
+
+    InstallReferrerClient mReferrerClient;
+    public static String referrer = "";
+    public static String referredInstitute = "";
+    public static String referredInstituteType = "";
+    private void getReference(){
+        mReferrerClient = InstallReferrerClient.newBuilder(LoginOTPVerification.this).build();
+        mReferrerClient.startConnection(new InstallReferrerStateListener() {
+            @Override
+            public void onInstallReferrerSetupFinished(int responseCode) {
+                switch (responseCode) {
+                    case InstallReferrerClient.InstallReferrerResponse.OK:
+                        // Connection established
+                        try {
+                            ReferrerDetails response = mReferrerClient.getInstallReferrer();
+
+//                            response = mReferrerClient.getInstallReferrer();
+                            String referrerString = response.getInstallReferrer();
+                            Log.d("Reference",referrerString);
+
+                            String[] referrerParts = referrerString.split("&");
+                            switch (referrerParts.length){
+                                case 1:
+                                    referrer = referrerParts[0];
+                                    break;
+                                case 2:
+                                    referrer = referrerParts[0];
+                                    referredInstitute = referrerParts[1];
+                                    break;
+                                case 3:
+                                    referrer = referrerParts[0];
+                                    referredInstitute = referrerParts[1];
+                                    referredInstituteType = referrerParts[2];
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        mReferrerClient.endConnection();
+                        break;
+                    case
+                            InstallReferrerClient.InstallReferrerResponse.FEATURE_NOT_SUPPORTED:
+                        // API not available on the current Play Store app
+                        break;
+                    case
+                            InstallReferrerClient.InstallReferrerResponse.SERVICE_UNAVAILABLE:
+                        // Connection could not be established
+                        break;
+                }
+            }
+
+            @Override
+            public void onInstallReferrerServiceDisconnected() {
+                // Try to restart the connection on the next request to
+                // Google Play by calling the startConnection() method.
+            }
+        });
+    }
     private void signUpMobileOTP(){
         dialogProgress.show();
-        retrofit.create(SignUpOTPVerificationAPI.class).post(otp,userId)
+        retrofit.create(SignUpOTPVerificationAPI.class).post(otp,userId,referrer)
                 .enqueue(new Callback<SignUpOTPVerificationResponse>() {
                     @Override
                     public void onResponse(Call<SignUpOTPVerificationResponse> call, Response<SignUpOTPVerificationResponse> response) {
@@ -125,6 +190,8 @@ public class LoginOTPVerification extends AppCompatActivity {
                                 editor.putString("userType", userType);
                                 editor.putString("userId", userId);
                                 editor.putString("userTypeId", userTypeId);
+                                editor.putString("shareCode", response.body().getData().getShareCode());
+                                editor.putString("referral", response.body().getData().getReferral());
                                 editor.commit();
                                 Intent in=new Intent(LoginOTPVerification.this,HomeActivity.class);
                                 in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

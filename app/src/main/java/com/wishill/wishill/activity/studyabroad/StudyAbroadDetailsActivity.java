@@ -18,6 +18,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
+import com.wishill.wishill.activity.CollegeDetailsActivity;
 import com.wishill.wishill.activity.ShareAndEarnActivity;
 import com.wishill.wishill.activity.SocialMediaActivity;
 import com.wishill.wishill.api.recommendedColleges.SendCollegeEnquery.SendCollegeEnqueryAPI;
@@ -45,6 +47,8 @@ import com.wishill.wishill.api.recommendedColleges.SendCollegeEnquery.SendColleg
 import com.wishill.wishill.api.recommendedColleges.abroadCourseList.AbroadCoursesListAPI;
 import com.wishill.wishill.api.recommendedColleges.abroadCourseList.AbroadCoursesListData;
 import com.wishill.wishill.api.recommendedColleges.abroadCourseList.AbroadCoursesListResponse;
+import com.wishill.wishill.api.recommendedColleges.applyScholarship.ApplyScholarshipAPI;
+import com.wishill.wishill.api.recommendedColleges.applyScholarship.ApplyScholarshipResponse;
 import com.wishill.wishill.api.recommendedColleges.collegeCourses.CollegeCoursesListAPI;
 import com.wishill.wishill.api.recommendedColleges.collegeCourses.CollegeCoursesListData;
 import com.wishill.wishill.api.recommendedColleges.collegeCourses.CollegeCoursesListResponse;
@@ -52,12 +56,12 @@ import com.wishill.wishill.api.recommendedColleges.collegeFollow.SendCollegeFoll
 import com.wishill.wishill.api.recommendedColleges.collegeFollow.SendCollegeFollowResponse;
 import com.wishill.wishill.api.recommendedColleges.collegeWishList.SendCollegeWishListAPI;
 import com.wishill.wishill.api.recommendedColleges.collegeWishList.SendCollegeWishListResponse;
+import com.wishill.wishill.studyAbroadFragments.StudyAbroadAboutFragment;
 import com.wishill.wishill.api.recommendedColleges.studyabroaddetails.StudyAbroadAmenitiesDetailsData;
 import com.wishill.wishill.api.recommendedColleges.studyabroaddetails.StudyAbroadBasicDetailsData;
 import com.wishill.wishill.api.recommendedColleges.studyabroaddetails.StudyAbroadCoursesDetailsData;
 import com.wishill.wishill.api.recommendedColleges.studyabroaddetails.StudyAbroadDetailsAPI;
 import com.wishill.wishill.api.recommendedColleges.studyabroaddetails.StudyAbroadDetailsResponse;
-import com.wishill.wishill.studyAbroadFragments.StudyAbroadAboutFragment;
 import com.wishill.wishill.studyAbroadFragments.StudyAbroadContactFragment;
 import com.wishill.wishill.studyAbroadFragments.StudyAbroadFacilitiesFragment;
 import com.wishill.wishill.studyAbroadFragments.StudyAbroadGalleryFragment;
@@ -119,7 +123,7 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
     ImageView ivWishList;
     AppBarLayout main;
     ProgressBar progress;
-//    ImageView ivShare;
+    //    ImageView ivShare;
     TextView tvShare;
     TextView tvScholarship;
     View buttonLayout;
@@ -193,6 +197,7 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
         rlEnq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                isEnquiry = true;
                 if(sharedPreferences.getString("login", "false").equals("true")){
                     if(userType.equals("normal")){
                         getCourseList(studyabroadID);
@@ -244,35 +249,57 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
             }
         });
 
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         tvShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String shareBody = "Wishill App!!\n"+basicDetailsData.getName()+"\n"+APILinks.MAIN_URL+shareUrl;
-                /*String shareBody = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill&referrer="+userId+"&"+studyabroadID+"&"+"1";
-                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here");
-                sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-                startActivity(Intent.createChooser(sharingIntent, "share"));*/
-                // TODO: 17/10/2019
-                Intent toShareNEarn = new Intent(StudyAbroadDetailsActivity.this, ShareAndEarnActivity.class);
-                toShareNEarn.putExtra("instituteId", studyabroadID);
-                toShareNEarn.putExtra("instituteType", "1");
-                startActivity(toShareNEarn);
+                if(sharedPreferences.getString("login", "false").equals("true")){
+                    if(userType.equals("normal")){
+                        shareCollege();
+                    }else{
+                        Toast.makeText(StudyAbroadDetailsActivity.this,"Partner can't share colleges",Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Intent in=new Intent(StudyAbroadDetailsActivity.this,SocialMediaActivity.class);
+                    startActivity(in);
+                }
             }
         });
 
         tvScholarship.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: 17/10/2019
+                isEnquiry = false;
+                if(sharedPreferences.getString("login", "false").equals("true")){
+                    if(userType.equals("normal")){
+                        getCourseList(studyabroadID);
+                    }else{
+                        Toast.makeText(StudyAbroadDetailsActivity.this,"Partner can't apply scholarship",Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Intent in=new Intent(StudyAbroadDetailsActivity.this,SocialMediaActivity.class);
+                    startActivity(in);
+                }
             }
         });
 
     }
 
+    private void shareCollege() {
+        Intent toShareNEarn = new Intent(StudyAbroadDetailsActivity.this, ShareAndEarnActivity.class);
+        toShareNEarn.putExtra("instituteId", studyabroadID);
+        toShareNEarn.putExtra("instituteType", "1");
+        startActivity(toShareNEarn);
+    }
+
     private void getDetails() {
-        retrofit.create(StudyAbroadDetailsAPI.class).post( studyabroadID)
+        retrofit.create(StudyAbroadDetailsAPI.class).post(studyabroadID)
                 .enqueue(new Callback<StudyAbroadDetailsResponse>() {
                     @Override
                     public void onResponse(Call<StudyAbroadDetailsResponse> call, Response<StudyAbroadDetailsResponse> response) {
@@ -358,7 +385,7 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
             tvMyFollowersCount.setText(myFollowersCount+" Followers");
         }
 
-        // TODO: 19/10/2019
+        // TODO: 20/10/2019
         /*if (refer != null && refer.equals("1")){
             tvScholarship.setVisibility(View.VISIBLE);
             tvShare.setVisibility(View.VISIBLE);
@@ -619,6 +646,7 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
 
     }
 
+    private boolean isEnquiry = true;
     private void sendEnq(final String collegeID, final List<AbroadCoursesListData> courseList) {
         alertDialog = new Dialog(StudyAbroadDetailsActivity.this);
         alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -631,13 +659,24 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
         final EditText phone = alert_layout.findViewById(R.id.edt_phone);
         final EditText comment = alert_layout.findViewById(R.id.edt_comment);
         TextView submit = alert_layout.findViewById(R.id.tv_submit);
+        TextView commentTV = alert_layout.findViewById(R.id.tv_comment);
         Spinner courseSpinner = alert_layout.findViewById(R.id.course_spinner);
         LinearLayout llCourse = alert_layout.findViewById(R.id.ll_course);
 
         fullName.setText(sharedPreferences.getString("userName", ""));
         email.setText(sharedPreferences.getString("userEmail", ""));
         phone.setText(sharedPreferences.getString("userMobile", ""));
-        comment.setText(R.string.college_enq);
+//        comment.setText(R.string.college_enq);
+
+        if (isEnquiry) {
+            comment.setText(R.string.college_enq);
+            comment.setMinLines(4);
+        } else {
+            commentTV.setText("Referral Code");
+            comment.setText(sharedPreferences.getString("referral", ""));
+            comment.setMinLines(1);
+            comment.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+        }
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -684,7 +723,11 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
                 if (validateName(strName)) {
                     if (isEmailValid(strEmail)) {
                         if (validatePhone(strPhone)) {
-                            enqAPI(strName, strEmail, strPhone, strComment, collegeID, courseId[0]);
+                            if (isEnquiry) {
+                                enqAPI(strName, strEmail, strPhone, strComment, collegeID, courseId[0]);
+                            } else {
+                                scholarshipAPI(strName, strEmail, strPhone, strComment, collegeID, courseId[0]);
+                            }
                             dialogProgress.show();
                             alertDialog.dismiss();
                         }
@@ -740,15 +783,42 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
         }
     }
 
+    private void scholarshipAPI(String strName, String strEmail, String strPhone, String reference, String collegeID, String courseId) {
+        retrofit.create(ApplyScholarshipAPI.class).post(strName,
+                userId,
+                strEmail,
+                strPhone,
+                "0",
+                collegeID,
+                courseId,
+                reference)
+                .enqueue(new Callback<ApplyScholarshipResponse>() {
+                    @Override
+                    public void onResponse(Call<ApplyScholarshipResponse> call, Response<ApplyScholarshipResponse> response) {
+                        if (response.isSuccessful()) {
+                            dialogProgress.dismiss();
+                            Toast.makeText(StudyAbroadDetailsActivity.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
+                        } else {
+                            dialogProgress.dismiss();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ApplyScholarshipResponse> call, Throwable t) {
+                        dialogProgress.dismiss();
+                    }
+                });
+    }
+
     private void enqAPI(String strName, String strEmail, String strPhone, String strComment, String collegeID, String courseId) {
         // sharedPreferences.getString("userId", "")
         retrofit.create(SendCollegeEnqueryAPI.class).post(strName,
                 userId,
                 strEmail,
                 strPhone,
-                "1",
+                "0",
                 collegeID,
-                "",
+                courseId,
                 strComment)
                 .enqueue(new Callback<SendCollegeEnqueryResponse>() {
                     @Override

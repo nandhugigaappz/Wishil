@@ -5,15 +5,20 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.installreferrer.api.InstallReferrerClient;
+import com.android.installreferrer.api.InstallReferrerStateListener;
+import com.android.installreferrer.api.ReferrerDetails;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
+import com.wishill.wishill.activity.LoginOTPVerification;
 import com.wishill.wishill.api.recommendedColleges.SignUpWithMobileOTP.SignUpOTPVerificationAPI;
 import com.wishill.wishill.api.recommendedColleges.SignUpWithMobileOTP.SignUpOTPVerificationResponse;
 import com.wishill.wishill.utilities.APILinks;
@@ -60,6 +65,7 @@ public class ParnershipOTPVerificationActivity extends AppCompatActivity {
         mobileNumber = getIntent().getStringExtra("mobileNumber");
         userType=getIntent().getStringExtra("userType");
         userId=getIntent().getStringExtra("userId");
+        getReference();
         interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         client = new OkHttpClient
@@ -98,9 +104,70 @@ public class ParnershipOTPVerificationActivity extends AppCompatActivity {
 
     }
 
+    InstallReferrerClient mReferrerClient;
+    public static String referrer = "";
+    public static String referredInstitute = "";
+    public static String referredInstituteType = "";
+    private void getReference(){
+        mReferrerClient = InstallReferrerClient.newBuilder(ParnershipOTPVerificationActivity.this).build();
+        mReferrerClient.startConnection(new InstallReferrerStateListener() {
+            @Override
+            public void onInstallReferrerSetupFinished(int responseCode) {
+                switch (responseCode) {
+                    case InstallReferrerClient.InstallReferrerResponse.OK:
+                        // Connection established
+                        try {
+                            ReferrerDetails response = mReferrerClient.getInstallReferrer();
+
+//                            response = mReferrerClient.getInstallReferrer();
+                            String referrerString = response.getInstallReferrer();
+                            Log.d("Reference",referrerString);
+
+                            String[] referrerParts = referrerString.split("&");
+                            switch (referrerParts.length){
+                                case 1:
+                                    referrer = referrerParts[0];
+                                    break;
+                                case 2:
+                                    referrer = referrerParts[0];
+                                    referredInstitute = referrerParts[1];
+                                    break;
+                                case 3:
+                                    referrer = referrerParts[0];
+                                    referredInstitute = referrerParts[1];
+                                    referredInstituteType = referrerParts[2];
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        mReferrerClient.endConnection();
+                        break;
+                    case
+                            InstallReferrerClient.InstallReferrerResponse.FEATURE_NOT_SUPPORTED:
+                        // API not available on the current Play Store app
+                        break;
+                    case
+                            InstallReferrerClient.InstallReferrerResponse.SERVICE_UNAVAILABLE:
+                        // Connection could not be established
+                        break;
+                }
+            }
+
+            @Override
+            public void onInstallReferrerServiceDisconnected() {
+                // Try to restart the connection on the next request to
+                // Google Play by calling the startConnection() method.
+            }
+        });
+    }
+
     private void otpVerification(String otp){
         dialogProgress.show();
-        retrofit.create(SignUpOTPVerificationAPI.class).post(otp,userId)
+        retrofit.create(SignUpOTPVerificationAPI.class).post(otp,userId,referrer)
                 .enqueue(new Callback<SignUpOTPVerificationResponse>() {
                     @Override
                     public void onResponse(Call<SignUpOTPVerificationResponse> call, Response<SignUpOTPVerificationResponse> response) {

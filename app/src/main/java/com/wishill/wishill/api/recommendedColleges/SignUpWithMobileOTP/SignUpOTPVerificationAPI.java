@@ -14,7 +14,8 @@ public interface SignUpOTPVerificationAPI {
   @POST("otp_verification.php")
   Call<SignUpOTPVerificationResponse> post(
           @Field("otp") String otp,
-          @Field("userID") String userID
+          @Field("userID") String userID,
+          @Field("referrer") String referrer
   );
 }
 

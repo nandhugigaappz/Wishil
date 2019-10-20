@@ -2,7 +2,6 @@ package com.wishill.wishill.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +19,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +42,8 @@ import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
 import com.wishill.wishill.api.recommendedColleges.SendCollegeEnquery.SendCollegeEnqueryAPI;
 import com.wishill.wishill.api.recommendedColleges.SendCollegeEnquery.SendCollegeEnqueryResponse;
+import com.wishill.wishill.api.recommendedColleges.applyScholarship.ApplyScholarshipAPI;
+import com.wishill.wishill.api.recommendedColleges.applyScholarship.ApplyScholarshipResponse;
 import com.wishill.wishill.api.recommendedColleges.collegeCourses.CollegeCoursesListAPI;
 import com.wishill.wishill.api.recommendedColleges.collegeCourses.CollegeCoursesListData;
 import com.wishill.wishill.api.recommendedColleges.collegeCourses.CollegeCoursesListResponse;
@@ -59,7 +61,6 @@ import com.wishill.wishill.collegeFragments.CollegeContactFragment;
 import com.wishill.wishill.collegeFragments.CollegeFacilitiesFragment;
 import com.wishill.wishill.collegeFragments.CollegeGalleryFragment;
 import com.wishill.wishill.collegeFragments.CollegeNoticesFragment;
-import com.wishill.wishill.collegeFragments.CollegeVideoFragment;
 import com.wishill.wishill.utilities.APILinks;
 import com.wishill.wishill.utilities.DialogProgress;
 
@@ -88,7 +89,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
     CollegeFacilitiesFragment tab2;
     CollegeGalleryFragment tab3;
     CollegeContactFragment tab4;
-//    CollegeVideoFragment tab5;
+    //    CollegeVideoFragment tab5;
     CollegeNoticesFragment tab6;
     String collegeID;
     String userType;
@@ -131,7 +132,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
 
     String phoneNumber;
     String shareUrl;
-//    ImageView ivShare;
+    //    ImageView ivShare;
     TextView tvShare;
     TextView tvScholarship;
     String amenityPath;
@@ -213,7 +214,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(phoneNumber==null||phoneNumber.equals("")||phoneNumber.equals("0")){
-                     Toast.makeText(CollegeDetailsActivity.this,"Contact number not available",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CollegeDetailsActivity.this,"Contact number not available",Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_DIAL);
@@ -227,7 +228,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(sharedPreferences.getString("login", "false").equals("true")){
-                   collegeFollowAPI();
+                    collegeFollowAPI();
                 }else{
                     Intent toSlider = new Intent(CollegeDetailsActivity.this, SocialMediaActivity.class);
                     startActivity(toSlider);
@@ -256,13 +257,19 @@ public class CollegeDetailsActivity extends AppCompatActivity {
             }
         });
 
-        createAlert();
-
         tvShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                dialog.show();
-                shareCollege();
+                if(sharedPreferences.getString("login", "false").equals("true")){
+                    if(userType.equals("normal")){
+                        shareCollege();
+                    }else{
+                        Toast.makeText(CollegeDetailsActivity.this,"Partner can't share colleges",Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Intent in=new Intent(CollegeDetailsActivity.this,SocialMediaActivity.class);
+                    startActivity(in);
+                }
             }
         });
 
@@ -284,76 +291,11 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         });
     }
 
-    private Dialog dialog;
-    TextView dialogContent;
-    private void createAlert() {
-        dialog = new Dialog(CollegeDetailsActivity.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        LayoutInflater factory = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        assert factory != null;
-        @SuppressLint("InflateParams")
-        View alert_layout = factory.inflate(R.layout.custom_dialog, null);
-        dialogContent    = alert_layout.findViewById(R.id.dialog_content);
-        TextView title  = alert_layout.findViewById(R.id.dialog_title);
-        TextView button = alert_layout.findViewById(R.id.submit_dialog);
-        button.setText("Share and earn!");
-        title.setText("Share and Earn!!");
-        dialogContent.setText(CollegeDetailsActivity.this.getResources().getString(R.string.college_enq));
-        // TODO: 15/10/2019 change share and earn text content
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-                shareCollege();
-            }
-        });
-
-        dialog.setContentView(alert_layout);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCanceledOnTouchOutside(true);
-//        dialog.setCancelable(false);
-//        dialog.getWindow().setLayout(500, 400);
-    }
-
     private void shareCollege() {
-        //                String shareBody = "Wishill App!!\n"+basicDetailsData.getName()+"\n"+APILinks.MAIN_URL+shareUrl;
-        /*String shareBody = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill&referrer="+userID+"&"+collegeID+"&"+"0";
-        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here");
-        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-        startActivity(Intent.createChooser(sharingIntent, "share"));*/
-        // TODO: 17/10/2019
         Intent toShareNEarn = new Intent(CollegeDetailsActivity.this, ShareAndEarnActivity.class);
         toShareNEarn.putExtra("instituteId", collegeID);
         toShareNEarn.putExtra("instituteType", "0");
         startActivity(toShareNEarn);
-
-//        String message = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill&referrer="+userID+"&"+collegeID+"&"+"0";
-
-//        Uri imgUri = Uri.parse("android.resource://com.wishill.wishill/drawable/wishill_logo.png");
-        /*Uri imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
-                "://" + getResources().getResourcePackageName(R.drawable.wishill_logo)
-                + '/' + getResources().getResourceTypeName(R.drawable.wishill_logo) + '/' + getResources().getResourceEntryName(R.drawable.wishill_logo) );*/
-       /* Uri imageUri = (new Uri.Builder())
-                .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
-                .authority(getResources().getResourcePackageName(R.drawable.wishill_logo))
-                .appendPath(getResources().getResourceTypeName(R.drawable.wishill_logo))
-                .appendPath(getResources().getResourceEntryName(R.drawable.wishill_logo))
-                .build();
-        Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
-        whatsappIntent.setType("text/plain");
-        whatsappIntent.setPackage("com.whatsapp");
-        whatsappIntent.putExtra(Intent.EXTRA_TEXT, message);*/
-//        whatsappIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
-//        whatsappIntent.setType("image/jpeg");
-        /*whatsappIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-        try {
-            CollegeDetailsActivity.this.startActivity(whatsappIntent);
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(this, "Whatsapp have not been installed.", Toast.LENGTH_SHORT).show();
-        }*/
     }
 
     private void getDetails() {
@@ -433,8 +375,8 @@ public class CollegeDetailsActivity extends AppCompatActivity {
             tvMyFollowersCount.setText(myFollowersCount+" Followers");
         }
 
-        // TODO: 19/10/2019
-        /*if (refer != null && refer.equals("1")){
+        // TODO: 20/10/2019
+       /* if (refer != null && refer.equals("1")){
             tvScholarship.setVisibility(View.VISIBLE);
             tvShare.setVisibility(View.VISIBLE);
         } else {
@@ -787,6 +729,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
             commentTV.setText("Referral Code");
             comment.setText(sharedPreferences.getString("referral", ""));
             comment.setMinLines(1);
+            comment.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
         }
 
         close.setOnClickListener(new View.OnClickListener() {
@@ -834,7 +777,11 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                 if (validateName(strName)) {
                     if (isEmailValid(strEmail)) {
                         if (validatePhone(strPhone)) {
-                            enqAPI(strName, strEmail, strPhone, strComment, collegeID, courseId[0]);
+                            if (isEnquiry) {
+                                enqAPI(strName, strEmail, strPhone, strComment, collegeID, courseId[0]);
+                            } else {
+                                scholarshipAPI(strName, strEmail, strPhone, strComment, collegeID, courseId[0]);
+                            }
                             dialogProgress.show();
                             alertDialog.dismiss();
                         }
@@ -849,6 +796,33 @@ public class CollegeDetailsActivity extends AppCompatActivity {
 
     }
 
+    private void scholarshipAPI(String strName, String strEmail, String strPhone, String reference, String collegeID, String courseId) {
+        retrofit.create(ApplyScholarshipAPI.class).post(strName,
+                userID,
+                strEmail,
+                strPhone,
+                "1",
+                collegeID,
+                courseId,
+                reference)
+                .enqueue(new Callback<ApplyScholarshipResponse>() {
+                    @Override
+                    public void onResponse(Call<ApplyScholarshipResponse> call, Response<ApplyScholarshipResponse> response) {
+                        if (response.isSuccessful()) {
+                            dialogProgress.dismiss();
+                            Toast.makeText(CollegeDetailsActivity.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
+                        } else {
+                            dialogProgress.dismiss();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ApplyScholarshipResponse> call, Throwable t) {
+                        dialogProgress.dismiss();
+                    }
+                });
+    }
+
     private void enqAPI(String strName, String strEmail, String strPhone, String strComment, String collegeID, String courseId) {
         // sharedPreferences.getString("userId", "")
         retrofit.create(SendCollegeEnqueryAPI.class).post(strName,
@@ -857,7 +831,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                 strPhone,
                 "1",
                 collegeID,
-                "",
+                courseId,
                 strComment)
                 .enqueue(new Callback<SendCollegeEnqueryResponse>() {
                     @Override
