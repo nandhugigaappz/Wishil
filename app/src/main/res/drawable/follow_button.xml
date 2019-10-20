@@ -12,4 +12,5 @@
         android:type="linear"
         android:angle="90"
         />-->
+    <solid android:color="@color/white"/>
 </shape>

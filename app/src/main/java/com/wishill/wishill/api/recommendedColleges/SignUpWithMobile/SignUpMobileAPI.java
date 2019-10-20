@@ -13,7 +13,10 @@ public interface SignUpMobileAPI {
   @FormUrlEncoded
   @POST("individualSignup.php")
   Call<SignUpMobileResponse> post(
-          @Field("userPhone") String mobile
+          @Field("userPhone") String mobile,
+          @Field("referrer") String referrer,
+          @Field("referredInstitute") String referredCollege,
+          @Field("referredInstituteType") String referredInstituteType
   );
 
 }

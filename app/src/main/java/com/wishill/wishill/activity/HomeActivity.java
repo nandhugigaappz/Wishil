@@ -26,6 +26,9 @@ import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.Display;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wishill.wishill.MainActivity;
@@ -78,6 +81,7 @@ public class HomeActivity extends AppCompatActivity {
     public  static  Activity home;
     SharedPreferences sharedPreferences;
     String userID;
+    String shareCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +89,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         sharedPreferences = getApplicationContext().getSharedPreferences("wishill", MODE_PRIVATE);
         userID=sharedPreferences.getString("userId","");
+        shareCode=sharedPreferences.getString("shareCode","");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -92,6 +97,7 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
         home=this;
 
+        appUpdate();
 
         interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -108,6 +114,7 @@ public class HomeActivity extends AppCompatActivity {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
+
         declaration();
 
         if(sharedPreferences.getString("login", "false").equals("true")){
@@ -177,7 +184,11 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 drawer.closeDrawer(GravityCompat.START);
-                String shareBody = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill";
+                String refer = "";
+                if (!shareCode.equals("")){
+                    refer = "&referrer="+shareCode;
+                }
+                String shareBody = "Wishill App!!\nDownload Now !! \nhttps://play.google.com/store/apps/details?id=com.wishill.wishill"+refer;
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here");
@@ -262,6 +273,8 @@ public class HomeActivity extends AppCompatActivity {
         llSettings=navigationView.findViewById(R.id.ll_settings);
         llSendFeed=navigationView.findViewById(R.id.ll_send_feedback);
         llPartnerLogin=navigationView.findViewById(R.id.ll_partner_login);
+
+        llPartnerLogin.setVisibility(View.GONE);
 
         bottomNavigation =findViewById(R.id.bottom_navigation);
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("Home", R.drawable.ic_home, R.color.colorPrimary);
@@ -403,6 +416,7 @@ public class HomeActivity extends AppCompatActivity {
                 editor.putString("userType", "");
                 editor.putString("userId", "");
                 editor.putString("userTypeId", "");
+                editor.putString("shareCode", "");
                 editor.commit();
                 finish();
                 Intent toSlider = new Intent(HomeActivity.this, SocialMediaActivity.class);
@@ -416,6 +430,17 @@ public class HomeActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    private void appUpdate(){
+        try {
+            AppUpdater appUpdater = new AppUpdater(HomeActivity.this);
+            appUpdater.setUpdateFrom(UpdateFrom.GOOGLE_PLAY);
+            appUpdater.setDisplay(Display.DIALOG);
+            appUpdater.setCancelable(false);
+            appUpdater.setButtonDoNotShowAgain("");
+            appUpdater.start();
+        }catch (Exception e){
 
+        }
+    }
 
 }

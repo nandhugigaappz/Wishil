@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -82,6 +83,12 @@ public class CollegeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     onClickListener.itemSendEnq(view,position);
                 }
             });
+            vh1.baseLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickListener.itemClick(view,position);
+                }
+            });
         } else if (holder instanceof ProgressViewHolder) {
             final ProgressViewHolder progressViewHolder = (ProgressViewHolder) holder;
             progressViewHolder.progressBar.setIndeterminate(true);
@@ -124,7 +131,7 @@ public class CollegeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         TextView tvLocation;
         TextView tvYear;
         TextView tvSendEnq;
-
+        LinearLayout baseLayout;
         public ListHolder(View itemView) {
             super(itemView);
             thumbnail = itemView.findViewById(R.id.thumbnail);
@@ -133,6 +140,7 @@ public class CollegeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             tvLocation=itemView.findViewById(R.id.tv_location);
             tvYear=itemView.findViewById(R.id.tv_year);
             tvSendEnq=itemView.findViewById(R.id.tv_send_enq);
+            baseLayout=itemView.findViewById(R.id.college_list_sr_main_layout);
         }
     }
 

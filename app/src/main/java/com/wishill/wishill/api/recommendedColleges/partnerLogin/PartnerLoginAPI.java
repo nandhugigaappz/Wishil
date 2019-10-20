@@ -9,6 +9,9 @@ public interface PartnerLoginAPI {
   @POST("partner_login.php")
   Call<PartnerResponse> post(
           @Field("emilID") String email,
-          @Field("password") String password
+          @Field("password") String password,
+          @Field("referrer") String referrer,
+          @Field("referredInstitute") String referredCollege,
+          @Field("referredInstituteType") String referredInstituteType
   );
 }

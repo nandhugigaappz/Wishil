@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -94,6 +95,13 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
                 onClickListener.itemClick(v,position);
             }
         });
+
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickListener.itemClick(view,position);
+            }
+        });
     }
 
     @Override
@@ -109,7 +117,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
         TextView tvLocation;
         TextView tvYear;
         TextView tvHeading;
-
+        LinearLayout mainLayout;
         public ViewHolder(View itemView) {
             super(itemView);
             thumbnail = itemView.findViewById(R.id.thumbnail);
@@ -117,6 +125,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
             tvLocation=itemView.findViewById(R.id.tv_location);
             tvYear=itemView.findViewById(R.id.tv_year);
             tvHeading=itemView.findViewById(R.id.tv_heading);
+            mainLayout=itemView.findViewById(R.id.ll_main_layout);
         }
 
     }

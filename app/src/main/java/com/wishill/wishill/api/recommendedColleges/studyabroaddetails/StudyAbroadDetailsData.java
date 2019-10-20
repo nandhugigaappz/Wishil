@@ -11,8 +11,10 @@ import java.util.List;
  */
 public class StudyAbroadDetailsData {
     @SerializedName("basicDetail") @Expose private StudyAbroadBasicDetailsData basicDetail;
+    @SerializedName("itemImage") @Expose private List<StudyAbroadImageDetails> imageDetails;
     @SerializedName("itemAmenties") @Expose private List<StudyAbroadAmenitiesDetailsData> amenitiesList=new ArrayList<>();
     @SerializedName("itemCourse") @Expose private List<StudyAbroadCoursesDetailsData> itemCourse=new ArrayList<>();
+
 
     @SerializedName("detailUrl") @Expose private String detailUrl;
     @SerializedName("amenityPath") @Expose private String amenityPath;
@@ -21,7 +23,24 @@ public class StudyAbroadDetailsData {
     @SerializedName("wishCount") @Expose private String wishCount;
     @SerializedName("followCount") @Expose private String followCount;
     @SerializedName("myFollowers") @Expose private String myFollowers;
+    @SerializedName("refer") @Expose private String refer;
 
+
+    public String getRefer() {
+        return refer;
+    }
+
+    public void setRefer(String refer) {
+        this.refer = refer;
+    }
+
+    public List<StudyAbroadImageDetails> getImageDetails() {
+        return imageDetails;
+    }
+
+    public void setImageDetails(List<StudyAbroadImageDetails> imageDetails) {
+        this.imageDetails = imageDetails;
+    }
 
     public StudyAbroadBasicDetailsData getBasicDetail() {
         return basicDetail;

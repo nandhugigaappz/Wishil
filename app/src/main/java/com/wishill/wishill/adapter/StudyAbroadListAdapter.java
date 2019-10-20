@@ -36,8 +36,10 @@ public class StudyAbroadListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int position) {
         RecyclerView.ViewHolder viewHolder = null;
         if (position == 0) {
-            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.study_abroad_list_item, viewGroup, false);
+            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cat_item_recommended_colleges_sub, viewGroup, false);
             viewHolder = new ListHolder(v);
+            /*View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.study_abroad_list_item, viewGroup, false);
+            viewHolder = new ListHolder(v);*/
         } else if (position == 1) {
             View v = LayoutInflater.from(viewGroup.getContext()).inflate(
                     R.layout.progress_item, viewGroup, false);
@@ -51,15 +53,31 @@ public class StudyAbroadListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
         if (holder instanceof ListHolder) {
             ListHolder vh1 = (ListHolder) holder;
-            Glide.with(vh1.thumbnail.getContext()).load(APILinks.IMAGE_LINK_FOUR + list.get(position).getCoverimage())
+            Glide.with(vh1.thumbnail.getContext()).load(APILinks.IMAGE_LINK + list.get(position).getCollege_img())
                     .crossFade()
                     .thumbnail(0.5f)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .fitCenter()
                     .into(vh1.thumbnail);
             vh1.tvName.setText(list.get(position).getCollegeName());
             vh1.tvLocation.setText(list.get(position).getCountry());
             String establishedYear="";
-            vh1.tvYear.setText(Html.fromHtml(establishedYear));
+//            vh1.tvYear.setText(Html.fromHtml(establishedYear));
+
+            vh1.tvSendEnq.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickListener.sendEnq(view,position);
+                }
+            });
+
+            vh1.ivCall.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickListener.itemCall(view,position);
+                }
+            });
+
             vh1.llMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -106,20 +124,31 @@ public class StudyAbroadListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         ImageView thumbnail;
         TextView tvName;
         TextView tvLocation;
-        TextView tvYear;
+        TextView tvSendEnq;
         LinearLayout llMain;
+        ImageView ivCall;
 
         public ListHolder(View itemView) {
             super(itemView);
+
             thumbnail = itemView.findViewById(R.id.thumbnail);
+            tvName=itemView.findViewById(R.id.tv_college_name);
+            tvLocation=itemView.findViewById(R.id.tv_college_location);
+            tvSendEnq=itemView.findViewById(R.id.tv_send_enq);
+            ivCall  = itemView.findViewById(R.id.iv_call);
+            llMain=itemView.findViewById(R.id.ll_main);
+
+            /*thumbnail = itemView.findViewById(R.id.thumbnail);
             tvName=itemView.findViewById(R.id.tv_name);
             tvLocation=itemView.findViewById(R.id.tv_location);
             tvYear=itemView.findViewById(R.id.tv_year);
-            llMain=itemView.findViewById(R.id.ll_main);
+            llMain=itemView.findViewById(R.id.ll_main);*/
         }
     }
 
     public interface ItemClickAdapterListener {
         void itemClick(View v, int position);
+        void itemCall(View v, int position);
+        void sendEnq(View v, int position);
     }
 }

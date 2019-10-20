@@ -16,7 +16,7 @@ public class Variables {
 
     public static ArrayList<CityDataModel> COLLEGE_FILTER_CITY_LIST;
 
-
+    public static String DEFAULT_IMAGE_PATH = "";
 
 
 }

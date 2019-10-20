@@ -3,8 +3,8 @@
     style="@style/CardViewStyleTwo"
     android:layout_margin="3dp">
     <RelativeLayout
-        android:layout_width="240dp"
-        android:layout_height="180dp">
+        android:layout_width="210dp"
+        android:layout_height="160dp">
         <LinearLayout
             android:id="@+id/ll_main"
             android:layout_width="match_parent"
@@ -21,7 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/padding_medium">
+            android:paddingLeft="@dimen/padding_medium"
+            android:paddingRight="@dimen/padding_medium"
+            android:paddingTop="2dp">
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
@@ -30,7 +32,8 @@
                 android:textStyle="bold"
                 android:maxLines="2"
                 android:textColor="@color/textPrimary"
-                android:textSize="@dimen/text_small" />
+                android:textSize="13sp"
+                android:ellipsize="end"/>
 
             <TextView
                 android:id="@+id/tv_location"
@@ -38,7 +41,8 @@
                 android:layout_height="wrap_content"
                 android:text="College Name"
                 android:textColor="@color/textSecondary"
-                android:textSize="@dimen/text_extra_small" />
+                android:textSize="@dimen/text_extra_small"
+                android:ellipsize="end"/>
         </LinearLayout>
 
         </LinearLayout>

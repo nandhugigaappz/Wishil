@@ -42,7 +42,8 @@ public class RecommendedCollegeListAdapter extends RecyclerView.Adapter<Recommen
                 .thumbnail(0.5f)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.thumbnail);
-        holder.tvCollegeName.setText(list.get(position).getCollegeName());
+        String instituteName = list.get(position).getCollegeName();
+        holder.tvCollegeName.setText(instituteName.substring(0,1).toUpperCase() + instituteName.substring(1));
         holder.tvCollegeLocation.setText(list.get(position).getCity());
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override

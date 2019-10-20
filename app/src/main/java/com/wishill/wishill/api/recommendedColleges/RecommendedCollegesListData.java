@@ -11,6 +11,7 @@ public class RecommendedCollegesListData {
     @SerializedName("collegename") @Expose private String collegeName;
     @SerializedName("college_img") @Expose private String collegeImage;
     @SerializedName("city") @Expose private String city;
+    @SerializedName("phone") @Expose private String phone;
 
     public String getCity() {
         return city;
@@ -42,5 +43,13 @@ public class RecommendedCollegesListData {
 
     public void setCollegeImage(String collegeImage) {
         this.collegeImage = collegeImage;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

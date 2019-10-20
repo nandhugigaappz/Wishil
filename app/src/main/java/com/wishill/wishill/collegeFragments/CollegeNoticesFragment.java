@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,14 +15,18 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
-import com.wishill.wishill.activity.VideoViewActivity;
-import com.wishill.wishill.adapter.CollegeVideoListAdapter;
-import com.wishill.wishill.api.recommendedColleges.getCollegeVideo.CollegeVideoListAPI;
-import com.wishill.wishill.api.recommendedColleges.getCollegeVideo.CollegeVideoListData;
-import com.wishill.wishill.api.recommendedColleges.getCollegeVideo.CollegeVideoResponse;
+import com.wishill.wishill.activity.NoticeDetailsActivity;
+import com.wishill.wishill.adapter.InstituteNoticeAdapter;
+import com.wishill.wishill.api.recommendedColleges.getCollegeGallery.CollegeGalleryListData;
+import com.wishill.wishill.api.recommendedColleges.getCollegeGallery.CollegeGalleryResponse;
+import com.wishill.wishill.api.recommendedColleges.getNoticeboardData.GetNoticeDataAPI;
+import com.wishill.wishill.api.recommendedColleges.getNoticeboardData.NoticeData;
+import com.wishill.wishill.api.recommendedColleges.getNoticeboardData.NoticeResponse;
 import com.wishill.wishill.utilities.APILinks;
+import com.wishill.wishill.utilities.BottomOffsetDecoration;
 import com.wishill.wishill.utilities.DialogProgress;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -49,8 +52,8 @@ public class CollegeNoticesFragment extends Fragment {
 
     RecyclerView rvList;
     LinearLayoutManager linearLayoutManager;
-    List<CollegeVideoListData> videoList;
-    CollegeVideoListAdapter adapter;
+    List<NoticeData> noticeDataList;
+    InstituteNoticeAdapter adapter;
 
     public CollegeNoticesFragment() {
         // Required empty public constructor
@@ -101,31 +104,40 @@ public class CollegeNoticesFragment extends Fragment {
         tvNoItem=v.findViewById(R.id.tv_no_item);
         tvNoItem.setVisibility(View.GONE);
         progress=v.findViewById(R.id.progress);
-        linearLayoutManager= new GridLayoutManager(getActivity(), 2);
+        linearLayoutManager= new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rvList.setLayoutManager(linearLayoutManager);
         getList();
         return v;
     }
     private void getList() {
-        retrofit.create(CollegeVideoListAPI.class).post(collegeID)
-                .enqueue(new Callback<CollegeVideoResponse>() {
+        retrofit.create(GetNoticeDataAPI.class).post(collegeID, "0")
+                .enqueue(new Callback<NoticeResponse>() {
                     @Override
-                    public void onResponse(Call<CollegeVideoResponse> call, Response<CollegeVideoResponse> response) {
+                    public void onResponse(Call<NoticeResponse> call, Response<NoticeResponse> response) {
                         if (response.isSuccessful()) {
                             if(response.body().getStatus().equals("1")){
-                                videoList=response.body().getCatList();
-                                if(videoList!=null&&videoList.size()!=0){
-                                     progress.setVisibility(View.GONE);
+                                noticeDataList = response.body().getCatList();
+                                String imagePath=response.body().getImagePath();
+                                if(noticeDataList!=null&&noticeDataList.size()!=0){
+                                    progress.setVisibility(View.GONE);
                                     tvNoItem.setVisibility(View.GONE);
-                                    adapter=new CollegeVideoListAdapter(videoList, getActivity(), new CollegeVideoListAdapter.ItemClickAdapterListener() {
+                                    adapter = new InstituteNoticeAdapter(getActivity(),imagePath, noticeDataList, new InstituteNoticeAdapter.ItemClickAdapterListener() {
                                         @Override
                                         public void itemClick(View v, int position) {
-                                            Intent in=new Intent(getActivity(),VideoViewActivity.class);
-                                            in.putExtra("videoUrl",videoList.get(position).getVideo());
+                                            Intent in=new Intent(getActivity(), NoticeDetailsActivity.class);
+                                            in.putExtra("noticeId",noticeDataList.get(position).getNoticeId());
+                                            in.putExtra("from","0");
                                             startActivity(in);
                                         }
                                     });
+
                                     rvList.setAdapter(adapter);
+
+                                    //to add space below recycler
+                                    float offsetPx = 150;
+                                    BottomOffsetDecoration bottomOffsetDecoration = new BottomOffsetDecoration((int) offsetPx);
+                                    rvList.addItemDecoration(bottomOffsetDecoration);
+
                                 }else{
                                     progress.setVisibility(View.GONE);
                                     tvNoItem.setVisibility(View.VISIBLE);
@@ -140,7 +152,7 @@ public class CollegeNoticesFragment extends Fragment {
                         }
                     }
                     @Override
-                    public void onFailure(Call<CollegeVideoResponse> call, Throwable t) {
+                    public void onFailure(Call<NoticeResponse> call, Throwable t) {
 
                     }
                 });

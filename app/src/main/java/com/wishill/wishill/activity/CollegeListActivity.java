@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dpizarro.autolabel.library.AutoLabelUI;
+import com.dpizarro.autolabel.library.Label;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
@@ -119,6 +120,8 @@ public class CollegeListActivity extends AppCompatActivity {
 
     String phoneNumber;
     String subCatName;
+    String countryID = "";
+    String country = "";
     TextView toolBarTitle;
 
     @Override
@@ -143,6 +146,8 @@ public class CollegeListActivity extends AppCompatActivity {
         subCatId = getIntent().getStringExtra("subCatId");
         catID = getIntent().getStringExtra("catID");
         subCatName=getIntent().getStringExtra("subCatName");
+        country=getIntent().getStringExtra("country");
+        countryID=getIntent().getStringExtra("countryID");
         dialogProgress = new DialogProgress(CollegeListActivity.this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -224,6 +229,19 @@ public class CollegeListActivity extends AppCompatActivity {
                 dialogProgress.show();
             }
         });
+
+        autoLabelLocation.setOnRemoveLabelListener(new AutoLabelUI.OnRemoveLabelListener() {
+            @Override
+            public void onRemoveLabel(View view, int position) {
+                for (int i=0; i<Variables.COLLEGE_FILTER_CITY_LIST.size(); i++){
+                    CityDataModel model = Variables.COLLEGE_FILTER_CITY_LIST.get(i);
+                    if (model.getCityName().equals(((Label) view).getText())){
+                        Variables.COLLEGE_FILTER_CITY_LIST.remove(model);
+                    }
+                }
+            }
+        });
+
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -285,7 +303,7 @@ public class CollegeListActivity extends AppCompatActivity {
     private void getList() {
         retrofit.create(SubCatCollegeListAPI.class).post(
                 subCatId,
-                "1",
+                countryID,
                 Variables.COLLEGE_FILTER_STATE_ID,
                 Variables.COLLEGE_FILTER_CITY_ID,
                 count + "",
@@ -326,7 +344,7 @@ public class CollegeListActivity extends AppCompatActivity {
     private void getListRemain() {
         retrofit.create(SubCatCollegeListAPI.class).post(
                 subCatId,
-                "1",
+                countryID,
                 Variables.COLLEGE_FILTER_STATE_ID,
                 Variables.COLLEGE_FILTER_CITY_ID,
                 count + "",

@@ -13,7 +13,7 @@ public interface StudyAbroadDetailsAPI {
   @FormUrlEncoded
   @POST("studyabroad_detail.php")
   Call<StudyAbroadDetailsResponse> post(
-          @Field("userID") String userID,
+//          @Field("userID") String userID,
           @Field("studyabroadID") String studyabroadID
 
   );

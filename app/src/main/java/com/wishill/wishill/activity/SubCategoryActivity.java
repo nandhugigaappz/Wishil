@@ -46,9 +46,12 @@ public class SubCategoryActivity extends AppCompatActivity {
 
     RecyclerView rvList;
     LinearLayoutManager linearLayoutManager;
-    String catID;
     List<CategoriesListData> catList;
     CatListAdapter catListAdapter;
+
+    String catID;
+    String country;
+    String countryID = "1";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +71,9 @@ public class SubCategoryActivity extends AppCompatActivity {
         }else if(catID.equals("6")){
             toolbarTitle.setText("Scholarship Categories");
         }else if(catID.equals("5")){
-            toolbarTitle.setText("Study Abroad Categories");
+            country = getIntent().getStringExtra("country");
+            countryID = getIntent().getStringExtra("countryID");
+            toolbarTitle.setText(country);
         }else if(catID.equals("8")){
             toolbarTitle.setText("Study Tour Categories");
         }else if(catID.equals("7")){
@@ -123,6 +128,7 @@ public class SubCategoryActivity extends AppCompatActivity {
                                             in.putExtra("subCatId",catList.get(position).getId());
                                             in.putExtra("subCatName",catList.get(position).getName());
                                             in.putExtra("catID",catID);
+                                            in.putExtra("countryID", countryID);
                                             startActivity(in);
                                         }else if(catID.equals("4")){
                                             //school
@@ -139,6 +145,12 @@ public class SubCategoryActivity extends AppCompatActivity {
                                             startActivity(in);
                                         }else if(catID.equals("5")){
                                             //study abroad
+                                            Intent in=new Intent(SubCategoryActivity.this, CollegeListActivity.class);
+                                            in.putExtra("subCatId",catList.get(position).getId());
+                                            in.putExtra("subCatName",catList.get(position).getName());
+                                            in.putExtra("country", country);
+                                            in.putExtra("countryID", countryID);
+                                            startActivity(in);
                                         }else if(catID.equals("8")){
                                             //study tour
                                             Intent in=new Intent(SubCategoryActivity.this,StudyTourList.class);

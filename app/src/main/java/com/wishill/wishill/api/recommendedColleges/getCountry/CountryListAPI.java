@@ -11,7 +11,7 @@ import retrofit2.http.POST;
 public interface CountryListAPI {
 
   @FormUrlEncoded
-  @POST("country.php")
+  @POST("countrylist.php")
   Call<CountryListResponse> post(
           @Field("value") String value
 

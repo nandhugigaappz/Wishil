@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -66,6 +67,7 @@ public class RecommentationCollegeActivity extends AppCompatActivity {
     OkHttpClient client;
     DialogProgress dialogProgress;
     public Dialog alertDialog;
+    String phoneNumber = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +112,15 @@ public class RecommentationCollegeActivity extends AppCompatActivity {
 
             @Override
             public void itemCall(View v, int position) {
-                Toast.makeText(RecommentationCollegeActivity.this,"Pending",Toast.LENGTH_SHORT).show();
+                phoneNumber =  HomeFragment.recommendedCollegeList.get(position).getPhone();
+                if(phoneNumber==null||phoneNumber.equals("")||phoneNumber.equals("0")){
+                    Toast.makeText(RecommentationCollegeActivity.this,"Contact number not available",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:"+phoneNumber));
+                    startActivity(intent);
+                }
             }
 
             @Override
