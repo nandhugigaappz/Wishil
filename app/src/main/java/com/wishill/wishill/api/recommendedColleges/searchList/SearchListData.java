@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Created by altoopa on 9/10/2016.
+ * Created by nandhu on 9/10/2016.
  */
 public class SearchListData implements Serializable{
     @SerializedName("categoryID") @Expose private String categoryID;

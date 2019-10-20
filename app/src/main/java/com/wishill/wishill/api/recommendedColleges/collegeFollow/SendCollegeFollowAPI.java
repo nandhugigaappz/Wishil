@@ -6,7 +6,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
- * Created by altoopa on 9/26/2016.
+ * Created by nandhu on 9/26/2016.
  */
 public interface SendCollegeFollowAPI {
   @FormUrlEncoded

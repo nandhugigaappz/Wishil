@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by altoopa on 9/10/2016.
+ * Created by nandhu on 9/10/2016.
  */
 public class SignUpMobileDataData {
     @SerializedName("userID") @Expose private String userID;

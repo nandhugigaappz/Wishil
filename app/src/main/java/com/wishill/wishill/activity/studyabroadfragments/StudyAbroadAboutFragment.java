@@ -50,7 +50,6 @@ public class StudyAbroadAboutFragment extends Fragment{
     }
 
 
-    // TODO: Rename and change types and number of parameters
     public static StudyAbroadAboutFragment newInstance(String param1, String param2) {
         StudyAbroadAboutFragment fragment = new StudyAbroadAboutFragment();
         return fragment;

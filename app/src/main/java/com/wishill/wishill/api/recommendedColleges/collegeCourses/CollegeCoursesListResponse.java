@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by altoopa on 9/10/2016.
+ * Created by nandhu on 9/10/2016.
  */
 public class CollegeCoursesListResponse {
     @SerializedName("recom") @Expose private List<CollegeCoursesListData> courseList = new ArrayList<CollegeCoursesListData>();

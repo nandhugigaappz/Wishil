@@ -37,7 +37,6 @@ public class CollegeFacilitiesFragment extends Fragment {
     }
 
 
-    // TODO: Rename and change types and number of parameters
     public static CollegeFacilitiesFragment newInstance(String param1, String param2) {
         CollegeFacilitiesFragment fragment = new CollegeFacilitiesFragment();
         return fragment;

@@ -1,12 +1,10 @@
 package com.wishill.wishill.activity;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -14,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -22,6 +19,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +42,8 @@ import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
 import com.wishill.wishill.api.recommendedColleges.SendCollegeEnquery.SendCollegeEnqueryAPI;
 import com.wishill.wishill.api.recommendedColleges.SendCollegeEnquery.SendCollegeEnqueryResponse;
+import com.wishill.wishill.api.recommendedColleges.applyScholarship.ApplyScholarshipAPI;
+import com.wishill.wishill.api.recommendedColleges.applyScholarship.ApplyScholarshipResponse;
 import com.wishill.wishill.api.recommendedColleges.collegeCourses.CollegeCoursesListAPI;
 import com.wishill.wishill.api.recommendedColleges.collegeCourses.CollegeCoursesListData;
 import com.wishill.wishill.api.recommendedColleges.collegeCourses.CollegeCoursesListResponse;
@@ -78,6 +78,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.wishill.wishill.utilities.Variables.DEFAULT_IMAGE_PATH;
+
 public class CollegeDetailsActivity extends AppCompatActivity {
     DialogProgress dialogProgress;
     TabLayout tabLayout;
@@ -87,7 +89,8 @@ public class CollegeDetailsActivity extends AppCompatActivity {
     CollegeFacilitiesFragment tab2;
     CollegeGalleryFragment tab3;
     CollegeContactFragment tab4;
-    CollegeNoticesFragment tab5;
+    //    CollegeVideoFragment tab5;
+    CollegeNoticesFragment tab6;
     String collegeID;
     String userType;
 
@@ -107,13 +110,12 @@ public class CollegeDetailsActivity extends AppCompatActivity {
     Retrofit retrofit;
     OkHttpClient client;
 
-    LinearLayout tabView1, tabView2,tabView3,tabView4,tabView5;
+    LinearLayout tabView1, tabView2,tabView3,tabView4,tabView5,tabView6;
     AppBarLayout main;
     ProgressBar progress;
     public Dialog alertDialog;
 
     SharedPreferences sharedPreferences;
-
 
     String userID;
 
@@ -122,6 +124,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
     List<CollegeCoursesDetailsData> collegeCourseList;
     String collegeImagePath;
     String collegeLogoPath;
+    String refer = "0";
 
     String wishListStatus;
     String followStatus;
@@ -129,7 +132,9 @@ public class CollegeDetailsActivity extends AppCompatActivity {
 
     String phoneNumber;
     String shareUrl;
-    ImageView ivShare;
+    //    ImageView ivShare;
+    TextView tvShare;
+    TextView tvScholarship;
     String amenityPath;
 
 
@@ -161,7 +166,9 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         tvFollow=findViewById(R.id.tv_follow);
         ivWishList=findViewById(R.id.iv_wish_list);
         tvMyFollowersCount=findViewById(R.id.tv_my_followers_count);
-        ivShare=findViewById(R.id.iv_share);
+//        ivShare=findViewById(R.id.iv_share);
+        tvShare=findViewById(R.id.tv_share);
+        tvScholarship=findViewById(R.id.tv_apply_scholarship);
 
         interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -178,8 +185,8 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-        getDetails();
 
+        getDetails();
 
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +197,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         rlEnq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isEnquiry = true;
                 if(sharedPreferences.getString("login", "false").equals("true")){
                     if(userType.equals("normal")){
                         getCourseList(collegeID);
@@ -206,7 +214,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(phoneNumber==null||phoneNumber.equals("")||phoneNumber.equals("0")){
-                     Toast.makeText(CollegeDetailsActivity.this,"Contact number not available",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CollegeDetailsActivity.this,"Contact number not available",Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_DIAL);
@@ -220,7 +228,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(sharedPreferences.getString("login", "false").equals("true")){
-                   collegeFollowAPI();
+                    collegeFollowAPI();
                 }else{
                     Intent toSlider = new Intent(CollegeDetailsActivity.this, SocialMediaActivity.class);
                     startActivity(toSlider);
@@ -248,18 +256,48 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                 startActivity(in);
             }
         });
-        ivShare.setOnClickListener(new View.OnClickListener() {
+
+        tvShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String shareBody = "Wishill App!!\n"+basicDetailsData.getName()+"\n"+APILinks.MAIN_URL+shareUrl;
-                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here");
-                sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-                startActivity(Intent.createChooser(sharingIntent, "share"));
+                if(sharedPreferences.getString("login", "false").equals("true")){
+                    if(userType.equals("normal")){
+                        shareCollege();
+                    }else{
+                        Toast.makeText(CollegeDetailsActivity.this,"Partner can't share colleges",Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Intent in=new Intent(CollegeDetailsActivity.this,SocialMediaActivity.class);
+                    startActivity(in);
+                }
+            }
+        });
+
+        tvScholarship.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isEnquiry = false;
+                if(sharedPreferences.getString("login", "false").equals("true")){
+                    if(userType.equals("normal")){
+                        getCourseList(collegeID);
+                    }else{
+                        Toast.makeText(CollegeDetailsActivity.this,"Partner can't apply scholarship",Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Intent in=new Intent(CollegeDetailsActivity.this,SocialMediaActivity.class);
+                    startActivity(in);
+                }
             }
         });
     }
+
+    private void shareCollege() {
+        Intent toShareNEarn = new Intent(CollegeDetailsActivity.this, ShareAndEarnActivity.class);
+        toShareNEarn.putExtra("instituteId", collegeID);
+        toShareNEarn.putExtra("instituteType", "0");
+        startActivity(toShareNEarn);
+    }
+
     private void getDetails() {
         retrofit.create(CollegeDetailsAPI.class).post(collegeID,userID)
                 .enqueue(new Callback<CollegeDetailsResponse>() {
@@ -271,6 +309,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                             collegeCourseList=response.body().getDataList().getCollegeCourseList();
                             collegeImagePath=response.body().getDataList().getCollegeImgPath();
                             collegeLogoPath=response.body().getDataList().getLogoImgPath();
+                            refer=response.body().getDataList().getRefer();
                             amenityPath=response.body().getDataList().getAmenityPath();
                             wishListStatus=response.body().getDataList().getWishCount();
                             followStatus=response.body().getDataList().getFollowCount();
@@ -297,12 +336,13 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         Log.e("Cover Image",APILinks.IMAGE_LINK+collegeImagePath+basicDetailsData.getCoverImage());
         Log.e("Logo Image",APILinks.IMAGE_LINK + collegeLogoPath+basicDetailsData.getLogo());
 
-        Glide.with(ivCover.getContext()).load(APILinks.IMAGE_LINK+collegeImagePath+basicDetailsData.getCoverImage())
+        Glide.with(getApplicationContext()).load(APILinks.IMAGE_LINK+collegeImagePath+basicDetailsData.getCoverImage())
                 .crossFade()
                 .thumbnail(0.5f)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(ivCover);
-        Glide.with(ivLogo.getContext()).load(APILinks.IMAGE_LINK + collegeLogoPath+basicDetailsData.getLogo())
+        DEFAULT_IMAGE_PATH = APILinks.IMAGE_LINK + collegeLogoPath+basicDetailsData.getLogo();
+        Glide.with(getApplicationContext()).load(DEFAULT_IMAGE_PATH)
                 .crossFade()
                 .thumbnail(0.5f)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -335,13 +375,21 @@ public class CollegeDetailsActivity extends AppCompatActivity {
             tvMyFollowersCount.setText(myFollowersCount+" Followers");
         }
 
+        // TODO: 20/10/2019
+       /* if (refer != null && refer.equals("1")){
+            tvScholarship.setVisibility(View.VISIBLE);
+            tvShare.setVisibility(View.VISIBLE);
+        } else {
+            tvScholarship.setVisibility(View.GONE);
+            tvShare.setVisibility(View.GONE);
+        }*/
 
     }
 
     public void setTabs() {
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
-        viewPager.setOffscreenPageLimit(4);
+        viewPager.setOffscreenPageLimit(5);
 
         tabView1 = (LinearLayout) LayoutInflater.from(CollegeDetailsActivity.this)
                 .inflate(R.layout.custom_tab_one, null, false);
@@ -365,6 +413,28 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         title2.setTypeface(null, Typeface.NORMAL);
         tabLayout.getTabAt(1).setCustomView(tabView2);
 
+        tabView4 = (LinearLayout) LayoutInflater.from(CollegeDetailsActivity.this)
+                .inflate(R.layout.custom_tab_one, null, false);
+        final TextView title4=tabView4.findViewById(R.id.tv_heading);
+        final ImageView imageView4=tabView4.findViewById(R.id.iv_icon);
+        imageView4.setImageResource(R.drawable.ic_contact_tab);
+        imageView4.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+        title4.setText("Courses");
+        title4.setTextColor(getResources().getColor(R.color.gray));
+        title4.setTypeface(null, Typeface.NORMAL);
+        tabLayout.getTabAt(2).setCustomView(tabView4);
+
+        tabView6 = (LinearLayout) LayoutInflater.from(CollegeDetailsActivity.this)
+                .inflate(R.layout.custom_tab_one, null, false);
+        final TextView title6=tabView6.findViewById(R.id.tv_heading);
+        final ImageView imageView6=tabView6.findViewById(R.id.iv_icon);
+        //imageView5.setImageResource(R.drawable.ic_notice);
+        imageView6.setImageResource(R.drawable.notice_board);
+        imageView6.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+        title6.setText("Notice");
+        title6.setTextColor(getResources().getColor(R.color.gray));
+        title6.setTypeface(null, Typeface.NORMAL);
+        tabLayout.getTabAt(4).setCustomView(tabView6);
 
         tabView3 = (LinearLayout) LayoutInflater.from(CollegeDetailsActivity.this)
                 .inflate(R.layout.custom_tab_one, null, false);
@@ -377,18 +447,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         title3.setTypeface(null, Typeface.NORMAL);
         tabLayout.getTabAt(3).setCustomView(tabView3);
 
-        tabView4 = (LinearLayout) LayoutInflater.from(CollegeDetailsActivity.this)
-                .inflate(R.layout.custom_tab_one, null, false);
-        final TextView title4=tabView4.findViewById(R.id.tv_heading);
-        final ImageView imageView4=tabView4.findViewById(R.id.iv_icon);
-        imageView4.setImageResource(R.drawable.ic_contact_tab);
-        imageView4.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
-        title4.setText("Courses");
-        title4.setTextColor(getResources().getColor(R.color.gray));
-        title4.setTypeface(null, Typeface.NORMAL);
-        tabLayout.getTabAt(2).setCustomView(tabView4);
-
-        tabView5 = (LinearLayout) LayoutInflater.from(CollegeDetailsActivity.this)
+        /*tabView5 = (LinearLayout) LayoutInflater.from(CollegeDetailsActivity.this)
                 .inflate(R.layout.custom_tab_one, null, false);
         final TextView title5=tabView5.findViewById(R.id.tv_heading);
         final ImageView imageView5=tabView5.findViewById(R.id.iv_icon);
@@ -398,7 +457,8 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         title5.setText("Videos");
         title5.setTextColor(getResources().getColor(R.color.gray));
         title5.setTypeface(null, Typeface.NORMAL);
-        tabLayout.getTabAt(4).setCustomView(tabView5);
+        tabLayout.getTabAt(4).setCustomView(tabView5);*/
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -418,9 +478,16 @@ public class CollegeDetailsActivity extends AppCompatActivity {
 
                         imageView4.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
                         title4.setTypeface(null, Typeface.NORMAL);
+                        title4.setTextColor(getResources().getColor(R.color.gray));
 
-                        imageView5.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+                        /*imageView5.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
                         title5.setTypeface(null, Typeface.NORMAL);
+                        title5.setTextColor(getResources().getColor(R.color.gray));*/
+
+                        imageView6.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+                        title6.setTypeface(null, Typeface.NORMAL);
+                        title6.setTextColor(getResources().getColor(R.color.gray));
+
                         break;
 
                     case 1:
@@ -441,9 +508,13 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                         title4.setTextColor(getResources().getColor(R.color.gray));
                         title4.setTypeface(null, Typeface.NORMAL);
 
-                        imageView5.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+                       /* imageView5.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
                         title5.setTextColor(getResources().getColor(R.color.gray));
-                        title5.setTypeface(null, Typeface.NORMAL);
+                        title5.setTypeface(null, Typeface.NORMAL);*/
+
+                        imageView6.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+                        title6.setTextColor(getResources().getColor(R.color.gray));
+                        title6.setTypeface(null, Typeface.NORMAL);
                         break;
                     case 2:
                         imageView1.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
@@ -462,15 +533,41 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                         title4.setTextColor(getResources().getColor(R.color.blue));
                         title4.setTypeface(null, Typeface.BOLD);
 
-                        imageView5.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+                        /*imageView5.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
                         title5.setTextColor(getResources().getColor(R.color.gray));
-                        title5.setTypeface(null, Typeface.NORMAL);
+                        title5.setTypeface(null, Typeface.NORMAL);*/
 
-
-
-
-
+                        imageView6.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+                        title6.setTextColor(getResources().getColor(R.color.gray));
+                        title6.setTypeface(null, Typeface.NORMAL);
                         break;
+
+                    case 4:
+                        imageView1.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+                        title1.setTextColor(getResources().getColor(R.color.gray));
+                        title1.setTypeface(null, Typeface.NORMAL);
+
+                        imageView2.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+                        title2.setTextColor(getResources().getColor(R.color.gray));
+                        title2.setTypeface(null, Typeface.NORMAL);
+
+                        imageView6.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.blue));
+                        title6.setTextColor(getResources().getColor(R.color.blue));
+                        title6.setTypeface(null, Typeface.BOLD);
+
+                        imageView4.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+                        title4.setTextColor(getResources().getColor(R.color.gray));
+                        title4.setTypeface(null, Typeface.NORMAL);
+
+                       /* imageView5.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+                        title5.setTextColor(getResources().getColor(R.color.gray));
+                        title5.setTypeface(null, Typeface.NORMAL);*/
+
+                        imageView3.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+                        title3.setTextColor(getResources().getColor(R.color.gray));
+                        title3.setTypeface(null, Typeface.NORMAL);
+                        break;
+
                     case 3:
                         imageView1.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
                         title1.setTextColor(getResources().getColor(R.color.gray));
@@ -488,11 +585,16 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                         title4.setTextColor(getResources().getColor(R.color.gray));
                         title4.setTypeface(null, Typeface.NORMAL);
 
-                        imageView5.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+                        /*imageView5.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
                         title5.setTextColor(getResources().getColor(R.color.gray));
-                        title5.setTypeface(null, Typeface.NORMAL);
+                        title5.setTypeface(null, Typeface.NORMAL);*/
+
+                        imageView6.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+                        title6.setTextColor(getResources().getColor(R.color.gray));
+                        title6.setTypeface(null, Typeface.NORMAL);
                         break;
-                    case 4:
+
+                   /* case 4:
                         imageView1.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
                         title1.setTextColor(getResources().getColor(R.color.gray));
                         title1.setTypeface(null, Typeface.NORMAL);
@@ -512,7 +614,11 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                         imageView5.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.blue));
                         title5.setTextColor(getResources().getColor(R.color.blue));
                         title5.setTypeface(null, Typeface.BOLD);
-                        break;
+
+                        imageView6.setColorFilter(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.gray));
+                        title6.setTextColor(getResources().getColor(R.color.gray));
+                        title6.setTypeface(null, Typeface.NORMAL);
+                        break;*/
                 }
             }
 
@@ -531,13 +637,15 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         tab2 = new CollegeFacilitiesFragment(amenitiesList,amenityPath);
         tab3=new CollegeGalleryFragment(collegeID);
         tab4=new CollegeContactFragment(collegeID,collegeCourseList);
-        tab5=new CollegeNoticesFragment(collegeID);
+//        tab5=new CollegeVideoFragment(collegeID);
+        tab6=new CollegeNoticesFragment(collegeID);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(tab1, "");
         adapter.addFragment(tab2, "");
         adapter.addFragment(tab4, "");
         adapter.addFragment(tab3, "");
-        adapter.addFragment(tab5, "");
+//        adapter.addFragment(tab5, "");
+        adapter.addFragment(tab6, "");
         ViewPager.setAdapter(adapter);
     }
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -594,6 +702,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
 
 
     //contact
+    private boolean isEnquiry = true;
     private void sendEnq(final String collegeID, final List<CollegeCoursesListData> courseList) {
         alertDialog = new Dialog(CollegeDetailsActivity.this);
         alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -606,13 +715,22 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         final EditText phone = alert_layout.findViewById(R.id.edt_phone);
         final EditText comment = alert_layout.findViewById(R.id.edt_comment);
         TextView submit = alert_layout.findViewById(R.id.tv_submit);
+        TextView commentTV = alert_layout.findViewById(R.id.tv_comment);
         Spinner courseSpinner = alert_layout.findViewById(R.id.course_spinner);
         LinearLayout llCourse = alert_layout.findViewById(R.id.ll_course);
 
         fullName.setText(sharedPreferences.getString("userName", ""));
         email.setText(sharedPreferences.getString("userEmail", ""));
         phone.setText(sharedPreferences.getString("userMobile", ""));
-        comment.setText(R.string.college_enq);
+        if (isEnquiry) {
+            comment.setText(R.string.college_enq);
+            comment.setMinLines(4);
+        } else {
+            commentTV.setText("Referral Code");
+            comment.setText(sharedPreferences.getString("referral", ""));
+            comment.setMinLines(1);
+            comment.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+        }
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -659,7 +777,11 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                 if (validateName(strName)) {
                     if (isEmailValid(strEmail)) {
                         if (validatePhone(strPhone)) {
-                            enqAPI(strName, strEmail, strPhone, strComment, collegeID, courseId[0]);
+                            if (isEnquiry) {
+                                enqAPI(strName, strEmail, strPhone, strComment, collegeID, courseId[0]);
+                            } else {
+                                scholarshipAPI(strName, strEmail, strPhone, strComment, collegeID, courseId[0]);
+                            }
                             dialogProgress.show();
                             alertDialog.dismiss();
                         }
@@ -674,6 +796,33 @@ public class CollegeDetailsActivity extends AppCompatActivity {
 
     }
 
+    private void scholarshipAPI(String strName, String strEmail, String strPhone, String reference, String collegeID, String courseId) {
+        retrofit.create(ApplyScholarshipAPI.class).post(strName,
+                userID,
+                strEmail,
+                strPhone,
+                "1",
+                collegeID,
+                courseId,
+                reference)
+                .enqueue(new Callback<ApplyScholarshipResponse>() {
+                    @Override
+                    public void onResponse(Call<ApplyScholarshipResponse> call, Response<ApplyScholarshipResponse> response) {
+                        if (response.isSuccessful()) {
+                            dialogProgress.dismiss();
+                            Toast.makeText(CollegeDetailsActivity.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
+                        } else {
+                            dialogProgress.dismiss();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ApplyScholarshipResponse> call, Throwable t) {
+                        dialogProgress.dismiss();
+                    }
+                });
+    }
+
     private void enqAPI(String strName, String strEmail, String strPhone, String strComment, String collegeID, String courseId) {
         // sharedPreferences.getString("userId", "")
         retrofit.create(SendCollegeEnqueryAPI.class).post(strName,
@@ -682,7 +831,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                 strPhone,
                 "1",
                 collegeID,
-                "",
+                courseId,
                 strComment)
                 .enqueue(new Callback<SendCollegeEnqueryResponse>() {
                     @Override
@@ -727,7 +876,6 @@ public class CollegeDetailsActivity extends AppCompatActivity {
             }
         }
     }
-
     private boolean validateName(String name) {
         if (name.equals("")) {
             Toast.makeText(CollegeDetailsActivity.this, "Enter name", Toast.LENGTH_SHORT).show();
@@ -765,17 +913,18 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                             dialogProgress.dismiss();
                             if(response.body().getSuccess()==1){
                                 Toast.makeText(CollegeDetailsActivity.this,response.body().getMessage(),Toast.LENGTH_LONG).show();
-                                if(followStatus.equals("0")){
+                                if(followStatus == null ||followStatus.equals("0")){
                                     followStatus="1";
                                     tvFollow.setBackgroundResource(R.drawable.following_button);
                                     tvFollow.setText("Following");
                                     tvFollow.setTextColor(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.white));
+                                    tvMyFollowersCount.setText((Integer.parseInt(myFollowersCount)+1)+" Followers");
                                 }else{
                                     followStatus="0";
                                     tvFollow.setBackgroundResource(R.drawable.follow_button);
                                     tvFollow.setText("Follow");
                                     tvFollow.setTextColor(ContextCompat.getColor(CollegeDetailsActivity.this, R.color.green));
-
+                                    tvMyFollowersCount.setText(myFollowersCount+" Followers");
                                 }
                             }else{
                                 Toast.makeText(CollegeDetailsActivity.this,response.body().getMessage(),Toast.LENGTH_LONG).show();
@@ -819,5 +968,24 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                         dialogProgress.dismiss();
                     }
                 });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //deep linking
+        /*Intent mainIntent = getIntent();
+        if (mainIntent!=null && mainIntent.getData()!=null) {
+            Uri data = mainIntent.getData();
+            List<String> pathSegments = data.getPathSegments();
+
+            if (pathSegments.size() > 0) {
+                collegeID = pathSegments.get(3);
+            }
+            System.out.println("deeplinkingcallback   :- " + pathSegments);
+            Toast.makeText(this, "" + collegeID, Toast.LENGTH_SHORT).show();
+        }
+        getDetails();*/
     }
 }
