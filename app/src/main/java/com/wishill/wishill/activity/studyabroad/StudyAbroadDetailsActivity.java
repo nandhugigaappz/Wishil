@@ -52,12 +52,12 @@ import com.wishill.wishill.api.recommendedColleges.collegeFollow.SendCollegeFoll
 import com.wishill.wishill.api.recommendedColleges.collegeFollow.SendCollegeFollowResponse;
 import com.wishill.wishill.api.recommendedColleges.collegeWishList.SendCollegeWishListAPI;
 import com.wishill.wishill.api.recommendedColleges.collegeWishList.SendCollegeWishListResponse;
-import com.wishill.wishill.studyAbroadFragments.StudyAbroadAboutFragment;
 import com.wishill.wishill.api.recommendedColleges.studyabroaddetails.StudyAbroadAmenitiesDetailsData;
 import com.wishill.wishill.api.recommendedColleges.studyabroaddetails.StudyAbroadBasicDetailsData;
 import com.wishill.wishill.api.recommendedColleges.studyabroaddetails.StudyAbroadCoursesDetailsData;
 import com.wishill.wishill.api.recommendedColleges.studyabroaddetails.StudyAbroadDetailsAPI;
 import com.wishill.wishill.api.recommendedColleges.studyabroaddetails.StudyAbroadDetailsResponse;
+import com.wishill.wishill.studyAbroadFragments.StudyAbroadAboutFragment;
 import com.wishill.wishill.studyAbroadFragments.StudyAbroadContactFragment;
 import com.wishill.wishill.studyAbroadFragments.StudyAbroadFacilitiesFragment;
 import com.wishill.wishill.studyAbroadFragments.StudyAbroadGalleryFragment;
@@ -272,7 +272,7 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
     }
 
     private void getDetails() {
-        retrofit.create(StudyAbroadDetailsAPI.class).post(studyabroadID)
+        retrofit.create(StudyAbroadDetailsAPI.class).post( studyabroadID)
                 .enqueue(new Callback<StudyAbroadDetailsResponse>() {
                     @Override
                     public void onResponse(Call<StudyAbroadDetailsResponse> call, Response<StudyAbroadDetailsResponse> response) {
