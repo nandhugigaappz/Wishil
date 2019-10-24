@@ -1,10 +1,12 @@
 package com.wishill.wishill.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -12,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -39,6 +42,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.wishill.wishill.MainActivity;
 import com.wishill.wishill.R;
 import com.wishill.wishill.api.recommendedColleges.SendCollegeEnquery.SendCollegeEnqueryAPI;
 import com.wishill.wishill.api.recommendedColleges.SendCollegeEnquery.SendCollegeEnqueryResponse;
@@ -124,7 +128,7 @@ public class CollegeDetailsActivity extends AppCompatActivity {
     List<CollegeCoursesDetailsData> collegeCourseList;
     String collegeImagePath;
     String collegeLogoPath;
-    String refer = "0";
+    int refer = 0;
 
     String wishListStatus;
     String followStatus;
@@ -260,16 +264,11 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         tvShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sharedPreferences.getString("login", "false").equals("true")){
-                    if(userType.equals("normal")){
-                        shareCollege();
-                    }else{
-                        Toast.makeText(CollegeDetailsActivity.this,"Partner can't share colleges",Toast.LENGTH_LONG).show();
-                    }
-                }else{
-                    Intent in=new Intent(CollegeDetailsActivity.this,SocialMediaActivity.class);
-                    startActivity(in);
-                }
+
+                ActivityCompat.requestPermissions(CollegeDetailsActivity.this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        1);
+
             }
         });
 
@@ -289,6 +288,39 @@ public class CollegeDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if(sharedPreferences.getString("login", "false").equals("true")){
+                        if(userType.equals("normal")){
+                            shareCollege();
+                        }else{
+                            Toast.makeText(CollegeDetailsActivity.this,"Partner can't share colleges",Toast.LENGTH_LONG).show();
+                        }
+                    }else{
+                        Intent in=new Intent(CollegeDetailsActivity.this,SocialMediaActivity.class);
+                        startActivity(in);
+                    }
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(CollegeDetailsActivity.this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
     }
 
     private void shareCollege() {
@@ -376,13 +408,13 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         }
 
         // TODO: 20/10/2019
-       /* if (refer != null && refer.equals("1")){
+        if (refer==1){
             tvScholarship.setVisibility(View.VISIBLE);
             tvShare.setVisibility(View.VISIBLE);
         } else {
             tvScholarship.setVisibility(View.GONE);
             tvShare.setVisibility(View.GONE);
-        }*/
+        }
 
     }
 

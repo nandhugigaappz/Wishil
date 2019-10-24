@@ -128,9 +128,9 @@ public class MobileNumberActivity extends AppCompatActivity {
     private void signUpMobile(){
         dialogProgress.show();
         retrofit.create(SignUpMobileAPI.class).post(mobileNumber,
-                referrer,
+                referrer/*,
                 referredInstitute,
-                referredInstituteType)
+                referredInstituteType*/)
                 .enqueue(new Callback<SignUpMobileResponse>() {
                     @Override
                     public void onResponse(Call<SignUpMobileResponse> call, Response<SignUpMobileResponse> response) {

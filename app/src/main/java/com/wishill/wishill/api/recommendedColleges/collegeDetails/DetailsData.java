@@ -18,7 +18,7 @@ public class DetailsData {
     @SerializedName("followCount") @Expose private String followCount;
     @SerializedName("myFollowers") @Expose private String myFollowers;
     @SerializedName("detailUrl") @Expose private String detailUrl;
-    @SerializedName("refer") @Expose private String refer;
+    @SerializedName("recomonded") @Expose private int refer;
 
     public String getAmenityPath() {
         return amenityPath;
@@ -103,11 +103,11 @@ public class DetailsData {
         this.basicDetail = basicDetail;
     }
 
-    public String getRefer() {
+    public int getRefer() {
         return refer;
     }
 
-    public void setRefer(String refer) {
+    public void setRefer(int refer) {
         this.refer = refer;
     }
 }

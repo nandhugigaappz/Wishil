@@ -251,9 +251,11 @@ public class HomeFragment extends Fragment {
                         break;
                     case 2:
                         //jobs
-                        intent = new Intent(getActivity(), SubCategoryActivity.class);
+                       /* intent = new Intent(getActivity(), SubCategoryActivity.class);
                         intent.putExtra("catID","7");
-                        startActivity(intent);
+                        startActivity(intent);*/
+
+                        Toast.makeText(getActivity(),"Coming Soon",Toast.LENGTH_LONG).show();
                         break;
                     case 3:
                         //recommended
@@ -496,7 +498,7 @@ public class HomeFragment extends Fragment {
 //        categories.add(new HomeItemsModel("Scholarship",R.drawable.scholership,"0"));
         categories.add(new HomeItemsModel("Study Abroad",R.drawable.study_abroad,"1"));
 //        categories.add(new HomeItemsModel("Study Tour",R.drawable.study_tour,"0"));
-        categories.add(new HomeItemsModel("Jobs",R.drawable.jobs,"1"));
+        categories.add(new HomeItemsModel("Jobs",R.drawable.jobs,"0"));
         categories.add(new HomeItemsModel("Recommended",R.drawable.scholership,"1"));
 
     }

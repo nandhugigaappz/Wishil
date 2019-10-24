@@ -14,9 +14,9 @@ public interface SignUpMobileAPI {
   @POST("individualSignup.php")
   Call<SignUpMobileResponse> post(
           @Field("userPhone") String mobile,
-          @Field("referrer") String referrer,
-          @Field("referredInstitute") String referredCollege,
-          @Field("referredInstituteType") String referredInstituteType
+          @Field("referrer") String referrer
+          //@Field("referredInstitute") String referredCollege,
+          //@Field("referredInstituteType") String referredInstituteType
   );
 
 }

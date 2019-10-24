@@ -1,10 +1,12 @@
 package com.wishill.wishill.activity.studyabroad;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -12,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -97,7 +100,7 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     String userId;
     String userType;
-    String refer = "0";
+    int refer = 0;
 
     LinearLayout tabView1, tabView2,tabView3,tabView4,tabView5;
     StudyAbroadAboutFragment tab1;
@@ -259,16 +262,12 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
         tvShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sharedPreferences.getString("login", "false").equals("true")){
-                    if(userType.equals("normal")){
-                        shareCollege();
-                    }else{
-                        Toast.makeText(StudyAbroadDetailsActivity.this,"Partner can't share colleges",Toast.LENGTH_LONG).show();
-                    }
-                }else{
-                    Intent in=new Intent(StudyAbroadDetailsActivity.this,SocialMediaActivity.class);
-                    startActivity(in);
-                }
+
+
+                ActivityCompat.requestPermissions(StudyAbroadDetailsActivity.this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        1);
+
             }
         });
 
@@ -289,6 +288,40 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    if(sharedPreferences.getString("login", "false").equals("true")){
+                        if(userType.equals("normal")){
+                            shareCollege();
+                        }else{
+                            Toast.makeText(StudyAbroadDetailsActivity.this,"Partner can't share colleges",Toast.LENGTH_LONG).show();
+                        }
+                    }else{
+                        Intent in=new Intent(StudyAbroadDetailsActivity.this,SocialMediaActivity.class);
+                        startActivity(in);
+                    }
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(StudyAbroadDetailsActivity.this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
     }
 
     private void shareCollege() {
@@ -386,13 +419,13 @@ public class StudyAbroadDetailsActivity extends AppCompatActivity {
         }
 
         // TODO: 20/10/2019
-        /*if (refer != null && refer.equals("1")){
+        if (refer==1){
             tvScholarship.setVisibility(View.VISIBLE);
             tvShare.setVisibility(View.VISIBLE);
         } else {
             tvScholarship.setVisibility(View.GONE);
             tvShare.setVisibility(View.GONE);
-        }*/
+        }
     }
 
     public void setTabs() {

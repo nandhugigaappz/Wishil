@@ -23,14 +23,14 @@ public class StudyAbroadDetailsData {
     @SerializedName("wishCount") @Expose private String wishCount;
     @SerializedName("followCount") @Expose private String followCount;
     @SerializedName("myFollowers") @Expose private String myFollowers;
-    @SerializedName("refer") @Expose private String refer;
+    @SerializedName("recomonded") @Expose private int refer;
 
 
-    public String getRefer() {
+    public int getRefer() {
         return refer;
     }
 
-    public void setRefer(String refer) {
+    public void setRefer(int refer) {
         this.refer = refer;
     }
 

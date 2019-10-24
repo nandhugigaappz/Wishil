@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 public class OtpLoginData {
     @SerializedName("userID") @Expose private String userID;
     @SerializedName("shareCode") @Expose private String shareCode;
-    @SerializedName("referral") @Expose private String referral;
+    @SerializedName("referralCode") @Expose private String referral;
 
     public String getUserID() {
         return userID;
