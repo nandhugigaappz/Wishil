@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.JobsLoginActivity">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/wishhill_jobs_login"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@drawable/wishhill_view_line"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingBottom="20dp"
+                android:orientation="vertical">
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_margin="@dimen/activity_vertical_margin"
+               android:layout_gravity="center_horizontal"
+               android:orientation="horizontal">
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/text_medium"
+                   android:text="Experience Type: "
+                   android:layout_gravity="center_vertical"
+                   android:gravity="center_vertical"
+                   android:textColor="#000"/>
+               <RadioGroup
+                   android:id="@+id/exp_type"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+                   <RadioButton
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Fresher"
+                       android:textSize="@dimen/text_medium"/>
+                   <RadioButton
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Experienced"
+                       android:textSize="@dimen/text_medium"/>
+               </RadioGroup>
+           </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/edt_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/bottom_navigation_margin_bottom"
+                android:background="@drawable/edittext_curved_bg"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:padding="@dimen/padding_large" />
+
+
+            <EditText
+                android:id="@+id/edt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/bottom_navigation_margin_bottom"
+                android:background="@drawable/edittext_curved_bg"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/padding_large" />
+            <EditText
+                android:id="@+id/edt_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/bottom_navigation_margin_bottom"
+                android:background="@drawable/edittext_curved_bg"
+                android:hint="Mobile"
+                android:inputType="phone"
+                android:padding="@dimen/padding_large" />
+
+            <EditText
+                android:id="@+id/edt_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/bottom_navigation_margin_bottom"
+                android:background="@drawable/edittext_curved_bg"
+                android:hint="Password"
+                android:padding="@dimen/padding_large" />
+            <EditText
+                android:id="@+id/edt_repassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/bottom_navigation_margin_bottom"
+                android:background="@drawable/edittext_curved_bg"
+                android:hint="Re Type Password"
+                android:padding="@dimen/padding_large" />
+            <EditText
+                android:id="@+id/edt_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/bottom_navigation_margin_bottom"
+                android:background="@drawable/edittext_curved_bg"
+                android:hint="Address"
+                android:inputType="textMultiLine"
+                android:padding="@dimen/padding_large" />
+            <LinearLayout
+                android:layout_margin="@dimen/bottom_navigation_margin_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:background="@drawable/bg_edit_text">
+                <Spinner
+                    android:id="@+id/country_spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="@dimen/bottom_navigation_margin_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:background="@drawable/bg_edit_text">
+                <Spinner
+                    android:id="@+id/state_spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="@dimen/bottom_navigation_margin_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:background="@drawable/bg_edit_text">
+                <Spinner
+                    android:id="@+id/district_spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp" />
+            </LinearLayout>
+                <TextView
+                    android:id="@+id/btn_submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:layout_margin="@dimen/padding_large"
+                    android:background="@drawable/buttonstylecurved"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_extra_large"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="REGISTER"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_medium" />
+            </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>
