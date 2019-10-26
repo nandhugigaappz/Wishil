@@ -3,7 +3,7 @@ package com.wishill.wishill.activity.resumebuilder.datamodel;
 import android.os.Parcel;
 
 /**
- * Created by ibrahim on 1/18/18.
+ * Created by nandhu on 26/10/2019.
  */
 
 public class Experience extends ResumeEvent {

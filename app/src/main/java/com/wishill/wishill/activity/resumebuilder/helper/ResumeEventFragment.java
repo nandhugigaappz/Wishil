@@ -19,7 +19,7 @@ import com.wishill.wishill.activity.resumebuilder.datamodel.ResumeEvent;
 
 
 /**
- * Created by ibrahim on 1/19/18.
+ * Created by nandhu on 26/10/2019.
  */
 
 abstract public class ResumeEventFragment<T extends ResumeEvent> extends ResumeFragment

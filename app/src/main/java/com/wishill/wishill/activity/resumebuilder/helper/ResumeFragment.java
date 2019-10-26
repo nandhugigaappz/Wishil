@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import com.wishill.wishill.activity.resumebuilder.datamodel.Resume;
 
 /**
- * Created by ibrahim on 1/19/18.
+ * Created by nandhu on 26/10/2019.
  */
 
 abstract public class ResumeFragment extends Fragment {

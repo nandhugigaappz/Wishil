@@ -8,7 +8,7 @@ import com.wishill.wishill.activity.resumebuilder.datamodel.School;
 import java.util.List;
 
 /**
- * Created by ibrahim on 1/19/18.
+ * Created by nandhu on 26/10/2019.
  */
 
 public class SchoolsAdapter extends ResumeEventAdapter<School> {

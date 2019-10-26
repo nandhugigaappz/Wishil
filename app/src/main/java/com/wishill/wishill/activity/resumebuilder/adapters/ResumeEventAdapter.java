@@ -13,7 +13,7 @@ import com.wishill.wishill.activity.resumebuilder.datamodel.ResumeEvent;
 import java.util.List;
 
 /**
- * Created by ibrahim on 1/19/18.
+ * Created by nandhu on 26/10/2019.
  */
 
 abstract public class ResumeEventAdapter<T extends ResumeEvent>
