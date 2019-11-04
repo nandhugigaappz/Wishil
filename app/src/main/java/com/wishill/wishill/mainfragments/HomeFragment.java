@@ -4,39 +4,31 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.android.installreferrer.api.InstallReferrerClient;
-import com.android.installreferrer.api.InstallReferrerStateListener;
-import com.android.installreferrer.api.ReferrerDetails;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
 import com.wishill.wishill.activity.BlogDetails;
 import com.wishill.wishill.activity.CollegeDetailsActivity;
-import com.wishill.wishill.activity.InternShipListActivity;
 import com.wishill.wishill.activity.RecommentationCollegeActivity;
 import com.wishill.wishill.activity.ScholarshipDetailsActivity;
-import com.wishill.wishill.activity.SelectCountryActivity;
 import com.wishill.wishill.activity.StoriesListActivity;
 import com.wishill.wishill.activity.SubCategoryActivity;
 import com.wishill.wishill.activity.TopRankingActivity;
+import com.wishill.wishill.activity.jobs.JobHomeActivity;
 import com.wishill.wishill.activity.studyabroad.StudyAbrodCountries;
 import com.wishill.wishill.adapter.AttractiveStudyTourListAdapter;
 import com.wishill.wishill.adapter.BlogsListAdapter;
 import com.wishill.wishill.adapter.HomeCatListAdapter;
 import com.wishill.wishill.adapter.RecommendedCollegeListAdapter;
-import com.wishill.wishill.adapter.StoriesListAdapter;
 import com.wishill.wishill.adapter.TopRankingCollegeListAdapter;
 import com.wishill.wishill.adapter.TrendingScholarshipsListAdapter;
 import com.wishill.wishill.api.recommendedColleges.RecommendedCollegesListAPI;
@@ -251,11 +243,11 @@ public class HomeFragment extends Fragment {
                         break;
                     case 2:
                         //jobs
-                       /* intent = new Intent(getActivity(), SubCategoryActivity.class);
-                        intent.putExtra("catID","7");
-                        startActivity(intent);*/
+                        intent = new Intent(getActivity(), JobHomeActivity.class);
+//                        intent.putExtra("catID","7");
+                        startActivity(intent);
 
-                        Toast.makeText(getActivity(),"Coming Soon",Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(),"Coming Soon",Toast.LENGTH_LONG).show();
                         break;
                     case 3:
                         //recommended
@@ -274,8 +266,9 @@ public class HomeFragment extends Fragment {
               /*  Intent in=new Intent(getActivity(), SubCategoryActivity.class);
                 in.putExtra("catID","3");
                 startActivity(in);*/
-
-                Toast.makeText(getActivity(),"Coming Soon",Toast.LENGTH_LONG).show();
+                Intent in=new Intent(getActivity(), JobHomeActivity.class);
+                startActivity(in);
+                //Toast.makeText(getActivity(),"Coming Soon",Toast.LENGTH_LONG).show();
             }
         });
         llRecommendation.setOnClickListener(new View.OnClickListener() {
@@ -298,7 +291,10 @@ public class HomeFragment extends Fragment {
                /* Intent in=new Intent(getActivity(), SubCategoryActivity.class);
                 in.putExtra("catID","2");
                 startActivity(in);*/
-                Toast.makeText(getActivity(),"Coming Soon",Toast.LENGTH_LONG).show();
+                Intent in=new Intent(getActivity(), SubCategoryActivity.class);
+                in.putExtra("catID","1");
+                startActivity(in);
+                //Toast.makeText(getActivity(),"Coming Soon",Toast.LENGTH_LONG).show();
             }
         });
         llStories.setOnClickListener(new View.OnClickListener() {
@@ -498,7 +494,7 @@ public class HomeFragment extends Fragment {
 //        categories.add(new HomeItemsModel("Scholarship",R.drawable.scholership,"0"));
         categories.add(new HomeItemsModel("Study Abroad",R.drawable.study_abroad,"1"));
 //        categories.add(new HomeItemsModel("Study Tour",R.drawable.study_tour,"0"));
-        categories.add(new HomeItemsModel("Jobs",R.drawable.jobs,"0"));
+        categories.add(new HomeItemsModel("Jobs",R.drawable.jobs,"1"));
         categories.add(new HomeItemsModel("Recommended",R.drawable.scholership,"1"));
 
     }

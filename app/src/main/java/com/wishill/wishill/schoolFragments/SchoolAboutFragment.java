@@ -2,7 +2,7 @@ package com.wishill.wishill.schoolFragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -19,7 +18,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.wishill.wishill.R;
 import com.wishill.wishill.api.recommendedColleges.schoolDetails.SchoolBasicDetailsData;
-import com.wishill.wishill.api.recommendedColleges.schoolDetails.SchoolDetailsData;
 
 public class SchoolAboutFragment extends Fragment {
     SchoolBasicDetailsData schoolDetailsData;

@@ -3,8 +3,8 @@ package com.wishill.wishill.activity;
 import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,12 +22,10 @@ import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
 import com.wishill.wishill.api.recommendedColleges.getScholarshipDetails.ScholarshipBasicDetailsData;
 import com.wishill.wishill.api.recommendedColleges.getScholarshipDetails.ScholarshipDetailsAPI;
-import com.wishill.wishill.api.recommendedColleges.getScholarshipDetails.ScholarshipDetailsData;
 import com.wishill.wishill.api.recommendedColleges.getScholarshipDetails.ScholarshipDetailsResponse;
 import com.wishill.wishill.utilities.APILinks;
 import com.wishill.wishill.utilities.DialogProgress;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;

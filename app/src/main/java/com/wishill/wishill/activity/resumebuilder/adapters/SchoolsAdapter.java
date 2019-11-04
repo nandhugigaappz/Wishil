@@ -1,6 +1,6 @@
 package com.wishill.wishill.activity.resumebuilder.adapters;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 
 import com.wishill.wishill.activity.resumebuilder.datamodel.School;

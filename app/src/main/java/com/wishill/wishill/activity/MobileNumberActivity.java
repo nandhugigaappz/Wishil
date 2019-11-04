@@ -3,7 +3,7 @@ package com.wishill.wishill.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.TextWatcher;
@@ -31,8 +31,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.wishill.wishill.activity.SocialMediaActivity.referredInstitute;
-import static com.wishill.wishill.activity.SocialMediaActivity.referredInstituteType;
 import static com.wishill.wishill.activity.SocialMediaActivity.referrer;
 
 public class MobileNumberActivity extends AppCompatActivity {

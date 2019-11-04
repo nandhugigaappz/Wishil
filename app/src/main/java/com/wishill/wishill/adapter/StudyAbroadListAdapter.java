@@ -1,8 +1,8 @@
 package com.wishill.wishill.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.text.Html;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.wishill.wishill.R;
 import com.wishill.wishill.api.recommendedColleges.studyabroadlist.StudyAbroadListData;
-import com.wishill.wishill.api.recommendedColleges.subCatCollegeList.SubCatCollegeListData;
 import com.wishill.wishill.utilities.APILinks;
 
 import java.util.List;
@@ -36,7 +35,7 @@ public class StudyAbroadListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int position) {
         RecyclerView.ViewHolder viewHolder = null;
         if (position == 0) {
-            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cat_item_recommended_colleges_sub, viewGroup, false);
+            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cat_item_recommended_colleges_sub_abroad, viewGroup, false);
             viewHolder = new ListHolder(v);
             /*View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.study_abroad_list_item, viewGroup, false);
             viewHolder = new ListHolder(v);*/

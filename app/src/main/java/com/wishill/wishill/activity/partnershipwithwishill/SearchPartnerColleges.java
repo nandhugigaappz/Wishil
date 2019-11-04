@@ -1,14 +1,12 @@
 package com.wishill.wishill.activity.partnershipwithwishill;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -25,15 +23,9 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
-import com.wishill.wishill.activity.CollegeDetailsActivity;
-import com.wishill.wishill.activity.SchoolDetails;
-import com.wishill.wishill.activity.SearchActivity;
-import com.wishill.wishill.adapter.SearchListAdapter;
 import com.wishill.wishill.adapter.SearchPaertnerCollegeListAdapter;
 import com.wishill.wishill.api.recommendedColleges.assignpartnercollege.AssignPartnerCollegeAPI;
 import com.wishill.wishill.api.recommendedColleges.assignpartnercollege.AssignPartnerCollegeResponse;
-import com.wishill.wishill.api.recommendedColleges.searchList.SearchListAPI;
-import com.wishill.wishill.api.recommendedColleges.searchList.SearchListResponse;
 import com.wishill.wishill.api.recommendedColleges.searchpartnercolleges.SearchListPartnerCollegeData;
 import com.wishill.wishill.api.recommendedColleges.searchpartnercolleges.SearchListPartnerCollegeResponse;
 import com.wishill.wishill.api.recommendedColleges.searchpartnercolleges.SearchPartnerCollegeListAPI;

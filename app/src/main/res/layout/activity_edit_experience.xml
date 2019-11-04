@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,9 +22,9 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_company_name"
                 android:inputType="textCapWords" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,9 +36,9 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_location"
                 android:inputType="textCapWords" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,9 +50,9 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_job_title"
                 android:inputType="textCapWords" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,6 +64,6 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_description"
                 android:inputType="text|textCapSentences|textMultiLine" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 </ScrollView>

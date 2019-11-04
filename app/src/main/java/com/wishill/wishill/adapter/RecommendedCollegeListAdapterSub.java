@@ -1,7 +1,7 @@
 package com.wishill.wishill.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +68,12 @@ public class RecommendedCollegeListAdapterSub extends RecyclerView.Adapter<Recom
                 onClickListener.sendEnq(view,position);
             }
         });
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickListener.itemClick(view,position);
+            }
+        });
     }
 
     @Override

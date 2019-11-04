@@ -1,7 +1,7 @@
 package com.wishill.wishill.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.wishill.wishill.R;
 import com.wishill.wishill.api.recommendedColleges.recivedenqlist.RecivedEnqListData;
-import com.wishill.wishill.api.recommendedColleges.sendenqlist.SendEnqListData;
 import com.wishill.wishill.utilities.APILinks;
 import com.wishill.wishill.utilities.CircleTransform;
 

@@ -2,7 +2,7 @@ package com.wishill.wishill.activity.studyabroadfragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +17,6 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.wishill.wishill.R;
-import com.wishill.wishill.api.recommendedColleges.collegeDetails.BasicDetailsData;
 import com.wishill.wishill.api.recommendedColleges.studyabroaddetails.StudyAbroadBasicDetailsData;
 
 public class StudyAbroadAboutFragment extends Fragment{

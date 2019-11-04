@@ -6,7 +6,7 @@
     android:layout_gravity="end"
     tools:ignore="ContentDescription">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -237,6 +237,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/underline_menu_gray"
+                android:id="@+id/ll_contact_us"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="15dp"
+                    android:drawableStart="@drawable/ic_about"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:text="Contact Us"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/underline_menu_gray"
                 android:id="@+id/ll_logout"
                 android:orientation="horizontal">
 
@@ -310,6 +330,6 @@
 
         </LinearLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

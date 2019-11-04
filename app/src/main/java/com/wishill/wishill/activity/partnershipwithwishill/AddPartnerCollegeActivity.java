@@ -1,15 +1,12 @@
 package com.wishill.wishill.activity.partnershipwithwishill;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,31 +20,20 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
-import com.wishill.wishill.activity.HomeActivity;
-import com.wishill.wishill.activity.SearchActivity;
 import com.wishill.wishill.api.recommendedColleges.addPartnerCollege.AddPartnerCollegeAPI;
 import com.wishill.wishill.api.recommendedColleges.addPartnerCollege.AddPartnerCollegeResponse;
-import com.wishill.wishill.api.recommendedColleges.collegeCourseList.CourseListData;
-import com.wishill.wishill.api.recommendedColleges.getCountry.CountryListAPI;
-import com.wishill.wishill.api.recommendedColleges.getCountry.CountryListData;
-import com.wishill.wishill.api.recommendedColleges.getCountry.CountryListResponse;
 import com.wishill.wishill.api.recommendedColleges.getDistrict.DistrictListAPI;
 import com.wishill.wishill.api.recommendedColleges.getDistrict.DistrictListData;
 import com.wishill.wishill.api.recommendedColleges.getDistrict.DistrictListResponse;
 import com.wishill.wishill.api.recommendedColleges.getState.StateListAPI;
 import com.wishill.wishill.api.recommendedColleges.getState.StateListData;
 import com.wishill.wishill.api.recommendedColleges.getState.StateListResponse;
-import com.wishill.wishill.datamodel.CityDataModel;
-import com.wishill.wishill.dialogBoxes.ListDialogeBox;
 import com.wishill.wishill.utilities.APILinks;
 import com.wishill.wishill.utilities.DialogProgress;
-import com.wishill.wishill.utilities.Variables;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

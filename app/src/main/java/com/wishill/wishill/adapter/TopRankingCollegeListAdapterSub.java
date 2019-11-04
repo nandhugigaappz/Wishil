@@ -1,8 +1,8 @@
 package com.wishill.wishill.adapter;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.wishill.wishill.R;
-import com.wishill.wishill.activity.SchoolDetails;
 import com.wishill.wishill.api.recommendedColleges.toprankingColleges.TopRankingCollegesListData;
 import com.wishill.wishill.utilities.APILinks;
 

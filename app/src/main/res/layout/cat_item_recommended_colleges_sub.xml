@@ -13,7 +13,7 @@
         android:padding="@dimen/padding_medium"
         android:weightSum="100">
 
-        <RelativeLayout
+        <!--<RelativeLayout
             android:id="@+id/rl_image"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -29,8 +29,39 @@
                  />
 
 
-        </RelativeLayout>
+        </RelativeLayout>-->
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rl_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="35"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" >
 
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:scaleType="fitXY" />
+
+            <!--<ImageView
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_gravity="left"
+                android:background="@drawable/recommended1" />
+-->
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="25dp"
+                android:background="@color/blue"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:text="Trusted"
+                android:gravity="center"
+                />
+
+        </FrameLayout>
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="100dp"

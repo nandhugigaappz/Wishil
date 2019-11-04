@@ -1,8 +1,8 @@
 package com.wishill.wishill.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +11,10 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.wishill.wishill.R;
 import com.wishill.wishill.api.recommendedColleges.getNoticeboardData.NoticeData;
-import com.wishill.wishill.utilities.APILinks;
 
 import java.util.List;
-
-import static com.wishill.wishill.utilities.Variables.DEFAULT_IMAGE_PATH;
 
 public class InstituteNoticeAdapter extends RecyclerView.Adapter<InstituteNoticeAdapter.ViewHolder> {
 

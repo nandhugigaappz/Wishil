@@ -29,7 +29,7 @@
 
 
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     style="@style/CardViewStyleThree">
                     <RelativeLayout
@@ -45,7 +45,7 @@
                             tools:ignore="ContentDescription" />
                     </RelativeLayout>
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
 
             </RelativeLayout>

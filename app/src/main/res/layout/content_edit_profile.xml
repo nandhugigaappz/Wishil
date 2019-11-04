@@ -30,7 +30,7 @@
           android:layout_height="100dp"
           android:adjustViewBounds="true"
           tools:ignore="ContentDescription" />
-      <android.support.design.widget.TextInputLayout
+      <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="20dp"
@@ -45,9 +45,9 @@
               android:textSize="@dimen/text_medium"
               android:hint="First Name"/>
 
-      </android.support.design.widget.TextInputLayout>
+      </com.google.android.material.textfield.TextInputLayout>
 
-      <android.support.design.widget.TextInputLayout
+      <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="20dp"
@@ -62,9 +62,9 @@
               android:textSize="@dimen/text_medium"
               android:hint="Last Name"/>
 
-      </android.support.design.widget.TextInputLayout>
+      </com.google.android.material.textfield.TextInputLayout>
 
-      <android.support.design.widget.TextInputLayout
+      <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="20dp"
@@ -79,9 +79,9 @@
               android:textSize="@dimen/text_medium"
               android:hint="Email Address"/>
 
-      </android.support.design.widget.TextInputLayout>
+      </com.google.android.material.textfield.TextInputLayout>
 
-      <android.support.design.widget.TextInputLayout
+      <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="20dp"
@@ -96,7 +96,7 @@
               android:textSize="@dimen/text_medium"
               android:hint="Mobile Number"/>
 
-      </android.support.design.widget.TextInputLayout>
+      </com.google.android.material.textfield.TextInputLayout>
       <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
           android:layout_height="1dp"
           android:background="@color/gray"/>
 
-      <android.support.design.widget.TextInputLayout
+      <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="20dp"
@@ -160,7 +160,7 @@
               android:textSize="@dimen/text_medium"
               android:hint="Address"/>
 
-      </android.support.design.widget.TextInputLayout>
+      </com.google.android.material.textfield.TextInputLayout>
 
 
       <TextView
@@ -226,7 +226,7 @@
           android:layout_height="1dp"
           android:visibility="gone"
           android:background="@color/gray"/>
-      <android.support.design.widget.TextInputLayout
+      <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="20dp"
@@ -241,8 +241,8 @@
               android:textSize="@dimen/text_medium"
               android:hint="Qualification"/>
 
-      </android.support.design.widget.TextInputLayout>
-      <android.support.design.widget.TextInputLayout
+      </com.google.android.material.textfield.TextInputLayout>
+      <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="20dp"
@@ -257,9 +257,9 @@
               android:textSize="@dimen/text_medium"
               android:hint="Institution Name"/>
 
-      </android.support.design.widget.TextInputLayout>
+      </com.google.android.material.textfield.TextInputLayout>
 
-      <android.support.design.widget.TextInputLayout
+      <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="20dp"
@@ -274,7 +274,7 @@
               android:textSize="@dimen/text_medium"
               android:hint="Mark"/>
 
-      </android.support.design.widget.TextInputLayout>
+      </com.google.android.material.textfield.TextInputLayout>
       <TextView
           android:id="@+id/btn_submit"
           android:layout_width="match_parent"

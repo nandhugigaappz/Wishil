@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context="com.wishill.wishill.activity.HomeActivity">
-
-<android.support.design.widget.AppBarLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:elevation="1dp"
-    android:theme="@style/AppTheme.AppBarOverlay">
+    android:layout_height="match_parent"
+    tools:context="com.wishill.wishill.activity.HomeActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
-        app:contentInsetStartWithNavigation="0dp"
-        app:popupTheme="@style/AppTheme.PopupOverlay" >
-        <!-- <TextView
-             android:id="@+id/toolbar_title"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_gravity="center"
-             android:gravity="start"
-             android:textColor="@color/textPrimary"
-             android:textSize="@dimen/text_medium"
-             android:text="Wishill"
-             android:textStyle="bold" />
--->
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:src="@drawable/org_wishill_logo_one"/>
-    </android.support.v7.widget.Toolbar>
+        android:layout_height="wrap_content"
+        app:elevation="1dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-</android.support.design.widget.AppBarLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            app:contentInsetStartWithNavigation="0dp"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            <!-- <TextView
+                 android:id="@+id/toolbar_title"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:gravity="start"
+                 android:textColor="@color/textPrimary"
+                 android:textSize="@dimen/text_medium"
+                 android:text="Wishill"
+                 android:textStyle="bold" />
+    -->
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/org_wishill_logo_one"/>
+        </androidx.appcompat.widget.Toolbar>
 
-<include layout="@layout/content_home" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_home" />
 
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

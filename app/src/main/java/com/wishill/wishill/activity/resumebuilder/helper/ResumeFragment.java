@@ -1,7 +1,7 @@
 package com.wishill.wishill.activity.resumebuilder.helper;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import com.wishill.wishill.activity.resumebuilder.datamodel.Resume;
 
@@ -20,6 +20,7 @@ abstract public class ResumeFragment extends Fragment {
     }
 
     public Resume getResume() {
-        return getArguments().getParcelable(ARGUMENT_RESUME);
+        Resume resume = getArguments().getParcelable(ARGUMENT_RESUME);
+        return resume;
     }
 }

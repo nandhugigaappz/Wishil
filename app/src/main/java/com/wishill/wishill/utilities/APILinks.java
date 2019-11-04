@@ -18,6 +18,10 @@ public class APILinks {
 
 
     public static final String API_LINK = "https://www.wishill.com/app/";
+    public static final String API_LINK_JOBS = "http://jobs.wishill.com/api/jobs/";
+    public static final String API_LINK_JOBS_LOGIN = "http://jobs.wishill.com/api/Authenticate/";
+    public static final String API_LINK_JOBS_OTP = "http://jobs.wishill.com/api/authenticate/";
+    public static final String API_LINK_JOBS_CANDIDATE = "http://jobs.wishill.com/api/Candidate/";
     public static final String MAIN_URL = "https://www.wishill.com/";
     public static final String IMAGE_LINK = "https://www.wishill.com/";
     public static final String IMAGE_LINK_TWO = "https://www.wishill.com/";

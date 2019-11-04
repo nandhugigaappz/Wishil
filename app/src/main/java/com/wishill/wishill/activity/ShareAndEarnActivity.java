@@ -8,9 +8,9 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.wishill.wishill.R;
 
 import java.io.IOException;
@@ -67,14 +70,44 @@ public class ShareAndEarnActivity extends AppCompatActivity {
         whatsappBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendShareToWhatsAppIntent();
+
+                if (getIntent().hasExtra("image")){
+                    Glide.with(ShareAndEarnActivity.this)
+
+                            .load(getIntent().getStringExtra("image"))
+                            .asBitmap()
+                            .into(new SimpleTarget<Bitmap>() {
+                                @Override
+                                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                                    sendShareToWhatsApp(resource);
+                                }
+
+                            });
+                }else {
+                    sendShareToWhatsAppIntent();
+                }
                 //shareWithWhatsapp();
             }
         });
         shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shareInviteCode();
+                if (getIntent().hasExtra("image")){
+                    Glide.with(ShareAndEarnActivity.this)
+
+                            .load(getIntent().getStringExtra("image"))
+                            .asBitmap()
+                            .into(new SimpleTarget<Bitmap>() {
+                                @Override
+                                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                                    shareInviteCode(resource);
+                                }
+
+                            });
+                }else {
+                    shareInviteCode();
+                }
+
             }
         });
     }
@@ -121,6 +154,41 @@ public class ShareAndEarnActivity extends AppCompatActivity {
             Toast.makeText(this, "whatsapp not installed", Toast.LENGTH_SHORT).show();
         }
     }
+    private void shareInviteCode(Bitmap resource) {
+        /*Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Invite code");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "Share invite code"));*/
+
+
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+
+
+
+        if (resource != null) {
+            String url = MediaStore.Images.Media.insertImage(getContentResolver(), resource, "", "");
+            sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(url));
+            sharingIntent.setType("*/*");
+        } else {
+            //if no picture, just text set - this MIME
+            sharingIntent.setType("text/plain");
+        }
+
+        //setup sharing message
+        String message = getIntent().getStringExtra("instituteName")+"\nWishil App \nShare and Earn - Use code "+inviteCode +" to get a guaranteed scholarships through wishill for course booking.\n"+shareBody;
+
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, message.toString());
+
+
+
+        if (sharingIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(Intent.createChooser(sharingIntent, "Share invite code"));
+        } else {
+            Log.w("", "sendShareIntent: cant resolve intent");
+            Toast.makeText(this, "whatsapp not installed", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     private void shareWithWhatsapp() {
         Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
@@ -151,7 +219,37 @@ public class ShareAndEarnActivity extends AppCompatActivity {
             e.printStackTrace();
         }*/
     }
+    public void sendShareToWhatsApp(Bitmap bitmap) {
 
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+
+
+        if (bitmap != null) {
+            String url = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "", "");
+            sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(url));
+            sharingIntent.setType("*/*");
+        } else {
+            //if no picture, just text set - this MIME
+            sharingIntent.setType("text/plain");
+        }
+
+        //setup sharing message
+        String message = getIntent().getStringExtra("instituteName")+"\nWishil App \nShare and Earn - Use code "+inviteCode +" to get a guaranteed scholarships through wishill for course booking.\n"+shareBody;
+
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, message.toString());
+
+        //target WhatsApp:
+        sharingIntent.setPackage("com.whatsapp");
+
+
+        if (sharingIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sharingIntent);
+        } else {
+            Log.w("", "sendShareIntent: cant resolve intent");
+            Toast.makeText(this, "whatsapp not installed", Toast.LENGTH_SHORT).show();
+        }
+
+    }
     public void sendShareToWhatsAppIntent() {
         Uri imageUri = Uri.parse("android.resource://" + getPackageName()
                 + "/drawable/" + "ic_launcher_logo");

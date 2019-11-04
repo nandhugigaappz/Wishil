@@ -7,9 +7,9 @@ import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintJob;
 import android.print.PrintManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -50,6 +50,8 @@ public class PreviewFragment extends ResumeFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_preview, container, false);
         webView = view.findViewById(R.id.webView);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setDisplayZoomControls(false);
         StringBuilder htmlContent = new StringBuilder();
         Resume resume = getResume();
         PersonalInfo personalInfo = resume.personalInfo;
@@ -82,7 +84,7 @@ public class PreviewFragment extends ResumeFragment {
                 "                        <p class=\"c0\"><span class=\"c10 c8\">%s</span></p>\n" +
                 "                        <p class=\"c6\"><span class=\"c8 c10\">%s</span></p>\n" +
                 "                    </td>\n" +
-                "                </tr>", personalInfo.getName(), personalInfo.getJobTitle(), personalInfo.getName(), personalInfo.getAddressLine1(), personalInfo.getAddressLine2(), personalInfo.getPhone(), personalInfo.getEmail()));
+                "                </tr>", personalInfo.getName(), personalInfo.getJobTitle(), "", personalInfo.getAddressLine1(), personalInfo.getAddressLine2(), personalInfo.getPhone(), personalInfo.getEmail()));
 
         if (!resume.skills.isEmpty()) {
             htmlContent.append(String.format("\n" +

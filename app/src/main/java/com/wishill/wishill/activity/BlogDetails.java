@@ -3,10 +3,9 @@ package com.wishill.wishill.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,10 +21,7 @@ import com.wishill.wishill.R;
 import com.wishill.wishill.api.recommendedColleges.blogdetails.BlogDetailsAPI;
 import com.wishill.wishill.api.recommendedColleges.blogdetails.BlogDetailsData;
 import com.wishill.wishill.api.recommendedColleges.blogdetails.BlogDetailsResponse;
-import com.wishill.wishill.api.recommendedColleges.enqdetails.EnqDetailsAPI;
-import com.wishill.wishill.api.recommendedColleges.enqdetails.EnqDetailsResponse;
 import com.wishill.wishill.utilities.APILinks;
-import com.wishill.wishill.utilities.CircleTransform;
 import com.wishill.wishill.utilities.DialogProgress;
 
 import java.util.concurrent.TimeUnit;

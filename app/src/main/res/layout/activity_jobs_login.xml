@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.JobsLoginActivity">
+    tools:context=".activity.jobs.JobsLoginActivity">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -23,8 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:orientation="vertical">
-
-
 
         <EditText
             android:id="@+id/edt_user_name"
@@ -126,5 +124,22 @@
                 android:textSize="@dimen/text_medium"
                 android:textColor="@color/blue"/>
         </LinearLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress_bar"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
     </RelativeLayout>
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:visibility="gone"
+        android:layout_marginBottom="30dp" />
+
 </LinearLayout>

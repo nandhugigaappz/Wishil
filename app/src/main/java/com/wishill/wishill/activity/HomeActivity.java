@@ -12,22 +12,22 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.view.ViewPager;
+import androidx.core.app.ActivityCompat;
+import androidx.viewpager.widget.ViewPager;
 import android.util.Log;
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.LinearLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +38,6 @@ import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.wishill.wishill.MainActivity;
 import com.wishill.wishill.R;
 import com.wishill.wishill.activity.partnershipwithwishill.PartnerShipRegisterActivity;
 import com.wishill.wishill.mainfragments.CatFragment;
@@ -76,6 +75,7 @@ public class HomeActivity extends AppCompatActivity {
     LinearLayout llSettings;
     LinearLayout llSendFeed;
     LinearLayout llPartnerLogin;
+    LinearLayout llContactUs;
 
     ViewPager viewPager;
     AHBottomNavigation bottomNavigation;
@@ -180,6 +180,15 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         llAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawer.closeDrawer(GravityCompat.START);
+                Intent in=new Intent(HomeActivity.this,TCActivity.class);
+                in.putExtra("from","about");
+                startActivity(in);
+            }
+        });
+        llContactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 drawer.closeDrawer(GravityCompat.START);
@@ -343,6 +352,7 @@ public class HomeActivity extends AppCompatActivity {
         llTermsCondition=navigationView.findViewById(R.id.ll_terms_conditions);
         llShareApp=navigationView.findViewById(R.id.ll_share_app);
         llAboutUs=navigationView.findViewById(R.id.ll_about_us);
+        llContactUs=navigationView.findViewById(R.id.ll_contact_us);
         llSettings=navigationView.findViewById(R.id.ll_settings);
         llSendFeed=navigationView.findViewById(R.id.ll_send_feedback);
         llPartnerLogin=navigationView.findViewById(R.id.ll_partner_login);

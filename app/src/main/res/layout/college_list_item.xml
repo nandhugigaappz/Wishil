@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="35">
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/CardViewStyleThree">
                 <RelativeLayout
@@ -36,7 +36,7 @@
                         tools:ignore="ContentDescription" />
                 </RelativeLayout>
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
             <!--<ImageView
                 android:id="@+id/thumbnail"
                 android:layout_width="match_parent"

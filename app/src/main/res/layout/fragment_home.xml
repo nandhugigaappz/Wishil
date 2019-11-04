@@ -6,7 +6,7 @@
     android:background="@color/background"
     tools:context=".mainfragments.HomeFragment">
 
-<android.support.v4.widget.NestedScrollView
+<androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             style="@style/CardViewStyleOne"
             >
         <LinearLayout
@@ -108,7 +108,7 @@
                     android:layout_gravity="center"
                     android:textSize="@dimen/text_thin"
                     android:textColor="@color/textPrimary"
-                    android:text="Exams"/>
+                    android:text="Jobs"/>
 
             </LinearLayout>
             <LinearLayout
@@ -129,12 +129,12 @@
                     android:layout_gravity="center"
                     android:textSize="@dimen/text_thin"
                     android:textColor="@color/textPrimary"
-                    android:text="Internship"/>
+                    android:text="Colleges"/>
 
             </LinearLayout>
         </LinearLayout>
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.RecyclerView
+        </androidx.cardview.widget.CardView>
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_cat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
             android:layout_marginTop="@dimen/padding_large"
             android:textColor="@color/textPrimary"
             android:textSize="17sp"/>
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_recommended_college"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
             android:textSize="17sp"/>
 
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_top_ranking_college"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
             android:textColor="@color/textPrimary"
             android:visibility="gone"
             android:textSize="20dp"/>
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_trending_scholarships"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -209,7 +209,7 @@
             android:textColor="@color/textPrimary"
             android:visibility="gone"
             android:textSize="20dp"/>
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_attractive_study_tour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -227,13 +227,13 @@
             android:layout_marginTop="@dimen/padding_large"
             android:textColor="@color/textPrimary"
             android:textSize="17sp"/>
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_blogs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             />
     </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

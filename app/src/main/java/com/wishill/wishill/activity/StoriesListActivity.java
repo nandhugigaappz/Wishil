@@ -3,31 +3,23 @@ package com.wishill.wishill.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.support.v7.widget.Toolbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wishill.wishill.R;
-import com.wishill.wishill.activity.profile.UserFollowingList;
-import com.wishill.wishill.adapter.FollowingListAdapter;
 import com.wishill.wishill.adapter.StoriesListAdapter;
 import com.wishill.wishill.api.recommendedColleges.storieslist.StoriesListAPI;
 import com.wishill.wishill.api.recommendedColleges.storieslist.StoriesListData;
 import com.wishill.wishill.api.recommendedColleges.storieslist.StoriesListResponse;
-import com.wishill.wishill.api.recommendedColleges.userfollowing.UserFollowingListAPI;
-import com.wishill.wishill.api.recommendedColleges.userfollowing.UserFollowingResponse;
 import com.wishill.wishill.utilities.APILinks;
 import com.wishill.wishill.utilities.DialogProgress;
 
