@@ -193,7 +193,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 drawer.closeDrawer(GravityCompat.START);
                 Intent in=new Intent(HomeActivity.this,TCActivity.class);
-                in.putExtra("from","about");
+                in.putExtra("from","contact");
                 startActivity(in);
             }
         });

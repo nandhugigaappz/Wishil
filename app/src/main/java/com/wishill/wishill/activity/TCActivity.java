@@ -36,6 +36,9 @@ public class TCActivity extends AppCompatActivity {
         }else if(from.equals("about")){
             toolBarTitle.setText("About Us");
             url=APILinks.ABOUT_US;
+        }else if(from.equals("contact")){
+            toolBarTitle.setText("Contact Us");
+            url=APILinks.CONTACT_US;
         }
         webView=findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);

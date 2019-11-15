@@ -71,7 +71,7 @@ public class ShareAndEarnActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (getIntent().hasExtra("image")){
+                /*if (getIntent().hasExtra("image")){
                     Glide.with(ShareAndEarnActivity.this)
 
                             .load(getIntent().getStringExtra("image"))
@@ -85,7 +85,9 @@ public class ShareAndEarnActivity extends AppCompatActivity {
                             });
                 }else {
                     sendShareToWhatsAppIntent();
-                }
+                }*/
+
+                shareLinkToWhatsapp(getIntent().getStringExtra("instituteId"),inviteCode);
                 //shareWithWhatsapp();
             }
         });
@@ -288,6 +290,26 @@ public class ShareAndEarnActivity extends AppCompatActivity {
             Toast.makeText(this, "whatsapp not installed", Toast.LENGTH_SHORT).show();
         }
 
+    }
+    public void shareLinkToWhatsapp(String id,String referalCode){
+        Intent shareIntent = new Intent();
+        shareIntent.setType("image/*");
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        shareIntent.setAction(Intent.ACTION_SEND);
+        //without the below line intent will show error
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "https://www.wishill.com/sharenearn.php?share_college_id="+id+"&referrer="+inviteCode);
+        // Target whatsapp:
+        shareIntent.setPackage("com.whatsapp");
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        try {
+            startActivity(shareIntent);
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(ShareAndEarnActivity.this,
+                    "Whatsapp have not been installed.",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
 

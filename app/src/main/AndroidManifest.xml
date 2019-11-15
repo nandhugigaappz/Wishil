@@ -43,6 +43,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".activity.jobs.CommonBaseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.jobs.JobProviderHome"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activity.jobs.ChangeJobPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -168,17 +176,19 @@
                     android:host="colleges"
                     android:scheme="wishill" />
             </intent-filter>
-            <!--
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data
-                    android:host="www.wishill.com"
-                    android:pathPrefix="/mwishill/studyabroad"
+
+                    android:host="wishill.com"
+                    android:scheme="http"/>
+                <data
+
+                    android:host="wishill.com"
                     android:scheme="https"/>
-            </intent-filter>
-            -->
+            </intent-filter>-->
         </activity>
         <activity
             android:name=".activity.studyabroad.StudyAbroadList"
@@ -283,7 +293,16 @@
             android:label="@string/title_activity_college_details"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
 
+                <data
+                    android:host="www.wishill.com"
+                    android:pathPrefix="/sharenearn"
+                    android:scheme="https"/>
+            </intent-filter>
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>

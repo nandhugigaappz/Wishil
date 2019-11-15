@@ -8,8 +8,8 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
 
-        versionCode 15
-        versionName "2.3"
+        versionCode 16
+        versionName "2.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
@@ -76,6 +76,4 @@ dependencies {
     implementation 'com.github.barteksc:pdfium-android:1.4.0'
     implementation 'com.tom_roush:pdfbox-android:1.8.10.1'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
-
-
 }

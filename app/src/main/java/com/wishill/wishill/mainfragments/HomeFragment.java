@@ -1,5 +1,7 @@
 package com.wishill.wishill.mainfragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +26,7 @@ import com.wishill.wishill.activity.StoriesListActivity;
 import com.wishill.wishill.activity.SubCategoryActivity;
 import com.wishill.wishill.activity.TopRankingActivity;
 import com.wishill.wishill.activity.jobs.JobHomeActivity;
+import com.wishill.wishill.activity.jobs.JobProviderHome;
 import com.wishill.wishill.activity.studyabroad.StudyAbrodCountries;
 import com.wishill.wishill.adapter.AttractiveStudyTourListAdapter;
 import com.wishill.wishill.adapter.BlogsListAdapter;
@@ -243,10 +246,23 @@ public class HomeFragment extends Fragment {
                         break;
                     case 2:
                         //jobs
-                        intent = new Intent(getActivity(), JobHomeActivity.class);
+                        //intent = new Intent(getActivity(), JobHomeActivity.class);
 //                        intent.putExtra("catID","7");
-                        startActivity(intent);
-
+                        //startActivity(intent);
+                       /* String job_user_type = sharedPreferences.getString("job_user_type", null);
+                        if (job_user_type == null || job_user_type.equals("")) {
+                            showUserTypeDialog();
+                        } else {
+                            if (job_user_type.equals("seeker")){
+                                intent = new Intent(getActivity(), JobHomeActivity.class);
+                                startActivity(intent);
+                            } else if (job_user_type.equals("provider")){
+                                intent = new Intent(getActivity(), JobProviderHome.class);
+                                startActivity(intent);
+                            }
+                        }*/
+                        Intent intent1 = new Intent(getActivity(), JobHomeActivity.class);
+                        startActivity(intent1);
 //                        Toast.makeText(getActivity(),"Coming Soon",Toast.LENGTH_LONG).show();
                         break;
                     case 3:
@@ -338,6 +354,33 @@ public class HomeFragment extends Fragment {
 
                     }
                 });
+    }
+
+    private void showUserTypeDialog() {
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+        alertDialog.setTitle("Select your type");
+        alertDialog.setMessage("You are a...");
+
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Job Seeker",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getActivity(), JobHomeActivity.class);
+                        startActivity(intent);
+                        dialog.dismiss();
+                    }
+                });
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Job Provider",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getActivity(), JobProviderHome.class);
+                        startActivity(intent);
+                        dialog.dismiss();
+                    }
+                });
+
+        alertDialog.show();
+
     }
 
     //auto scrolling in recyclerView

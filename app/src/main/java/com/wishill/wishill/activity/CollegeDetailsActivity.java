@@ -150,8 +150,17 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         sharedPreferences = getApplicationContext().getSharedPreferences("wishill", MODE_PRIVATE);
         userID=sharedPreferences.getString("userId", "");
         userType=sharedPreferences.getString("userType","");
+        Intent intent = getIntent();
+        Uri data = intent.getData();
+        if (data!=null){
+            List<String> pathSegments = data.getQueryParameters("share_college_id");
+            if(pathSegments.size()>0)
+            collegeID=pathSegments.get(0);
+        }
+        if (getIntent().hasExtra("collegeID")){
+            collegeID=getIntent().getStringExtra("collegeID");
+        }
 
-        collegeID=getIntent().getStringExtra("collegeID");
         dialogProgress = new DialogProgress(CollegeDetailsActivity.this);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);

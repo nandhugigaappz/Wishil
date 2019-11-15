@@ -277,6 +277,11 @@ public class ResumeUploadActivity extends AppCompatActivity {
                 progress.dismiss();
                 if (response.isSuccessful()){
                     Toast.makeText(ResumeUploadActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences.Editor editor=sharedPreferences.edit();
+                    editor.putString("resume","true");
+                    editor.apply();
+                    editor.commit();
                     finish();
                 }
             }

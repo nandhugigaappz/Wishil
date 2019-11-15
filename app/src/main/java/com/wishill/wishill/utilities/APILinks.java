@@ -32,7 +32,7 @@ public class APILinks {
     public static final String PRIVACY_POLICY= "https://www.wishill.com/mwishill/app_privacy_policy.php";
     public static final String TERMS_AND_CONDITIONS= "https://www.wishill.com/mwishill/app_terms_of_use.php";
     public static final String ABOUT_US= "https://www.wishill.com/mwishill/app_about.php";
-
+    public static final String CONTACT_US= "http://wishill.com/mwishill/mcontact.php";
     public static final String DEVELOPER_KEY = "AIzaSyCDNHaJMKQtrI2V2eBjRBSJ3gLuYBm1pBU";
 
 
